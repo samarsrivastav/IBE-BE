@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"api_gateway","Source":"./modules/api_gateway","Dir":"modules/api_gateway"},{"Key":"beanstalk","Source":"./modules/beanstalk","Dir":"modules/beanstalk"}]}

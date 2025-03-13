@@ -1,0 +1,27 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Installing Terraform..."
+      - wget https://releases.hashicorp.com/terraform/1.0.11/terraform_1.0.11_linux_amd64.zip
+      - unzip terraform_1.0.11_linux_amd64.zip
+      - mv terraform /usr/local/bin/
+  pre_build:
+    commands:
+      - cd Terraform
+      - echo "Initializing Terraform..."
+      - echo "Initializing Terraform..."
+      - echo "Initializing Terraform..."
+      - echo "EB endpoint is ${beanstalk_endpoint_url}"
+      - terraform init
+  build:
+    commands:
+      - echo "Planning Terraform changes..."
+      - echo "ENVIRONMENT=${ENVIRONMENT}"
+      - terraform plan -var-file="${ENVIRONMENT}.tfvars"
+      - echo "Applying Terraform changes..."
+      - terraform apply -auto-approve -var-file="${ENVIRONMENT}.tfvars"
+artifacts:
+  files:
+    - '**/*'
