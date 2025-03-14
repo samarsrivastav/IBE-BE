@@ -13,7 +13,7 @@ public class CustomHealthIndicator implements HealthIndicator {
         boolean isHealthy = checkHealthStatus();
 
         if (isHealthy) {
-            return Health.up().withDetail("message", "Service is running smoothly.").build();
+            return Health.up().withDetail("message", "Service is running smoothly").build();
         } else {
             return Health.down().withDetail("message", "Service is experiencing issues").build();
         }
