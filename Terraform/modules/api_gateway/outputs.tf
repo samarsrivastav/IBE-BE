@@ -1,9 +1,9 @@
 output "api_gateway_id" {
-  description = "API Gateway ID"
-  value       = aws_api_gateway_rest_api.this.id
+  description = "The ID of the shared API Gateway"
+  value = var.create_api_gateway ? aws_api_gateway_rest_api.this[0].id : data.aws_api_gateway_rest_api.existing[0].id
 }
 
 output "api_gateway_invoke_url" {
   description = "Invoke URL for this API Gateway stage"
-  value       = "${aws_api_gateway_rest_api.this.execution_arn}/${var.environment}"
+  value = var.create_api_gateway ? "${aws_api_gateway_rest_api.this[0].execution_arn}/${var.environment}": "${data.aws_api_gateway_rest_api.existing[0].execution_arn}/${var.environment}"
 }

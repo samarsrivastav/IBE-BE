@@ -20,5 +20,12 @@ variable "public_subnets" {
   type = list(string)
 }
 
-# No longer declare or pass the secret variables here
-# since you're using data sources from SSM instead.
+variable "beanstalk_endpoint_dev" {
+  type    = string
+  default = "my-dev-eb.example.com"
+}
+
+variable "beanstalk_endpoint_qa" {
+  type    = string
+  default = "my-qa-eb.example.com"
+}
