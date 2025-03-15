@@ -1,0 +1,42 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Installing Terraform..."
+      - wget https://releases.hashicorp.com/terraform/1.0.11/terraform_1.0.11_linux_amd64.zip
+      - unzip terraform_1.0.11_linux_amd64.zip
+      - mv terraform /usr/local/bin/
+  pre_build:
+    commands:
+      - cd Terraform
+      - echo "Initializing Terraform..."
+      # Set backend config file based on the ENVIRONMENT variable
+      - |
+        if [ "${ENVIRONMENT}" = "dev" ]; then
+          BACKEND_CONFIG="backend-dev.tfvars"
+        else
+          BACKEND_CONFIG="backend-qa.tfvars"
+        fi
+      - echo "Using backend config file ${BACKEND_CONFIG}"
+      - terraform init -backend-config=${BACKEND_CONFIG} -migrate-state
+  build:
+    commands:
+      - echo "Planning Terraform changes..."
+      - echo "ENVIRONMENT=${ENVIRONMENT}"
+      # Check if the workspace exists; if not, create it, then select it
+      - |
+        if terraform workspace list | grep -q "\b${ENVIRONMENT}\b"; then
+          echo "Workspace ${ENVIRONMENT} exists, selecting..."
+        else
+          echo "Workspace ${ENVIRONMENT} does not exist, creating..."
+          terraform workspace new ${ENVIRONMENT}
+        fi
+      - terraform workspace select ${ENVIRONMENT}
+      - terraform plan -var-file="${ENVIRONMENT}.tfvars"
+      - echo "Applying Terraform changes..."
+      - terraform apply -auto-approve -var-file="${ENVIRONMENT}.tfvars"
+artifacts:
+  base-directory: Terraform
+  files:
+    - '**/*'
