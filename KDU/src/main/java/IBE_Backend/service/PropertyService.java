@@ -1,7 +1,4 @@
-
 package IBE_Backend.service;
-
-
 import IBE_Backend.dto.PropertyDTO;
 
 import java.util.List;
