@@ -1,10 +1,10 @@
-package IBE_Backend.service.impl;
+package backend.service.impl;
 
-import IBE_Backend.entity.Property;
-import IBE_Backend.dto.PropertyDTO;
-import IBE_Backend.exception.ResourceNotFoundException;
-import IBE_Backend.repository.PropertyRepository;
-import IBE_Backend.service.PropertyService;
+import backend.entity.Property;
+import backend.dto.PropertyDTO;
+import backend.exception.ResourceNotFoundException;
+import backend.repository.PropertyRepository;
+import backend.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

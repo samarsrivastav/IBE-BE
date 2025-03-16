@@ -1,7 +1,7 @@
-package IBE_Backend.controller;
+package backend.controller;
 
-import IBE_Backend.dto.PropertyDTO;
-import IBE_Backend.service.PropertyService;
+import backend.dto.PropertyDTO;
+import backend.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

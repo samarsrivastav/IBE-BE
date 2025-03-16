@@ -1,4 +1,4 @@
-package IBE_Backend.health;
+package backend.health;
 
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;

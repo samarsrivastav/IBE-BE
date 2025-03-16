@@ -1,4 +1,4 @@
-package IBE_Backend.entity;
+package backend.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

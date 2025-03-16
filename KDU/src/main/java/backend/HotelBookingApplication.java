@@ -1,12 +1,12 @@
-package IBE_Backend;
+package backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class KduApplication {
+public class HotelBookingApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(KduApplication.class, args);
+		SpringApplication.run(HotelBookingApplication.class, args);
 	}
 }

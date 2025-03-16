@@ -1,8 +1,8 @@
 
-package IBE_Backend.service;
+package backend.service;
 
 
-import IBE_Backend.dto.PropertyDTO;
+import backend.dto.PropertyDTO;
 
 import java.util.List;
 

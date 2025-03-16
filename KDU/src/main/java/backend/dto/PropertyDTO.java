@@ -1,4 +1,4 @@
-package IBE_Backend.dto;
+package backend.dto;
 
 import lombok.Getter;
 import lombok.Setter;
