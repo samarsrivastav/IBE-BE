@@ -22,5 +22,4 @@ variable "create_api_gateway" {
 
 variable "api_gateway_name" {
   type = string
-  # e.g. "genwin-shared-api"
 }
