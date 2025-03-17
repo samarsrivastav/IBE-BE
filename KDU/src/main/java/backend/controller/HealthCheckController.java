@@ -20,5 +20,7 @@ public class HealthCheckController {
     @GetMapping("/health")
     public Health getHealthStatus() {
         return healthIndicator.health();
+        //hello
+
     }
 }
