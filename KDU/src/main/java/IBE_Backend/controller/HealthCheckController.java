@@ -16,7 +16,7 @@ public class HealthCheckController {
     public HealthCheckController(@Qualifier("customHealthIndicator") HealthIndicator healthIndicator) {
         this.healthIndicator = healthIndicator;
     }
-
+    //hello
     @GetMapping("/health")
     public Health getHealthStatus() {
         return healthIndicator.health();
