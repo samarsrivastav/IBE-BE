@@ -16,6 +16,9 @@ public class TenantConfiguration {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long configId;
 
+    @Column(name = "tenant_id", nullable = false)
+    private Long tenantId;
+
     @Column(name="tenant_config", columnDefinition = "jsonb")
     @JdbcTypeCode(SqlTypes.JSON)
     private JsonNode configurationJson;

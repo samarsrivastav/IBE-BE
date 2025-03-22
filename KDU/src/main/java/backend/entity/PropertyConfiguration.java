@@ -34,7 +34,10 @@ public class PropertyConfiguration {
     @Column( columnDefinition = "integer default 4")
     private Integer maxGuestPerRoom = 4;
 
-    @Column(columnDefinition = "jsonb default '{\"adult\": 18, \"child\": 12}'")
+    @Column(columnDefinition = "integer default 15")
+    private Integer maxRoomsPerBooking = 15;
+
+    @Column(columnDefinition = "jsonb default '{\"adult\": 18, \"child\": 17}'")
     @JdbcTypeCode(SqlTypes.JSON)
     private JsonNode guestTypes;
 

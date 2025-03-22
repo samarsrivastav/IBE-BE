@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -15,21 +14,18 @@ public class TenantConfigurationService {
 
     private final TenantConfigurationRepository repository;
 
-    public List<TenantConfiguration> getAllConfigurations() {
-        return repository.findAll();
+    public List<TenantConfiguration> getConfigurationsByTenant(Long tenantId) {
+        return repository.findByTenantId(tenantId);
     }
 
-    public Optional<TenantConfiguration> getConfigurationById(String id) {
-        return repository.findById(id);
-    }
-
-    public TenantConfiguration saveConfiguration(JsonNode configJson) {
+    public TenantConfiguration saveConfiguration(Long tenantId, JsonNode configJson) {
         TenantConfiguration config = new TenantConfiguration();
+        config.setTenantId(tenantId);
         config.setConfigurationJson(configJson);
         return repository.save(config);
     }
 
-    public void deleteConfiguration(String id) {
-        repository.deleteById(id);
+    public void deleteConfiguration(String configId) {
+        repository.deleteById(configId);
     }
 }

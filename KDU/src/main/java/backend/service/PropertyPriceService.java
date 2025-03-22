@@ -25,8 +25,8 @@ public class PropertyPriceService {
         this.calculateMinimumRates = calculateMinimumRates;
     }
 
-    public SortedMap<String, Double> fetchMinimumRoomRates()  {
-        String query = GraphQLQueries.FIND_PRICE_BY_DATE;
+    public SortedMap<String, Double> fetchMinimumRoomRates(int propertyId)  {
+        String query = GraphQLQueries.getFindPriceByDateQuery(propertyId);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

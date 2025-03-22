@@ -21,9 +21,9 @@ public class GraphQLController {
     public Object getPropertyByName(@RequestParam String name) {
         return graphQLService.fetchPropertyByName(name);
     }
-    @GetMapping("/property-rate")
-    public ResponseEntity<Map<String, Double>> getMinimumRates() {
-        SortedMap<String, Double> minimumRates = propertyPriceService.fetchMinimumRoomRates();
+    @GetMapping("/property-rate/{propertyId}")
+    public ResponseEntity<Map<String, Double>> getMinimumRates(@PathVariable int propertyId) {
+        SortedMap<String, Double> minimumRates = propertyPriceService.fetchMinimumRoomRates(propertyId);
         return ResponseEntity.ok(minimumRates);
     }
 }

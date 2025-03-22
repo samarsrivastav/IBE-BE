@@ -1,5 +1,7 @@
 package backend.controller;
+
 import backend.entity.TenantConfiguration;
+import backend.exception.TenantNotAllowedException;
 import backend.service.TenantConfigurationService;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.RequiredArgsConstructor;
@@ -16,25 +18,28 @@ public class TenantConfigurationController {
 
     private final TenantConfigurationService service;
 
-    @GetMapping
-    public List<TenantConfiguration> getAllConfigurations() {
-        return service.getAllConfigurations();
+    @GetMapping("/{tenantId}")
+    public List<TenantConfiguration> getConfigurationsByTenant(@PathVariable Long tenantId) {
+        validateTenant(tenantId);
+        return service.getConfigurationsByTenant(tenantId);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<TenantConfiguration> getConfigurationById(@PathVariable String id) {
-        Optional<TenantConfiguration> config = service.getConfigurationById(id);
-        return config.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    @PostMapping("/{tenantId}")
+    public TenantConfiguration createConfiguration(@PathVariable Long tenantId, @RequestBody JsonNode configJson) {
+        validateTenant(tenantId);
+        return service.saveConfiguration(tenantId, configJson);
     }
 
-    @PostMapping
-    public TenantConfiguration createConfiguration(@RequestBody JsonNode configJson) {
-        return service.saveConfiguration(configJson);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteConfiguration(@PathVariable String id) {
-        service.deleteConfiguration(id);
+    @DeleteMapping("/{tenantId}/{configId}")
+    public ResponseEntity<Void> deleteConfiguration(@PathVariable Long tenantId, @PathVariable String configId) {
+        validateTenant(tenantId);
+        service.deleteConfiguration(configId);
         return ResponseEntity.noContent().build();
+    }
+
+    private void validateTenant(Long tenantId) {
+        if (!tenantId.equals(1L)) {
+            throw new TenantNotAllowedException("Access denied for tenant: " + tenantId);
+        }
     }
 }
