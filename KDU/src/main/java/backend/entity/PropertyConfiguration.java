@@ -40,7 +40,5 @@ public class PropertyConfiguration {
     @Column(columnDefinition = "jsonb default '{\"adult\": 18, \"child\": 17}'")
     @JdbcTypeCode(SqlTypes.JSON)
     private JsonNode guestTypes;
-
-
 }
 

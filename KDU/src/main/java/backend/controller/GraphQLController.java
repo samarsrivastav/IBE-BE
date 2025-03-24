@@ -26,5 +26,11 @@ public class GraphQLController {
         SortedMap<String, Double> minimumRates = propertyPriceService.fetchMinimumRoomRates(propertyId);
         return ResponseEntity.ok(minimumRates);
     }
+    @GetMapping("/properties/all/{tenantId}")
+    public ResponseEntity<Object> getProperties(@PathVariable Integer tenantId) {
+        System.out.println("Fetching all properties for tenant: " + tenantId);
+        return ResponseEntity.ok(graphQLService.fetchAllProperties(tenantId));
+    }
+
 }
 

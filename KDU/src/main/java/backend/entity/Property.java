@@ -28,4 +28,6 @@ public class Property {
         this.address = address;
     }
 
+    public Property(long l, String propertyOne, String addressOne) {
+    }
 }

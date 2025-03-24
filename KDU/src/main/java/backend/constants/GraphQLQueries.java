@@ -14,6 +14,16 @@ public class GraphQLQueries {
                 }
             }
             """;
+    public static final String GET_PROPERTIES_BY_TENANT_ID = """
+    query GetPropertiesByTenant {
+        listProperties(where : { tenant_id: { equals: %d }}) {
+            property_id
+            property_name
+            property_address
+            contact_number
+        }
+    }
+    """;
 
     public static String getFindPriceByDateQuery(int propertyId) {
         return String.format("""
