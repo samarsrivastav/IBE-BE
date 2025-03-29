@@ -31,6 +31,5 @@ public class GraphQLController {
         System.out.println("Fetching all properties for tenant: " + tenantId);
         return ResponseEntity.ok(graphQLService.fetchAllProperties(tenantId));
     }
-
 }
 

@@ -6,12 +6,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PropertyDTO {
-    // Getters and Setters
     private Long id;
     private String name;
     private String address;
 
-    // Constructors
     public PropertyDTO() {
     }
 
@@ -20,5 +18,4 @@ public class PropertyDTO {
         this.name = name;
         this.address = address;
     }
-
 }

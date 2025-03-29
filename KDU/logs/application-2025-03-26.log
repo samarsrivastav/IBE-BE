@@ -1,0 +1,22 @@
+2025-03-26 18:42:47 [main] INFO  b.HotelBookingApplicationTests - Starting HotelBookingApplicationTests using Java 23.0.1 with PID 47708 (started by gupta in C:\Users\gupta\OneDrive\Desktop\Backend\IBE-BE\KDU)
+2025-03-26 18:42:47 [main] INFO  b.HotelBookingApplicationTests - The following 1 profile is active: "test"
+2025-03-26 18:42:49 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-26 18:42:49 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 68 ms. Found 4 JPA repository interfaces.
+2025-03-26 18:42:49 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-03-26 18:42:50 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3e4f2300
+2025-03-26 18:42:50 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-03-26 18:42:50 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-26 18:42:50 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-26 18:42:52 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-26 18:42:52 [main] INFO  backend.config.CorsConfig - CORS Configuration Loaded!
+2025-03-26 18:42:52 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-03-26 18:42:52 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.apiKey' in PropertySource 'environmentProperties' with value of type String
+2025-03-26 18:42:52 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-03-26 18:42:52 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.apiKey' in PropertySource 'environmentProperties' with value of type String
+2025-03-26 18:42:52 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-26 18:42:52 [main] INFO  backend.config.CorsConfig - Applying CORS settings...
+2025-03-26 18:42:54 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoints beneath base path '/actuator'
+2025-03-26 18:42:54 [main] INFO  b.HotelBookingApplicationTests - Started HotelBookingApplicationTests in 7.404 seconds (process running for 8.956)
+2025-03-26 18:42:54 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-26 18:42:54 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-03-26 18:42:54 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

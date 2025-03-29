@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 public class PropertyConfigurationController {
 
     private final PropertyConfigurationService propertyConfigurationService;
-
     @GetMapping("/{propertyId}")
     public ResponseEntity<PropertyConfiguration> getConfig(@PathVariable Long propertyId) {
         return ResponseEntity.ok(propertyConfigurationService.getConfiguration(propertyId));

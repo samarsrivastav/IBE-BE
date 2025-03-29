@@ -1,0 +1,14 @@
+package backend.dto.Request;
+
+import backend.entity.Enum.PromoType;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+
+import java.time.LocalDate;
+
+@Data
+public class PromoCodeValidationRequestDTO {
+    @NotNull(message = "Usage date is required")
+    private LocalDate usageDate;
+    private PromoType promoType;
+} 

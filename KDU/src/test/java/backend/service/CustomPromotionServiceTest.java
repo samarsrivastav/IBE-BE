@@ -32,7 +32,7 @@ class CustomPromotionServiceTest {
         promotion.setTenantId(1L);
         promotion.setStartDate(LocalDate.now());
         promotion.setEndDate(LocalDate.now().plusDays(7));
-        promotion.setDiscount("10%");
+        promotion.setDiscount(10);
     }
 
     @Test
