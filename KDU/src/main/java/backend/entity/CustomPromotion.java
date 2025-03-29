@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDate;
-import java.util.Objects;
+
 
 @Entity
 @Table(name = "custom_promotion_table")
@@ -17,6 +17,9 @@ public class CustomPromotion {
     private Long promotionId;
 
     @Column(nullable = false)
+    private String title;
+
+    @Column(nullable = false)
     private Long tenantId;
 
     @Column(nullable = false)
@@ -26,6 +29,12 @@ public class CustomPromotion {
     private LocalDate endDate;
 
     @Column(nullable = false)
-    private String discount;
+    private int discount;
+
+    @Column(length = 500)
+    private String description;
+
+    @Column(nullable = false)
+    private boolean isActive;
 }
 

@@ -50,9 +50,9 @@ class TenantConfigurationControllerTest {
 
         System.out.println("Service returned: " + response); // Debugging output
 
-        assertNotNull(response, "Response should not be null");
-        assertEquals(1, response.size(), "Response list size should be 1");
-        assertEquals(tenantConfig, response.get(0), "Response should match the mock object");
+        assertNotNull(response, "response should not be null");
+        assertEquals(1, response.size(), "response list size should be 1");
+        assertEquals(tenantConfig, response.get(0), "response should match the mock object");
 
         verify(service, times(1)).getConfigurationsByTenant(1L);
     }
@@ -71,8 +71,8 @@ class TenantConfigurationControllerTest {
 
         System.out.println("Saved Configuration: " + response); // Debugging output
 
-        assertNotNull(response, "Response should not be null");
-        assertEquals(tenantConfig, response, "Response should match the mock object");
+        assertNotNull(response, "response should not be null");
+        assertEquals(tenantConfig, response, "response should match the mock object");
 
         verify(service, times(1)).saveConfiguration(1L, configJson);
     }
@@ -89,7 +89,7 @@ class TenantConfigurationControllerTest {
 
         ResponseEntity<Void> response = controller.deleteConfiguration(1L, "1");
 
-        assertEquals(204, response.getStatusCodeValue(), "Response status should be 204 No Content");
+        assertEquals(204, response.getStatusCodeValue(), "response status should be 204 No Content");
 
         verify(service, times(1)).deleteConfiguration("1");
     }
