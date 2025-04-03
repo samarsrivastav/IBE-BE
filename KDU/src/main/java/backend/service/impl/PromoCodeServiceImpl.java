@@ -1,36 +1,69 @@
 package backend.service.impl;
 
-import backend.dto.Request.PromoCodeValidationRequestDTO;
+import backend.dto.request.PromoCodeValidationRequestDTO;
 import backend.dto.response.PromoCodeResponseDTO;
 import backend.entity.PromoCode;
 import backend.repository.PromoCodeRepository;
 import backend.service.PromoCodeService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class PromoCodeServiceImpl implements PromoCodeService {
 
-    private static final Logger log = LoggerFactory.getLogger(PromoCodeServiceImpl.class);
-    private final PromoCodeRepository promoCodeRepository;
+    private final PromoCodeRepository repository;
+
+    @Override
+    public List<PromoCode> getApplicablePromoCodes(LocalDate startDate, LocalDate endDate) {
+        log.info("Getting applicable promo codes for end date: {}", endDate);
+        List<PromoCode> allPromoCodes = repository.findAll();
+        log.info("Found {} total promo codes in database", allPromoCodes.size());
+        
+        List<PromoCode> applicablePromoCodes = allPromoCodes.stream()
+            .filter(promoCode -> {
+                // Only check if the end date falls within the promo code's date range
+                boolean dateInRange = !endDate.isBefore(promoCode.getStartDate()) && 
+                                    !endDate.isAfter(promoCode.getEndDate());
+                
+                log.info("Checking promo code: {} ({} to {}) - End Date In Range: {}", 
+                    promoCode.getName(), 
+                    promoCode.getStartDate(), 
+                    promoCode.getEndDate(),
+                    dateInRange);
+                    
+                if (dateInRange) {
+                    log.info("End date {} falls within promo code date range ({}-{})", 
+                        endDate, promoCode.getStartDate(), promoCode.getEndDate());
+                }
+                
+                return dateInRange;
+            })
+            .peek(promoCode -> log.info("Found applicable promo code: {} ({} to {})", 
+                promoCode.getName(), promoCode.getStartDate(), promoCode.getEndDate()))
+            .toList();
+            
+        log.info("Found {} applicable promo codes out of {} total promo codes", 
+            applicablePromoCodes.size(), allPromoCodes.size());
+        return applicablePromoCodes;
+    }
 
     @Override
     public PromoCodeResponseDTO validateAndGetPromoCode(String name, PromoCodeValidationRequestDTO validationRequest) {
-        PromoCode promoCode = promoCodeRepository.findByName(name)
+        PromoCode promoCode = repository.findByName(name)
                 .orElseThrow(() -> new EntityNotFoundException("Promo code not found with name: " + name));
 
         // Log promo code details for debugging
-        log.info("Found promo code: name={}, isActive={}, startDate={}, endDate={}, usageDate={}, promoType={}",
+        log.info("Found promo code: name={}, startDate={}, endDate={}, usageDate={}, promoType={}",
                 promoCode.getName(),
-                promoCode.getIsActive(),
                 promoCode.getStartDate(),
                 promoCode.getEndDate(),
                 validationRequest.getUsageDate(),
@@ -58,16 +91,16 @@ public class PromoCodeServiceImpl implements PromoCodeService {
     @Override
     @Transactional
     public PromoCodeResponseDTO updatePromoCodeStatus(Long id, Boolean isActive) {
-        PromoCode promoCode = promoCodeRepository.findById(id)
+        PromoCode promoCode = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Promo code not found with id: " + id));
 
         promoCode.setIsActive(isActive);
-        PromoCode updatedPromoCode = promoCodeRepository.save(promoCode);
+        PromoCode updatedPromoCode = repository.save(promoCode);
         return convertToResponseDTO(updatedPromoCode);
     }
 
     private boolean isPromoCodeValid(PromoCode promoCode, LocalDate usageDate) {
-        return promoCode.getIsActive() && isWithinDateRange(promoCode, usageDate);
+        return isWithinDateRange(promoCode, usageDate);
     }
 
     private boolean isWithinDateRange(PromoCode promoCode, LocalDate usageDate) {
@@ -75,9 +108,6 @@ public class PromoCodeServiceImpl implements PromoCodeService {
     }
 
     private String getValidationFailureReason(PromoCode promoCode, LocalDate usageDate) {
-        if (!promoCode.getIsActive()) {
-            return "Promo code is not active";
-        }
         if (usageDate.isBefore(promoCode.getStartDate())) {
             return "Promo code has not started yet (starts on " + promoCode.getStartDate() + ")";
         }

@@ -36,6 +36,7 @@ public class GraphQLService {
 
         HttpEntity<GraphQLRequest> entity = new HttpEntity<>(request, headers);
 
+
         try {
             ResponseEntity<GraphQLResponse> response = restTemplate.exchange(
                     graphqlEndpoint, HttpMethod.POST, entity, GraphQLResponse.class

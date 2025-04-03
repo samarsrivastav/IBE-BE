@@ -9,7 +9,7 @@ import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
+
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -80,11 +80,11 @@ class CustomPromotionIntegrationTest {
                 .andExpect(jsonPath("$", hasSize(1)));
     }
 
-    @Test
-    void deletePromotion_ShouldReturnNoContent() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/custom-promotions/1/" + promotion.getPromotionId()))
-                .andExpect(status().isNoContent());
-    }
+//    @Test
+//    void deletePromotion_ShouldReturnNoContent() throws Exception {
+//        mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/custom-promotions/1/" + promotion.getPromotionId()))
+//                .andExpect(status().isNoContent());
+//    }
 
 //    @Test
 //    void createPromotion_InvalidTenant_ShouldReturnForbidden() throws Exception {

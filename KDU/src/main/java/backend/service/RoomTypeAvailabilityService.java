@@ -16,5 +16,6 @@ public interface RoomTypeAvailabilityService {
      */
     double getRoomTypeRate(Long roomTypeId);
     Map<Long, Double> getAverageRates();
+    Map<Long, List<Double>> getRatesByRoomType();
 
 } 

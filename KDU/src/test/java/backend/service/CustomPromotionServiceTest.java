@@ -57,12 +57,5 @@ class CustomPromotionServiceTest {
         verify(repository, times(1)).findByTenantId(1L);
     }
 
-    @Test
-    void deletePromotion_ShouldCallRepositoryDelete() {
-        doNothing().when(repository).deleteById(1L);
 
-        service.deletePromotion(1L);
-
-        verify(repository, times(1)).deleteById(1L);
-    }
 }

@@ -63,12 +63,5 @@ class CustomPromotionControllerTest {
         assertFalse(response.getBody().isEmpty());
     }
 
-    @Test
-    void deletePromotion_ValidTenant_ShouldReturnNoContent() {
-        doNothing().when(service).deletePromotion(1L);
 
-        ResponseEntity<Void> response = controller.deletePromotion(1L, 1L);
-
-        assertEquals(204, response.getStatusCodeValue());
-    }
 }

@@ -41,11 +41,35 @@ public class CustomPromotionService {
     public List<CustomPromotion> getApplicablePromotions(LocalDate startDate, LocalDate endDate) {
         log.info("Getting applicable promotions for date range: {} to {}", startDate, endDate);
         List<CustomPromotion> allPromotions = repository.findByTenantId(1L);
+        log.info("Found {} total promotions in database", allPromotions.size());
         
-        return allPromotions.stream()
-            .filter(promotion -> promotion.isActive() &&
-                               !startDate.isAfter(promotion.getEndDate()) &&
-                               !endDate.isBefore(promotion.getStartDate()))
+        List<CustomPromotion> applicablePromotions = allPromotions.stream()
+            .filter(promotion -> {
+                boolean isActive = promotion.isActive();
+                // Check if there's any overlap between the date ranges
+                boolean dateOverlap = !startDate.isAfter(promotion.getEndDate()) && 
+                                    !endDate.isBefore(promotion.getStartDate());
+                
+                log.info("Checking promotion: {} ({} to {}) - Active: {}, Date Overlap: {}", 
+                    promotion.getTitle(), 
+                    promotion.getStartDate(), 
+                    promotion.getEndDate(),
+                    isActive,
+                    dateOverlap);
+                    
+                if (dateOverlap) {
+                    log.info("Date overlap found: User dates ({}-{}) overlap with promotion dates ({}-{})", 
+                        startDate, endDate, promotion.getStartDate(), promotion.getEndDate());
+                }
+                
+                return isActive && dateOverlap;
+            })
+            .peek(promotion -> log.info("Found applicable promotion: {} ({} to {})", 
+                promotion.getTitle(), promotion.getStartDate(), promotion.getEndDate()))
             .toList();
+            
+        log.info("Found {} applicable promotions out of {} total promotions", 
+            applicablePromotions.size(), allPromotions.size());
+        return applicablePromotions;
     }
 }

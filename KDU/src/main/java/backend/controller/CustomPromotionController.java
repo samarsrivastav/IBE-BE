@@ -30,12 +30,7 @@ public class CustomPromotionController {
         return ResponseEntity.ok(service.getPromotionsByTenant(tenantId));
     }
 
-    @DeleteMapping("/{tenantId}/{id}")
-    public ResponseEntity<Void> deletePromotion(@PathVariable Long tenantId, @PathVariable Long id) {
-        validateTenant(tenantId);
-        service.deletePromotion(id);
-        return ResponseEntity.noContent().build();
-    }
+
 
     private void validateTenant(Long tenantId) {
         if (tenantId!=1L) {

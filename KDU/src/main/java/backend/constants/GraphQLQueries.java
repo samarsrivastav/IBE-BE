@@ -31,32 +31,38 @@ public class GraphQLQueries {
                 """, propertyId);
     }
 
-    public static String getRoomTypeByDate(int propertyId, String startDate, String endDate, int maxCapacity) {
-        return String.format("""
-        query ListRoomAvailabilities {
-            listRoomAvailabilities(
-                where: {
-                    property_id: { equals: %d },
-                    booking: { booking_status: { status: { not: { equals: "BOOKED" }}} },
-                    date: { gte: "%s", lte: "%s" },
-                    room: { room_type: { max_capacity: { gte: %d }} }
-                }
-                take: 1000000
-            ) {
-                room {
-                    room_type {
-                        room_type_id
-                        room_type_name
-                        area_in_square_feet
-                        double_bed
-                        max_capacity
-                        single_bed
-                    }
-                }
+    public static String getAvailableRoomsQuery(int propertyId, String startDate, String endDate, int maxCapacity) {
+    return String.format("""
+    query AvailableRooms {
+      listRooms(
+        where: {
+          property_id: { equals: %d },
+          room_available: {
+            none: {
+              date: { gte: "%s", lte: "%s" },
+              booking: { booking_status: { status: { not: { equals: "CANCELLED" } } } }
             }
+          },
+          room_type: { max_capacity: { gte: %d } }
         }
-    """, propertyId, startDate, endDate, maxCapacity);
+        take: 1000000
+      ) {
+        room_id
+        room_number
+        room_type {
+          area_in_square_feet
+          double_bed
+          max_capacity
+          property_id
+          room_type_id
+          room_type_name
+          single_bed
+        }
+        room_type_id
+      }
     }
+    """, propertyId, startDate, endDate, maxCapacity);
+}
 
     public static final String GET_PROMOTIONS_QUERY = """
         query ListPromotions {
