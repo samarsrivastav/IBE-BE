@@ -100,7 +100,7 @@ public class GraphQLQueries {
     }
 }
 
-//public static String getRoomTypeByDate(int propertyId, String startDate, String endDate, int maxCapacity) {
+
 
 
  
