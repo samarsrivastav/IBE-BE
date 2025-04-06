@@ -45,7 +45,7 @@ public class GraphQLQueries {
           },
           room_type: { max_capacity: { gte: %d } }
         }
-        take: 1000000
+        take: 100000
       ) {
         room_id
         room_number

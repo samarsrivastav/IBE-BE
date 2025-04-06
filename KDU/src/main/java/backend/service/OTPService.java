@@ -1,6 +1,5 @@
 package backend.service;
 
-
 import backend.entity.OTP;
 import backend.exception.OtpException;
 import backend.repository.OTPRepository;
@@ -79,21 +78,7 @@ public class OTPService {
         return isValid;
     }
 
-    @Transactional
-    public void resendOTP(String email) {
-        // Find existing OTP
-        otpRepository.findTopByEmailOrderByCreatedAtDesc(email)
-                .ifPresent(existingOtp -> {
-                    // Invalidate previous OTP
-                    existingOtp.setExpiresAt(LocalDateTime.now());
-                    otpRepository.save(existingOtp);
-                });
-
-        // Generate and send new OTP
-        generateAndSendOTP(email);
-        log.info("OTP resent to: {}", email);
-    }
-
+    
     private String generateOTP() {
         // Generate 6-digit OTP
         Random random = new Random();
