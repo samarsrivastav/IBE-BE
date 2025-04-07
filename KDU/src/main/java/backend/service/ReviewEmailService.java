@@ -4,6 +4,7 @@ import backend.model.BookingTransaction;
 import backend.repository.BookingTransactionRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,9 @@ public class ReviewEmailService {
     private final BookingTransactionRepository bookingTransactionRepository;
     private final ObjectMapper objectMapper;
     private final String appName = "Hotel Booking System";
-    private final String apiBaseUrl = "http://localhost:8080"; // Using localhost for testing
+
+    @Value("${api.base.url}")
+    private String apiBaseUrl;  // Using localhost for testing
 
     public void sendReviewRequestEmail(BookingTransaction transaction) {
         try {
@@ -77,19 +80,19 @@ public class ReviewEmailService {
                             font-family: Arial, sans-serif;
                             line-height: 1.6;
                             color: #333;
-                            background-color: #f8f9fa;
+                            background-color: #f5f5f5;
                             padding: 20px;
                         }
                         .email-container {
                             max-width: 600px;
                             margin: 0 auto;
                             background-color: white;
-                            border-radius: 10px;
+                            border-radius: 8px;
                             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
                             overflow: hidden;
                         }
                         .header {
-                            background-color: #28a745;
+                            background-color: #1a1a1a;
                             color: white;
                             padding: 30px;
                             text-align: center;
@@ -97,6 +100,7 @@ public class ReviewEmailService {
                         .header h2 {
                             margin: 0;
                             font-size: 24px;
+                            color: #ffffff;
                         }
                         .content {
                             padding: 30px;
@@ -106,86 +110,73 @@ public class ReviewEmailService {
                             border-radius: 8px;
                             padding: 20px;
                             margin-bottom: 30px;
+                            border-left: 4px solid #0066cc;
                         }
                         .room-info p {
                             margin: 10px 0;
+                            color: #333;
                         }
                         .room-info strong {
-                            color: #28a745;
+                            color: #0066cc;
                         }
                         .form-group {
                             margin-bottom: 25px;
                         }
                         .rating-options {
                             display: flex;
-                            justify-content: center;
-                            gap: 15px;
+                            justify-content: space-between;
                             margin-top: 15px;
                         }
                         .rating-option {
-                            position: relative;
-                            width: 50px;
-                            height: 50px;
+                            display: inline-block;
+                            margin: 0 5px;
                         }
                         .rating-option input[type="radio"] {
-                            position: absolute;
-                            opacity: 0;
-                            width: 100%%;
-                            height: 100%%;
-                            cursor: pointer;
-                            z-index: 2;
+                            display: none;
                         }
-                        .rating-number {
-                            position: relative;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            width: 100%%;
-                            height: 100%%;
+                        .rating-option label {
+                            display: inline-block;
+                            padding: 10px 15px;
                             background-color: #f8f9fa;
-                            border: 2px solid #dee2e6;
-                            border-radius: 50%%;
-                            font-size: 20px;
-                            font-weight: bold;
-                            color: #495057;
-                            transition: all 0.3s ease;
+                            border: 2px solid #0066cc;
+                            border-radius: 4px;
+                            color: #0066cc;
                             cursor: pointer;
+                            font-weight: bold;
+                            transition: all 0.3s ease;
                         }
-                        .rating-option:hover .rating-number {
-                            background-color: #e9ecef;
-                            border-color: #adb5bd;
-                            transform: translateY(-2px);
-                        }
-                        .rating-option input[type="radio"]:checked + .rating-number {
-                            background-color: #28a745;
-                            border-color: #28a745;
+                        .rating-option input[type="radio"]:checked + label {
+                            background-color: #0066cc;
                             color: white;
-                            transform: scale(1.1);
+                        }
+                        .rating-option label:hover {
+                            background-color: #e6f0ff;
                         }
                         .rating-label {
                             text-align: center;
                             font-weight: bold;
                             margin-bottom: 15px;
-                            color: #495057;
+                            color: #1a1a1a;
                             font-size: 18px;
                         }
                         textarea {
                             width: 100%%;
                             padding: 15px;
-                            border: 1px solid #ddd;
+                            border: 2px solid #0066cc;
                             border-radius: 8px;
                             resize: vertical;
                             min-height: 120px;
                             font-family: inherit;
                             font-size: 16px;
                             transition: border-color 0.3s;
+                            background-color: #f8f9fa;
                         }
                         textarea:focus {
                             outline: none;
-                            border-color: #28a745;
+                            border-color: #004d99;
                         }
                         .submit-btn {
-                            background-color: #28a745;
+                            background-color: #0066cc;
                             color: white;
                             padding: 15px 30px;
                             border: none;
@@ -198,21 +189,17 @@ public class ReviewEmailService {
                             margin-top: 20px;
                         }
                         .submit-btn:hover {
-                            background-color: #218838;
-                            transform: translateY(-2px);
-                        }
-                        .submit-btn:active {
-                            transform: translateY(0);
+                            background-color: #004d99;
                         }
                         .footer {
                             text-align: center;
                             padding: 20px;
-                            background-color: #f8f9fa;
-                            border-top: 1px solid #dee2e6;
+                            background-color: #1a1a1a;
+                            color: white;
                         }
                         .footer p {
                             margin: 5px 0;
-                            color: #6c757d;
+                            color: #ffffff;
                         }
                     </style>
                 </head>
@@ -242,31 +229,31 @@ public class ReviewEmailService {
                                 <div class="form-group">
                                     <div class="rating-label">Rate your stay:</div>
                                     <div class="rating-options">
-                                        <label class="rating-option">
-                                            <input type="radio" name="rating" value="1" required>
-                                            <span class="rating-number">1</span>
-                                        </label>
-                                        <label class="rating-option">
-                                            <input type="radio" name="rating" value="2">
-                                            <span class="rating-number">2</span>
-                                        </label>
-                                        <label class="rating-option">
-                                            <input type="radio" name="rating" value="3">
-                                            <span class="rating-number">3</span>
-                                        </label>
-                                        <label class="rating-option">
-                                            <input type="radio" name="rating" value="4">
-                                            <span class="rating-number">4</span>
-                                        </label>
-                                        <label class="rating-option">
-                                            <input type="radio" name="rating" value="5">
-                                            <span class="rating-number">5</span>
-                                        </label>
+                                        <div class="rating-option">
+                                            <input type="radio" name="rating" value="1" id="rating1" required>
+                                            <label for="rating1">1</label>
+                                        </div>
+                                        <div class="rating-option">
+                                            <input type="radio" name="rating" value="2" id="rating2">
+                                            <label for="rating2">2</label>
+                                        </div>
+                                        <div class="rating-option">
+                                            <input type="radio" name="rating" value="3" id="rating3">
+                                            <label for="rating3">3</label>
+                                        </div>
+                                        <div class="rating-option">
+                                            <input type="radio" name="rating" value="4" id="rating4">
+                                            <label for="rating4">4</label>
+                                        </div>
+                                        <div class="rating-option">
+                                            <input type="radio" name="rating" value="5" id="rating5">
+                                            <label for="rating5">5</label>
+                                        </div>
                                     </div>
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label style="display: block; margin-bottom: 10px; font-weight: bold;">Your review (optional):</label>
+                                    <label style="display: block; margin-bottom: 10px; font-weight: bold; color: #1a1a1a;">Your review (optional):</label>
                                     <textarea name="reviewText" placeholder="Share your experience with us..."></textarea>
                                 </div>
                                 
