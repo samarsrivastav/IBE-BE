@@ -114,6 +114,7 @@ public class BookingController {
             JsonNode bookingDetails = bookingTransaction.getBookingDetails();
             
             // Extract promotion title from booking details if it exists
+            Boolean isActive = bookingTransaction.isActive();
             String promotionTitle;
             if (bookingDetails.has("confirmationDetails") && 
                 bookingDetails.get("confirmationDetails").has("promotionTitle")) {
@@ -173,6 +174,9 @@ public class BookingController {
                         confirmationDetails.put("promotionDescription", promotionDescription);
                     }
                 }
+
+                ObjectNode confirmationDetails = (ObjectNode) bookingDetails.get("confirmationDetails");
+                confirmationDetails.put("isActive", isActive);
             }
             
             log.info("Returning complete booking details for confirmation ID: {}", confirmationId);
