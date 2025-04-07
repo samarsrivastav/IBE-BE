@@ -43,7 +43,7 @@ public class RoomTypeAvailabilityServiceImpl implements RoomTypeAvailabilityServ
     private static final int DEFAULT_PAGE_SIZE = 10;
 
     Map<Long, Double> averageRates = new HashMap<>();
-
+     Map<Long, List<Double>> ratesByRoomType = new HashMap<>();
     @Override
     public List<RoomTypeResponseDTO> getAvailableRoomTypes(RoomTypeSearchRequestDTO searchRequest) {
         try {
@@ -51,7 +51,7 @@ public class RoomTypeAvailabilityServiceImpl implements RoomTypeAvailabilityServ
             String formattedEndDate = searchRequest.getEndDate().format(DATE_FORMATTER);
 
             // Get available room types
-            String query = GraphQLQueries.getRoomTypeByDate(
+            String query = GraphQLQueries.getAvailableRoomsQuery(
                 searchRequest.getPropertyId(),
                 formattedStartDate,
                 formattedEndDate,
@@ -59,6 +59,7 @@ public class RoomTypeAvailabilityServiceImpl implements RoomTypeAvailabilityServ
             );
 
             JsonNode response = executeGraphQLQuery(query);
+//            System.out.println(response);
             List<RoomTypeResponseDTO> graphQLRoomTypes = processGraphQLResponse(response);
 
             if (searchRequest.getTotalBeds() != null) {
@@ -148,7 +149,7 @@ public class RoomTypeAvailabilityServiceImpl implements RoomTypeAvailabilityServ
             
             String query = GraphQLQueries.getRoomRatesByRoomTypes(roomTypeIdsString, startDate, endDate);
             JsonNode response = executeGraphQLQuery(query);
-            Map<Long, List<Double>> ratesByRoomType = new HashMap<>();
+           // Map<Long, List<Double>> ratesByRoomType = new HashMap<>();
             
             if (response.has("data") && response.get("data").has("listRoomRateRoomTypeMappings")) {
                 JsonNode mappings = response.get("data").get("listRoomRateRoomTypeMappings");
@@ -249,37 +250,60 @@ public class RoomTypeAvailabilityServiceImpl implements RoomTypeAvailabilityServ
         
         try {
             JsonNode data = response.get("data");
-            if (data != null && data.has("listRoomAvailabilities")) {
-                JsonNode availabilities = data.get("listRoomAvailabilities");
+            if (data != null && data.has("listRooms")) {
+                JsonNode rooms = data.get("listRooms");
+                log.info("Found {} total rooms in response", rooms.size());
                 
+                // Group rooms by room type to count availability
                 Map<Long, Integer> roomTypeAvailabilityCount = new HashMap<>();
+                Map<Long, RoomTypeResponseDTO> roomTypeMap = new HashMap<>();
                 
-                for (JsonNode availability : availabilities) {
-                    if (availability.has("room") && availability.get("room").has("room_type")) {
-                        JsonNode roomTypeNode = availability.get("room").get("room_type");
+                for (JsonNode room : rooms) {
+                    if (room.has("room_type")) {
+                        JsonNode roomTypeNode = room.get("room_type");
                         Long roomTypeId = roomTypeNode.get("room_type_id").asLong();
-                        roomTypeAvailabilityCount.merge(roomTypeId, 1, Integer::sum);
-                    }
-                }
-                
-                for (JsonNode availability : availabilities) {
-                    if (availability.has("room") && availability.get("room").has("room_type")) {
-                        JsonNode roomTypeNode = availability.get("room").get("room_type");
-                        try {
-                            RoomTypeResponseDTO roomType = objectMapper.treeToValue(roomTypeNode, RoomTypeResponseDTO.class);
-                            if (roomType != null) {
-                                if (roomType.getSingleBed() == null) roomType.setSingleBed(0);
-                                if (roomType.getDoubleBed() == null) roomType.setDoubleBed(0);
-                                if (roomType.getMaxOccupancy() == null) roomType.setMaxOccupancy(0);
-                                
-                                roomType.setAvailableRooms(roomTypeAvailabilityCount.get(roomType.getId()));
-                                roomTypes.add(roomType);
+                        
+                        // Count available rooms for each room type
+                        int currentCount = roomTypeAvailabilityCount.getOrDefault(roomTypeId, 0);
+                        roomTypeAvailabilityCount.put(roomTypeId, currentCount + 1);
+                        
+                        log.debug("Room type {} has {} available rooms", roomTypeId, currentCount + 1);
+                        
+                        // Create RoomTypeResponseDTO if not already created
+                        if (!roomTypeMap.containsKey(roomTypeId)) {
+                            try {
+                                RoomTypeResponseDTO roomType = objectMapper.treeToValue(roomTypeNode, RoomTypeResponseDTO.class);
+                                if (roomType != null) {
+                                    // Set default values if null
+                                    if (roomType.getSingleBed() == null) roomType.setSingleBed(0);
+                                    if (roomType.getDoubleBed() == null) roomType.setDoubleBed(0);
+                                    if (roomType.getMaxOccupancy() == null) roomType.setMaxOccupancy(0);
+                                    
+                                    roomTypeMap.put(roomTypeId, roomType);
+                                }
+                            } catch (Exception e) {
+                                log.error("Failed to parse room type: {}", e.getMessage());
                             }
-                        } catch (Exception e) {
-                            log.error("Failed to parse room type: {}", e.getMessage());
                         }
                     }
                 }
+                
+                // Log the availability counts for each room type
+                roomTypeAvailabilityCount.forEach((roomTypeId, count) -> {
+                    log.info("Room type {} has {} available rooms", roomTypeId, count);
+                });
+                
+                // Set availability count and add to result list
+                roomTypeMap.forEach((roomTypeId, roomType) -> {
+                    int availableCount = roomTypeAvailabilityCount.getOrDefault(roomTypeId, 0);
+                    roomType.setAvailableRooms(availableCount);
+                    roomTypes.add(roomType);
+                    log.info("Added room type {} with {} available rooms to result", roomTypeId, availableCount);
+                });
+                
+                log.info("Processed {} room types with availability", roomTypes.size());
+            } else {
+                log.warn("No rooms found in response or invalid response structure");
             }
         } catch (Exception e) {
             log.error("Failed to process GraphQL response: {}", e.getMessage());
@@ -301,16 +325,33 @@ public class RoomTypeAvailabilityServiceImpl implements RoomTypeAvailabilityServ
     }
 
     private List<RoomTypeResponseDTO> filterByRoomCount(List<RoomTypeResponseDTO> roomTypes, RoomTypeSearchRequestDTO searchRequest) {
-        Map<Long, Long> roomTypeCounts = roomTypes.stream()
+        log.info("Filtering room types by requested room count: {}", searchRequest.getNumberOfRooms());
+        
+        // Create a map of room type IDs to their available room counts
+        Map<Long, Integer> roomTypeCounts = roomTypes.stream()
             .collect(Collectors.groupingBy(
                 RoomTypeResponseDTO::getId,
-                Collectors.counting()
+                Collectors.collectingAndThen(
+                    Collectors.toList(),
+                    list -> list.get(0).getAvailableRooms()
+                )
             ));
-
-        return roomTypes.stream()
-            .filter(roomType -> roomTypeCounts.get(roomType.getId()) >= searchRequest.getNumberOfRooms())
-            .distinct()
+            
+        log.info("Room type counts before filtering: {}", roomTypeCounts);
+        
+        // Filter room types that have enough available rooms
+        List<RoomTypeResponseDTO> filteredRoomTypes = roomTypes.stream()
+            .filter(roomType -> {
+                int availableRooms = roomTypeCounts.getOrDefault(roomType.getId(), 0);
+                boolean hasEnoughRooms = availableRooms >= searchRequest.getNumberOfRooms();
+                log.debug("Room type {} has {} available rooms, requested: {}, meets requirement: {}", 
+                    roomType.getId(), availableRooms, searchRequest.getNumberOfRooms(), hasEnoughRooms);
+                return hasEnoughRooms;
+            })
             .collect(Collectors.toList());
+            
+        log.info("Found {} room types with sufficient room count", filteredRoomTypes.size());
+        return filteredRoomTypes;
     }
 
     @Override
@@ -329,6 +370,11 @@ public class RoomTypeAvailabilityServiceImpl implements RoomTypeAvailabilityServ
     @Override
     public Map<Long, Double> getAverageRates() {
         return averageRates;
+    }
+
+    @Override
+    public Map<Long, List<Double>> getRatesByRoomType() {
+        return ratesByRoomType;
     }
 
 } 

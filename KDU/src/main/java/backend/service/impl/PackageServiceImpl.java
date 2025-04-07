@@ -35,6 +35,8 @@ public class PackageServiceImpl implements PackageService {
     public List<RoomTypePackagesDTO> getAllPackages(PackageSearchRequestDTO searchRequest) {
         try {
             validateRequest(searchRequest);
+            log.info("Processing package request for dates: {} to {}", 
+                searchRequest.getStartDate(), searchRequest.getEndDate());
             
             // Get all room type rates
             Map<Long, Double> roomTypeRates = roomTypeAvailabilityService.getAverageRates();
@@ -42,6 +44,7 @@ public class PackageServiceImpl implements PackageService {
                 log.warn("No room types found for property {}", searchRequest.getPropertyId());
                 return Collections.emptyList();
             }
+            log.info("Found {} room types with rates", roomTypeRates.size());
             
             // Get all promotions
             List<PromotionResponseDTO> promotions = promotionService.getAllPromotions();
@@ -52,6 +55,15 @@ public class PackageServiceImpl implements PackageService {
                 searchRequest.getStartDate(),
                 searchRequest.getEndDate()
             );
+            log.info("Found {} applicable custom promotions", customPromotions.size());
+            if (!customPromotions.isEmpty()) {
+                customPromotions.forEach(promo -> 
+                    log.info("Applicable custom promotion: {} ({} to {}) with discount {}%", 
+                        promo.getTitle(), 
+                        promo.getStartDate(), 
+                        promo.getEndDate(),
+                        promo.getDiscount()));
+            }
 
             // Create packages for each room type
             return roomTypeRates.keySet().stream()
@@ -99,7 +111,15 @@ public class PackageServiceImpl implements PackageService {
             .forEach(promotion -> packages.add(createPromotionPackage(roomTypeId, roomTypeRate, promotion)));
 
         // Add custom promotions
-        customPromotions.forEach(promotion -> packages.add(createCustomPromotionPackage(roomTypeId, roomTypeRate, promotion, searchRequest)));
+        log.info("Processing {} custom promotions for room type {}", customPromotions.size(), roomTypeId);
+        customPromotions.forEach(promotion -> {
+            PackageResponseDTO packageDTO = createCustomPromotionPackage(roomTypeId, roomTypeRate, promotion, searchRequest);
+            packages.add(packageDTO);
+            log.info("Added custom promotion package: {} with price {} (original discount: {}%)", 
+                packageDTO.getTitle(), 
+                packageDTO.getPrice(),
+                promotion.getDiscount());
+        });
 
         roomTypePackages.setPackages(packages);
         return roomTypePackages;

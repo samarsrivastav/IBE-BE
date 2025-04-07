@@ -1,4 +1,4 @@
-package backend.dto.Request;
+package backend.dto.request;
 
 import backend.entity.Enum.PromoType;
 import jakarta.validation.constraints.NotNull;

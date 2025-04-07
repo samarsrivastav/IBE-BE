@@ -1,6 +1,6 @@
 package backend.controller;
 
-import backend.dto.Request.PromoCodeValidationRequestDTO;
+import backend.dto.request.PromoCodeValidationRequestDTO;
 import backend.dto.response.PromoCodeResponseDTO;
 import backend.service.PromoCodeService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -39,4 +39,4 @@ public class PromoCodeController {
             @RequestParam Boolean isActive) {
         return ResponseEntity.ok(promoCodeService.updatePromoCodeStatus(id, isActive));
     }
-} 
+}

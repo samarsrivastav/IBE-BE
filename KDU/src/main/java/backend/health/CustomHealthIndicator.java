@@ -21,6 +21,6 @@ public class CustomHealthIndicator implements HealthIndicator {
 
     // Simulated health check logic (Modify as needed)
     private boolean checkHealthStatus() {
-        return true; // Change logic to check DB, cache, or external service status
+        return true;
     }
 }
