@@ -236,6 +236,8 @@ public class ReviewEmailService {
                                 <input type="hidden" name="token" value="%s">
                                 <input type="hidden" name="roomTypeId" value="%d">
                                 <input type="hidden" name="email" value="%s">
+                                <input type="hidden" name="checkInDate" value="%s">
+                                <input type="hidden" name="checkOutDate" value="%s">
                                 
                                 <div class="form-group">
                                     <div class="rating-label">Rate your stay:</div>
@@ -280,7 +282,7 @@ public class ReviewEmailService {
                     </div>
                 </body>
                 </html>
-                """, roomName, checkInDate, checkOutDate, apiBaseUrl, reviewToken, roomTypeId, transaction.getEmail(), appName);
+                """, roomName, checkInDate, checkOutDate, apiBaseUrl, reviewToken, roomTypeId, transaction.getEmail(), checkInDate, checkOutDate, appName);
         } catch (Exception e) {
             System.err.println("Error building review email: " + e.getMessage());
             e.printStackTrace();

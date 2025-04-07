@@ -58,28 +58,6 @@ public class BookingRoomAvailabilityQueries {
         );
     }
 
-//    private static final String BOOKINGS_MUTATION_WITH_PROMO = "myMutation { " +
-//            "createBooking(data: { " +
-//            "check_in_date: \\\"%s\\\", " +
-//            "check_out_date: \\\"%s\\\", " +
-//            "adult_count: %d, " +
-//            "child_count: %d, " +
-//            "total_cost: %d, " +
-//            "amount_due_at_resort: %d, " +
-//            "booking_status: {connect: {status_id: 1}}, " +
-//            "guest: {create: {guest_name: \\\"%s\\\"}}, " +
-//            "property_booked: {connect: {property_id: %d}}" +
-//            ",promotion_applied: {connect: {promotion_id: %d}}}) " +
-//            "{ booking_id } }";
-//
-//    public static String getBookingsMutationWithPromotion(ConfirmationDetailsDto confirmationDetailsDto,String name,long promoCode){
-//        String startDate = confirmationDetailsDto.getStartDate() + "T00:00:00.000Z";
-//        String endDate = confirmationDetailsDto.getEndDate() + "T00:00:00.000Z";
-//        String actualQuery = String.format(BOOKINGS_MUTATION_WITH_PROMO,startDate,endDate,confirmationDetailsDto.getAdultCount(),confirmationDetailsDto.getChildCount(),(int)confirmationDetailsDto.getTotalCost(),(int)confirmationDetailsDto.getAmountDueAtResort(),name,confirmationDetailsDto.getPropertyId(),(int)promoCode);
-//        System.out.println(actualQuery);
-//        return "{ \"query\": \" mutation " + actualQuery + "\" }";
-//    }
-
     public static String queryOfUpdatingRoomAvailability(long availabilityId, long bookingId) {
         return String.format("""
         mutation UpdateRoomAvailability {
@@ -106,5 +84,4 @@ public class BookingRoomAvailabilityQueries {
         }
         """, bookingId);
     }
-
 }

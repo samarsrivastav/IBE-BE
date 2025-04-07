@@ -2,60 +2,72 @@ package backend.service;
 
 import backend.model.BookingTransaction;
 import backend.repository.BookingTransactionRepository;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ReviewEmailScheduler {
 
     private final BookingTransactionRepository bookingTransactionRepository;
     private final ReviewEmailService reviewEmailService;
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    @Scheduled(cron = "0 * * * * ?") // Run every minute for testing
-    public void sendReviewEmails() {
-        System.out.println("=== Review Email Scheduler Started ===");
+    @Scheduled(cron = "0 12 12 * * *") //
+    public void sendPendingReviewEmails() {
+        log.info("Starting daily review email sending task");
         
-        // For testing, we'll check bookings from today
-        LocalDate today = LocalDate.now();
-        String formattedDate = today.format(DateTimeFormatter.ISO_DATE);
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime twentyFourHoursAgo = now.minusHours(24);
         
-        System.out.println("Checking for bookings with checkout date: " + formattedDate);
+        List<BookingTransaction> transactions = bookingTransactionRepository.findAll();
+        int emailsSent = 0;
         
-        try {
-            List<BookingTransaction> completedBookings = bookingTransactionRepository
-                    .findByCheckOutDate(formattedDate);
-            
-            System.out.println("Found " + completedBookings.size() + " bookings to process");
-            
-            if (completedBookings.isEmpty()) {
-                System.out.println("No bookings found for today's checkout date");
-                return;
+        for (BookingTransaction transaction : transactions) {
+            try {
+                if (isCheckoutInLastDay(transaction, twentyFourHoursAgo, now)) {
+                    log.info("Sending review email for booking: {}", transaction.getId());
+                    reviewEmailService.sendReviewRequestEmail(transaction);
+                    emailsSent++;
+                    log.info("Review email sent successfully for booking: {}", transaction.getId());
+                }
+            } catch (Exception e) {
+                log.error("Error processing review email for booking {}: {}", transaction.getId(), e.getMessage());
             }
-
-            for (BookingTransaction booking : completedBookings) {
-                try {
-                    System.out.println("Processing booking ID: " + booking.getId());
-                    System.out.println("Booking email: " + booking.getEmail());
-                    System.out.println("Booking details: " + booking.getBookingDetails());
+        }
+        
+        log.info("Completed daily review email sending task. Sent {} emails", emailsSent);
+    }
+    
+    private boolean isCheckoutInLastDay(BookingTransaction transaction, LocalDateTime startTime, LocalDateTime endTime) {
+        try {
+            JsonNode bookingDetails = transaction.getBookingDetails();
+            if (bookingDetails != null && bookingDetails.has("confirmationDetails")) {
+                JsonNode confirmationDetails = bookingDetails.get("confirmationDetails");
+                if (confirmationDetails.has("endDate")) {
+                    String endDateStr = confirmationDetails.get("endDate").asText();
+                    LocalDate checkoutDate = LocalDate.parse(endDateStr, DATE_FORMATTER);
                     
-                    reviewEmailService.sendReviewRequestEmail(booking);
-                    System.out.println("Review email sent successfully for booking: " + booking.getId());
-                } catch (Exception e) {
-                    System.err.println("Failed to send review email for booking: " + booking.getId());
-                    e.printStackTrace();
+                    // Convert checkout date to the end of that day for comparison
+                    LocalDateTime checkoutDateTime = checkoutDate.atTime(23, 59, 59);
+                    
+                    // Check if checkout happened in the last 24 hours
+                    return checkoutDateTime.isAfter(startTime) && checkoutDateTime.isBefore(endTime);
                 }
             }
         } catch (Exception e) {
-            System.err.println("Error in scheduler: " + e.getMessage());
-            e.printStackTrace();
+            log.error("Error checking checkout date for booking {}: {}", 
+                     transaction.getId(), e.getMessage());
         }
-        
-        System.out.println("=== Review Email Scheduler Completed ===");
+        return false;
     }
 } 

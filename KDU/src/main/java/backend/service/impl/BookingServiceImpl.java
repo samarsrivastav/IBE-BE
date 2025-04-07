@@ -279,6 +279,7 @@ public class BookingServiceImpl implements BookingService {
 
         // Track successful room bookings
         Map<Integer, IndividualRoom> successfulBookings = new HashMap<>();
+        double val = Math.random() * 100;
         long bookedRoomCount = 0;
 
         try {
@@ -310,7 +311,7 @@ public class BookingServiceImpl implements BookingService {
                     PseudoBooking booking = new PseudoBooking();
                     booking.setPseudoBookingId(id);
                     booking.setBookingGroupId(bookingGroupId);
-                    booking.setVersion(0);
+                    booking.setVersion((int) val);
 
                     try {
                         pseudoBookingRepository.save(booking);
