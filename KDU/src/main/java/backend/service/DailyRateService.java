@@ -2,7 +2,7 @@ package backend.service;
 
 import backend.dto.request.DailyRateRequestDTO;
 import backend.dto.response.DailyRateResponseDTO;
-import java.time.LocalDate;
+
 import java.util.List;
 
 public interface DailyRateService {

@@ -36,6 +36,7 @@ public class DailyRateServiceImpl implements DailyRateService {
         
         // Get rates from RoomTypeAvailabilityService
         Map<Long, List<Double>> ratesByRoomType = roomTypeAvailabilityService.getRatesByRoomType();
+
         List<Double> roomTypeRates = ratesByRoomType.getOrDefault(request.getRoomTypeId(), new ArrayList<>());
         log.info("Found {} rates for room type {}", roomTypeRates.size(), request.getRoomTypeId());
         
@@ -56,12 +57,13 @@ public class DailyRateServiceImpl implements DailyRateService {
         log.info("Found {} promo codes", promoCodes.size());
         
         // Find matching promotion by title if provided
+
         var matchingStandardPromotion = request.getPromotionTitle() != null ? 
             standardPromotions.stream()
                 .filter(promo -> promo.getPromotionTitle().equals(request.getPromotionTitle()))
                 .findFirst()
                 .orElse(null) : null;
-                
+
         var matchingCustomPromotion = request.getPromotionTitle() != null ? 
             customPromotions.stream()
                 .filter(promo -> promo.getTitle().equals(request.getPromotionTitle()))
