@@ -1,9 +1,10 @@
 package backend.service;
-
-import backend.entity.Booking;
-import backend.entity.Room;
+import backend.model.BookingTransaction;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -11,24 +12,49 @@ import java.io.ByteArrayOutputStream;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 import java.util.List;
-import java.util.Locale;
+import java.util.stream.Stream;
 
 @Service
+@RequiredArgsConstructor
 @Slf4j
 public class PDFService {
 
-    public byte[] generateBookingInvoice(Booking booking) {
+    private final ObjectMapper objectMapper;
+
+    public byte[] generateBookingInvoice(BookingTransaction transaction) {
+        log.info("Generating PDF invoice for booking: {}", transaction.getConfirmationId());
+        
         try {
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
             NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
 
+            // Convert JsonNode to Map
+            Map<String, Object> bookingDetails = objectMapper.convertValue(transaction.getBookingDetails(), Map.class);
+            
+            Map<String, Object> confirmationDetails = (Map<String, Object>) bookingDetails.get("confirmationDetails");
+            Map<String, Object> billingInfo = (Map<String, Object>) bookingDetails.get("billingInfo");
+
+            String guestName = billingInfo.get("firstName") + " " + billingInfo.get("lastName");
+            String guestEmail = (String) billingInfo.get("email");
+
+            String roomType = (String) confirmationDetails.get("roomName");
+            int roomCount = (int) confirmationDetails.get("roomCount");
+            double rate = ((Number) confirmationDetails.get("nightlyRate")).doubleValue();
+            double taxes = ((Number) confirmationDetails.get("taxes")).doubleValue();
+            double vat = ((Number) confirmationDetails.get("vat")).doubleValue();
+            double totalCost = ((Number) confirmationDetails.get("totalCost")).doubleValue();
+            String checkIn = (String) confirmationDetails.get("startDate");
+            String checkOut = (String) confirmationDetails.get("endDate");
+
+            LocalDate checkInDate = LocalDate.parse(checkIn);
+            LocalDate checkOutDate = LocalDate.parse(checkOut);
+            long nights = java.time.temporal.ChronoUnit.DAYS.between(checkInDate, checkOutDate);
+
             Document document = new Document(PageSize.A4);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             PdfWriter writer = PdfWriter.getInstance(document, baos);
-
             document.open();
 
             // Title
@@ -38,151 +64,87 @@ public class PDFService {
             title.setSpacingAfter(20);
             document.add(title);
 
-            // Invoice details
-            Font normalFont = new Font(Font.FontFamily.HELVETICA, 12, Font.NORMAL);
+            Font normalFont = new Font(Font.FontFamily.HELVETICA, 12);
             Font boldFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
 
-            document.add(new Paragraph("Invoice #: " + booking.getBookingReference(), boldFont));
+            // Invoice Info
+            document.add(new Paragraph("Invoice #: " + transaction.getConfirmationId(), boldFont));
             document.add(new Paragraph("Date: " + LocalDate.now().format(dateFormatter), normalFont));
-            document.add(new Paragraph("\n", normalFont));
+            document.add(Chunk.NEWLINE);
 
-            // Customer Info
+            // Guest Info
             document.add(new Paragraph("Customer Information:", boldFont));
-            document.add(new Paragraph("Name: " + booking.getGuestName(), normalFont));
-            document.add(new Paragraph("Email: " + booking.getGuestEmail(), normalFont));
-            document.add(new Paragraph("\n", normalFont));
+            document.add(new Paragraph("Name: " + guestName, normalFont));
+            document.add(new Paragraph("Email: " + guestEmail, normalFont));
+            document.add(Chunk.NEWLINE);
 
-            // Booking details
-            document.add(new Paragraph("Booking Details:", boldFont));
-            document.add(new Paragraph("Check-in: " + booking.getCheckInDate().format(dateFormatter), normalFont));
-            document.add(new Paragraph("Check-out: " + booking.getCheckOutDate().format(dateFormatter), normalFont));
-            document.add(new Paragraph("Guests: " + booking.getAdultsCount() + " adults, " + booking.getChildrenCount() + " children", normalFont));
-            document.add(new Paragraph("\n", normalFont));
+            // Stay Info
+            document.add(new Paragraph("Stay Details:", boldFont));
+            document.add(new Paragraph("Check-in: " + checkInDate.format(dateFormatter), normalFont));
+            document.add(new Paragraph("Check-out: " + checkOutDate.format(dateFormatter), normalFont));
+            document.add(new Paragraph("Nights: " + nights, normalFont));
+            document.add(new Paragraph("Guests: " + confirmationDetails.get("adultCount") + " adults, "
+                    + confirmationDetails.get("childCount") + " children", normalFont));
+            document.add(Chunk.NEWLINE);
 
-            // Room details table
+            // Room Table
             PdfPTable table = new PdfPTable(4);
             table.setWidthPercentage(100);
-            table.setSpacingBefore(10f);
-            table.setSpacingAfter(10f);
+            table.setWidths(new float[]{2f, 1f, 1f, 1.5f});
 
-            float[] columnWidths = {1.5f, 1f, 1f, 1.5f};
-            table.setWidths(columnWidths);
+            Stream.of("Room Type", "Rooms", "Rate/Night", "Total")
+                    .forEach(col -> {
+                        PdfPCell cell = new PdfPCell(new Phrase(col, boldFont));
+                        cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+                        table.addCell(cell);
+                    });
 
-            // Table headers
-            PdfPCell cell1 = new PdfPCell(new Phrase("Room Type", boldFont));
-            PdfPCell cell2 = new PdfPCell(new Phrase("Nights", boldFont));
-            PdfPCell cell3 = new PdfPCell(new Phrase("Rate/Night", boldFont));
-            PdfPCell cell4 = new PdfPCell(new Phrase("Total", boldFont));
+            double subtotal = rate * nights * roomCount;
 
-            cell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            cell2.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            cell3.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            cell4.setBackgroundColor(BaseColor.LIGHT_GRAY);
-
-            table.addCell(cell1);
-            table.addCell(cell2);
-            table.addCell(cell3);
-            table.addCell(cell4);
-
-            // Calculate nights
-            long nights = java.time.temporal.ChronoUnit.DAYS.between(booking.getCheckInDate(), booking.getCheckOutDate());
-
-            // Room details rows
-            for (Room room : booking.getRooms()) {
-                table.addCell(new Phrase(room.getRoomType(), normalFont));
-                table.addCell(new Phrase(String.valueOf(nights), normalFont));
-                table.addCell(new Phrase(currencyFormatter.format(room.getPrice()), normalFont));
-                table.addCell(new Phrase(currencyFormatter.format(room.getPrice() * nights), normalFont));
-            }
+            table.addCell(new Phrase(roomType, normalFont));
+            table.addCell(new Phrase(String.valueOf(roomCount), normalFont));
+            table.addCell(new Phrase(currencyFormatter.format(rate), normalFont));
+            table.addCell(new Phrase(currencyFormatter.format(subtotal), normalFont));
 
             document.add(table);
 
-            // Total
+            // Totals
             PdfPTable totalTable = new PdfPTable(2);
             totalTable.setWidthPercentage(40);
             totalTable.setHorizontalAlignment(Element.ALIGN_RIGHT);
 
-            cell1 = new PdfPCell(new Phrase("Subtotal", boldFont));
-            cell2 = new PdfPCell(new Phrase(currencyFormatter.format(booking.getTotalAmount()), normalFont));
+            totalTable.addCell(new PdfPCell(new Phrase("Subtotal", boldFont)));
+            totalTable.addCell(new PdfPCell(new Phrase(currencyFormatter.format(subtotal), normalFont)));
 
-            totalTable.addCell(cell1);
-            totalTable.addCell(cell2);
+            totalTable.addCell(new PdfPCell(new Phrase("Taxes", boldFont)));
+            totalTable.addCell(new PdfPCell(new Phrase(currencyFormatter.format(taxes), normalFont)));
 
-            // Add tax if applicable
-            if (booking.getTaxAmount() > 0) {
-                cell1 = new PdfPCell(new Phrase("Tax", boldFont));
-                cell2 = new PdfPCell(new Phrase(currencyFormatter.format(booking.getTaxAmount()), normalFont));
-                totalTable.addCell(cell1);
-                totalTable.addCell(cell2);
-            }
+            totalTable.addCell(new PdfPCell(new Phrase("VAT", boldFont)));
+            totalTable.addCell(new PdfPCell(new Phrase(currencyFormatter.format(vat), normalFont)));
 
-            Font totalFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
-            cell1 = new PdfPCell(new Phrase("Total", totalFont));
-            cell2 = new PdfPCell(new Phrase(currencyFormatter.format(booking.getTotalAmount() + booking.getTaxAmount()), totalFont));
-            cell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            cell2.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            PdfPCell totalLabel = new PdfPCell(new Phrase("Total", boldFont));
+            PdfPCell totalValue = new PdfPCell(new Phrase(currencyFormatter.format(totalCost), boldFont));
+            totalLabel.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            totalValue.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            totalTable.addCell(totalLabel);
+            totalTable.addCell(totalValue);
 
-            totalTable.addCell(cell1);
-            totalTable.addCell(cell2);
             document.add(totalTable);
 
-            // Payment information
-            document.add(new Paragraph("\nPayment Information:", boldFont));
-            document.add(new Paragraph("Payment Method: " + booking.getPaymentMethod(), normalFont));
-            document.add(new Paragraph("Payment Status: Paid", normalFont));
-            document.add(new Paragraph("Transaction ID: " + booking.getTransactionId(), normalFont));
-
             // Footer
-            document.add(new Paragraph("\n\nThank you for your booking!", boldFont));
-            document.add(new Paragraph("For any inquiries, please contact us at support@example.com", normalFont));
+            document.add(Chunk.NEWLINE);
+            document.add(new Paragraph("Thank you for choosing us!", boldFont));
+            document.add(new Paragraph("If you have any questions, please contact support@example.com", normalFont));
 
             document.close();
             writer.close();
 
+            log.info("PDF invoice generated successfully for booking: {}", transaction.getConfirmationId());
             return baos.toByteArray();
         } catch (Exception e) {
-            log.error("Error generating PDF invoice", e);
+            log.error("Error generating PDF invoice: {}", e.getMessage(), e);
             throw new RuntimeException("Failed to generate invoice PDF", e);
         }
     }
 
-    // Method to generate sample PDF without needing an actual booking object
-    public byte[] generateSampleInvoice() {
-        // Create sample booking with dummy data
-        Booking sampleBooking = createSampleBooking();
-
-        // Use the existing method to generate PDF
-        return generateBookingInvoice(sampleBooking);
-    }
-
-    // Helper method to create sample booking data
-    private Booking createSampleBooking() {
-        // Create sample rooms
-        Room room1 = new Room();
-        room1.setRoomType("Deluxe King");
-        room1.setPrice(199.99);
-
-        Room room2 = new Room();
-        room2.setRoomType("Superior Suite");
-        room2.setPrice(299.99);
-
-        List<Room> rooms = new ArrayList<>(Arrays.asList(room1, room2));
-
-        // Create sample booking
-        Booking booking = new Booking();
-        booking.setBookingReference("BK" + System.currentTimeMillis());
-        booking.setCheckInDate(LocalDate.now().plusDays(30));
-        booking.setCheckOutDate(LocalDate.now().plusDays(33));
-        booking.setAdultsCount(2);
-        booking.setChildrenCount(1);
-        booking.setRooms(rooms);
-        booking.setTotalAmount(199.99 * 3 + 299.99 * 3); // 3 nights
-        booking.setGuestName("John Smith");
-        booking.setGuestEmail("john.smith@example.com");
-        booking.setPaymentMethod("Credit Card");
-        booking.setTransactionId("TXN" + System.currentTimeMillis());
-        booking.setTaxAmount(booking.getTotalAmount() * 0.1); // 10% tax
-
-        return booking;
-    }
 }

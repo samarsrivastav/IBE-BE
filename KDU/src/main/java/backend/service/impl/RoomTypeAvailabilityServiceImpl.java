@@ -59,6 +59,7 @@ public class RoomTypeAvailabilityServiceImpl implements RoomTypeAvailabilityServ
             );
 
             JsonNode response = executeGraphQLQuery(query);
+//            System.out.println(response);
             List<RoomTypeResponseDTO> graphQLRoomTypes = processGraphQLResponse(response);
 
             if (searchRequest.getTotalBeds() != null) {

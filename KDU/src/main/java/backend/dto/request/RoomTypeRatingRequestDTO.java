@@ -18,5 +18,9 @@ public class RoomTypeRatingRequestDTO {
     @Min(value = 1, message = "Rating must be at least 1")
     @Max(value = 5, message = "Rating must not exceed 5")
     @NotNull(message = "Rating is required")
-    private Double rating;  
+    private Double rating;
+
+    private String reviewText;
+    private String token;      // For email review validation
+    private String email;      // For email review validation
 } 
