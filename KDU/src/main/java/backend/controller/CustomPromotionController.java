@@ -30,8 +30,6 @@ public class CustomPromotionController {
         return ResponseEntity.ok(service.getPromotionsByTenant(tenantId));
     }
 
-
-
     private void validateTenant(Long tenantId) {
         if (tenantId!=1L) {
             throw new TenantNotAllowedException("Access denied for tenant: " + tenantId);

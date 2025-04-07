@@ -5,14 +5,16 @@ import backend.dto.request.BookingRequestDto;
 import backend.dto.request.BookingVerificationRequestDto;
 import backend.model.BookingTransaction;
 import backend.repository.BookingTransactionRepository;
-import backend.service.BookingService;
-import backend.service.OTPService;
+import backend.service.*;
 import com.fasterxml.jackson.databind.JsonNode;
+//import com.fasterxml.jackson.databind.ObjectNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Slf4j
@@ -24,6 +26,9 @@ public class BookingController {
     private final BookingService bookingService;
     private final OTPService otpService;
     private final BookingTransactionRepository bookingTransactionRepository;
+    private final PromotionService promotionService;
+    private final CustomPromotionService customPromotionService;
+    private final PromoCodeService promoCodeService;
 
     @PostMapping("/initiate")
     public ResponseEntity<OTPDto.OTPResponse> initiateBooking(@RequestBody BookingRequestDto bookingRequestDto) {
@@ -105,10 +110,72 @@ public class BookingController {
             log.info("Found booking transaction with ID: {}", bookingTransaction.getId());
             log.info("Booking is active: {}", bookingTransaction.isActive());
             
-            // Return the complete booking details as stored in the database
+            // Get the complete booking details
             JsonNode bookingDetails = bookingTransaction.getBookingDetails();
-            log.info("Returning complete booking details for confirmation ID: {}", confirmationId);
             
+            // Extract promotion title from booking details if it exists
+            String promotionTitle;
+            if (bookingDetails.has("confirmationDetails") && 
+                bookingDetails.get("confirmationDetails").has("promotionTitle")) {
+                promotionTitle = bookingDetails.get("confirmationDetails").get("promotionTitle").asText();
+            } else {
+                promotionTitle = null;
+            }
+
+            // If there's a promotion title, find its description
+            if (promotionTitle != null && !promotionTitle.isEmpty()) {
+                // Get dates from booking details
+                LocalDate startDateStr = LocalDate.parse(bookingDetails.get("confirmationDetails").get("startDate").asText());
+                LocalDate endDateStr = LocalDate.parse(bookingDetails.get("confirmationDetails").get("endDate").asText());
+                
+                // Get all promotions
+                var standardPromotions = promotionService.getAllPromotions();
+                var customPromotions = customPromotionService.getApplicablePromotions(
+                    startDateStr,
+                    endDateStr
+                );
+                var promoCodes = promoCodeService.getApplicablePromoCodes(
+                    startDateStr,
+                    endDateStr
+                );
+                
+                // Find matching promotion
+                var matchingStandardPromotion = standardPromotions.stream()
+                    .filter(promo -> promo.getPromotionTitle().equals(promotionTitle))
+                    .findFirst();
+                
+                var matchingCustomPromotion = customPromotions.stream()
+                    .filter(promo -> promo.getTitle().equals(promotionTitle))
+                    .findFirst();
+                
+                var matchingPromoCode = promoCodes.stream()
+                    .filter(promo -> promo.getTitle().equals(promotionTitle))
+                    .findFirst();
+                
+
+                String promotionDescription = null;
+                if (matchingStandardPromotion.isPresent()) {
+                    promotionDescription = matchingStandardPromotion.get().getPromotionDescription();
+                } else if (matchingCustomPromotion.isPresent()) {
+                    promotionDescription = matchingCustomPromotion.get().getDescription();
+                } else if (matchingPromoCode.isPresent()) {
+                    promotionDescription = matchingPromoCode.get().getDescription();
+                }
+                else {
+                    promotionDescription = "Standard Package is Applied For this Booking";
+                }
+                
+                // Add promotion description to the response if found
+                if (promotionDescription != null) {
+                    ObjectNode modifiedDetails = (ObjectNode) bookingDetails;
+                    if (modifiedDetails.has("confirmationDetails")) {
+                        ObjectNode confirmationDetails = (ObjectNode) modifiedDetails.get("confirmationDetails");
+                        confirmationDetails.put("promotionDescription", promotionDescription);
+                    }
+                }
+            }
+            
+            log.info("Returning complete booking details for confirmation ID: {}", confirmationId);
             return ResponseEntity.ok(bookingDetails);
         } catch (Exception e) {
             log.error("Error checking booking confirmation status: {}", e.getMessage(), e);

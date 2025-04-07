@@ -111,7 +111,7 @@ public class RoomTypeRatingController {
                 </head>
                 <body>
                     <div class="message">
-                        <div class="emoji">❌</div>
+                   
                         <h1>Booking Not Found</h1>
                         <p>We couldn't find a matching booking with the provided details.</p>
                         <p>Please ensure you're using the correct link from your email.</p>
@@ -159,7 +159,7 @@ public class RoomTypeRatingController {
                 </head>
                 <body>
                     <div class="message">
-                        <div class="emoji">⚠️</div>
+                      
                         <h1>Already Reviewed</h1>
                         <p>You have already submitted a review for this stay.</p>
                         <p>Thank you for your feedback!</p>
@@ -220,7 +220,7 @@ public class RoomTypeRatingController {
             </head>
             <body>
                 <div class="thank-you">
-                    <div class="emoji">🎉</div>
+                    
                     <h1>Thank You for Your Review</h1>
                     <p>We appreciate your feedback and value your input. Your review helps us improve our services.</p>
                     <p>We hope to see you again soon!</p>

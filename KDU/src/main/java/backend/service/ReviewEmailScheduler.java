@@ -22,7 +22,7 @@ public class ReviewEmailScheduler {
     private final ReviewEmailService reviewEmailService;
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    @Scheduled(cron = "0 12 12 * * *") //
+    @Scheduled(cron = "0 45 11 * * *") //Daily Mail at the 11:45 AM
     public void sendPendingReviewEmails() {
         log.info("Starting daily review email sending task");
         

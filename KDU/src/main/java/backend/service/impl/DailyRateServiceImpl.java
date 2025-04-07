@@ -132,7 +132,7 @@ public class DailyRateServiceImpl implements DailyRateService {
                     currentDate, baseRate, discountedRate, discountAmount);
             } else {
                 // No matching promotion found, use standard rate
-                dailyRate.setDiscountAmount(BigDecimal.ZERO);
+                dailyRate.setDiscountAmount(baseRate);
                 
                 log.debug("No matching promotion for {}: Using standard rate={}", currentDate, baseRate);
             }

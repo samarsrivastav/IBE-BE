@@ -337,6 +337,7 @@ public class BookingServiceImpl implements BookingService {
             // Check if we got enough rooms
             if (bookedRoomCount < roomCount) {
                 log.warn("Could not book enough rooms. Booked: {}, Required: {}", bookedRoomCount, roomCount);
+                cleanupPseudoBookings(bookingGroupId);
                 throw new RoomNotAvailableException("Could not book the required number of rooms due to unavailability");
             }
 
@@ -352,6 +353,7 @@ public class BookingServiceImpl implements BookingService {
 
         } catch (Exception e) {
             log.error("Error during booking process", e);
+            cleanupPseudoBookings(bookingGroupId);
             if (e instanceof RoomNotAvailableException) {
                 throw (RoomNotAvailableException)e;
             }
