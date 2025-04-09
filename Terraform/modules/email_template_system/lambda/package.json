@@ -1,10 +1,12 @@
 {
-  "name": "genwin-email-processor",
+  "name": "email-template-processor",
   "version": "1.0.0",
-  "description": "Lambda function to process email templates and send emails",
+  "description": "Lambda function to process email templates",
   "main": "index.js",
   "dependencies": {
-    "aws-sdk": "^2.1450.0",
+    "@aws-sdk/client-s3": "^3.400.0",
+    "@aws-sdk/client-sns": "^3.400.0",
+    "@aws-sdk/client-ses": "^3.400.0",
     "pg": "^8.11.3"
   }
 } 
