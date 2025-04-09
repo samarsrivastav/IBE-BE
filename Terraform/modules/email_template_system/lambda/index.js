@@ -32,22 +32,8 @@ exports.handler = async (event) => {
     try {
         console.log('Event received:', JSON.stringify(event));
         
-        // Parse the event - handle both direct S3 events and SNS-wrapped S3 events
-        let s3Event;
-        
-        if (event.Records && event.Records[0].Sns) {
-            // This is an SNS event wrapping an S3 event
-            console.log('Processing SNS-wrapped S3 event');
-            const snsMessage = JSON.parse(event.Records[0].Sns.Message);
-            s3Event = snsMessage.Records[0].s3;
-        } else if (event.Records && event.Records[0].s3) {
-            // This is a direct S3 event
-            console.log('Processing direct S3 event');
-            s3Event = event.Records[0].s3;
-        } else {
-            throw new Error('Unsupported event format');
-        }
-        
+        // Parse the S3 event
+        const s3Event = event.Records[0].s3;
         const bucketName = s3Event.bucket.name;
         const objectKey = decodeURIComponent(s3Event.object.key.replace(/\+/g, ' '));
         
