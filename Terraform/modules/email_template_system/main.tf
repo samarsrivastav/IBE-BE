@@ -50,7 +50,7 @@ resource "aws_lambda_function" "email_processor" {
     variables = {
       DB_USER       = data.aws_ssm_parameter.db_user.value
       DB_PASSWORD   = data.aws_ssm_parameter.db_pass.value
-      DB_HOST       = regex("^jdbc:postgresql://([^:/]+)", data.aws_ssm_parameter.db_url.value)
+      DB_HOST       = "ibe2025-kdu25rdsinstance61f66da9-8harocvoxzt8.c3ysg6m2290x.ap-south-1.rds.amazonaws.com"
       DB_NAME       = "Database_8_dev"
       DB_PORT       = "5432"
       SMTP_HOST     = "smtp.gmail.com"
