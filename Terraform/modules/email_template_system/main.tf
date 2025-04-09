@@ -36,54 +36,6 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "email_templates" 
   }
 }
 
-# SNS Topic for email notifications
-resource "aws_sns_topic" "email_notifications" {
-  name = "genwin-email-notifications"
-}
-
-# SNS Topic for sending emails to users
-resource "aws_sns_topic" "user_emails" {
-  name = "genwin-user-emails"
-}
-
-# SNS Topic Policy for email notifications
-resource "aws_sns_topic_policy" "email_notifications" {
-  arn = aws_sns_topic.email_notifications.arn
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow"
-        Principal = {
-          Service = "s3.amazonaws.com"
-        }
-        Action   = "sns:Publish"
-        Resource = aws_sns_topic.email_notifications.arn
-      }
-    ]
-  })
-}
-
-# SNS Topic Policy for user emails
-resource "aws_sns_topic_policy" "user_emails" {
-  arn = aws_sns_topic.user_emails.arn
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow"
-        Principal = {
-          Service = "lambda.amazonaws.com"
-        }
-        Action   = "sns:Publish"
-        Resource = aws_sns_topic.user_emails.arn
-      }
-    ]
-  })
-}
-
 # Lambda Function
 resource "aws_lambda_function" "email_processor" {
   filename         = "${path.module}/lambda/function.zip"
@@ -96,12 +48,17 @@ resource "aws_lambda_function" "email_processor" {
 
   environment {
     variables = {
-      SNS_TOPIC_ARN = aws_sns_topic.user_emails.arn
       DB_USER       = data.aws_ssm_parameter.db_user.value
       DB_PASSWORD   = data.aws_ssm_parameter.db_pass.value
-      DB_HOST       = "ibe2025-kdu25rdsinstance61f66da9-8harocvoxzt8.c3ysg6m2290x.ap-south-1.rds.amazonaws.com"
+      DB_HOST       = regex("^jdbc:postgresql://([^:/]+)", data.aws_ssm_parameter.db_url.value)
       DB_NAME       = "Database_8_dev"
       DB_PORT       = "5432"
+      SMTP_HOST     = "smtp.gmail.com"
+      SMTP_PORT     = "587"
+      SMTP_SECURE   = "true"
+      SMTP_USER     = "thoravenger56787@gmail.com"
+      SMTP_PASSWORD = "iubyrwzmsrlqzyvr"
+      SMTP_FROM     = "thoravenger56787@gmail.com"
     }
   }
 
@@ -161,13 +118,10 @@ resource "aws_iam_role_policy" "lambda_policy" {
       {
         Effect = "Allow"
         Action = [
-          "sns:Publish",
           "s3:GetObject",
           "s3:ListBucket"
         ]
         Resource = [
-          aws_sns_topic.email_notifications.arn,
-          aws_sns_topic.user_emails.arn,
           "${aws_s3_bucket.email_templates.arn}/*",
           aws_s3_bucket.email_templates.arn
         ]
@@ -210,25 +164,18 @@ resource "aws_iam_role_policy" "lambda_policy" {
 resource "aws_s3_bucket_notification" "email_templates" {
   bucket = aws_s3_bucket.email_templates.id
 
-  topic {
-    topic_arn     = aws_sns_topic.email_notifications.arn
-    events        = ["s3:ObjectCreated:*"]
-    filter_prefix = "genwin-"
+  lambda_function {
+    lambda_function_arn = aws_lambda_function.email_processor.arn
+    events              = ["s3:ObjectCreated:*"]
+    filter_prefix       = "genwin-"
   }
 }
 
-# Lambda Permission for SNS
-resource "aws_lambda_permission" "with_sns" {
-  statement_id  = "AllowExecutionFromSNS"
+# Lambda Permission for S3
+resource "aws_lambda_permission" "with_s3" {
+  statement_id  = "AllowExecutionFromS3"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.email_processor.function_name
-  principal     = "sns.amazonaws.com"
-  source_arn    = aws_sns_topic.email_notifications.arn
-}
-
-# SNS Topic Subscription to Lambda
-resource "aws_sns_topic_subscription" "lambda_target" {
-  topic_arn = aws_sns_topic.email_notifications.arn
-  protocol  = "lambda"
-  endpoint  = aws_lambda_function.email_processor.arn
+  principal     = "s3.amazonaws.com"
+  source_arn    = aws_s3_bucket.email_templates.arn
 } 

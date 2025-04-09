@@ -1,9 +1,8 @@
 const { S3Client, GetObjectCommand } = require('@aws-sdk/client-s3');
-const { SNSClient, PublishCommand } = require('@aws-sdk/client-sns');
 const { Client } = require('pg');
+const nodemailer = require('nodemailer');
 
 const s3Client = new S3Client();
-const snsClient = new SNSClient();
 
 // Database connection configuration
 const dbConfig = {
@@ -14,6 +13,20 @@ const dbConfig = {
     password: process.env.DB_PASSWORD,
     ssl: true
 };
+
+// SMTP configuration
+const smtpConfig = {
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT,
+    secure: process.env.SMTP_SECURE === 'true',
+    auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASSWORD
+    }
+};
+
+// Create reusable transporter object
+const transporter = nodemailer.createTransport(smtpConfig);
 
 exports.handler = async (event) => {
     try {
@@ -63,28 +76,26 @@ exports.handler = async (event) => {
         await dbClient.end();
         console.log('Database connection closed');
 
-        // Send email to each subscriber via SNS
+        // Send email to each subscriber via SMTP
         console.log('Sending emails to subscribers...');
         for (const email of subscribers) {
             console.log(`Sending email to ${email}`);
-            const publishCommand = new PublishCommand({
-                TopicArn: process.env.SNS_TOPIC_ARN,
-                Message: JSON.stringify({
-                    to: email,
-                    subject: 'New Special Offer from Genwin',
-                    body: templateContent,
-                    template: objectKey
-                })
-            });
+            
+            const mailOptions = {
+                from: process.env.SMTP_FROM,
+                to: email,
+                subject: 'New Special Offer from Genwin',
+                html: templateContent
+            };
 
-            await snsClient.send(publishCommand);
-            console.log(`Email notification sent for ${email}`);
+            await transporter.sendMail(mailOptions);
+            console.log(`Email sent to ${email}`);
         }
 
         return {
             statusCode: 200,
             body: JSON.stringify({
-                message: 'Email notifications sent successfully',
+                message: 'Emails sent successfully',
                 subscribersCount: subscribers.length
             })
         };

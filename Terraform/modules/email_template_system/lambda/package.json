@@ -5,8 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.400.0",
-    "@aws-sdk/client-sns": "^3.400.0",
-    "@aws-sdk/client-ses": "^3.400.0",
-    "pg": "^8.11.3"
+    "pg": "^8.11.3",
+    "nodemailer": "^6.9.7"
   }
 } 
