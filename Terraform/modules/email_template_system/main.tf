@@ -169,10 +169,12 @@ resource "aws_s3_bucket_notification" "email_templates" {
     events              = ["s3:ObjectCreated:*"]
     filter_prefix       = "genwin-"
   }
+
+  depends_on = [aws_lambda_permission.allow_s3]
 }
 
 # Lambda Permission for S3
-resource "aws_lambda_permission" "with_s3" {
+resource "aws_lambda_permission" "allow_s3" {
   statement_id  = "AllowExecutionFromS3"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.email_processor.function_name
