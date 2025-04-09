@@ -102,6 +102,7 @@ resource "aws_lambda_function" "email_processor" {
       DB_PASSWORD   = data.aws_ssm_parameter.db_pass.value
       DB_HOST       = data.aws_ssm_parameter.db_url.value
       DB_NAME       = "postgres"
+      DB_PORT       = "5432"
     }
   }
 

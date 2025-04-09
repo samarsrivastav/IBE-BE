@@ -1,135 +1,89 @@
-const { S3Client, GetObjectCommand } = require('@aws-sdk/client-s3');
-const { SNSClient, PublishCommand } = require('@aws-sdk/client-sns');
-const { SESClient, SendEmailCommand } = require('@aws-sdk/client-ses');
+const AWS = require('aws-sdk');
 const { Client } = require('pg');
+const nodemailer = require('nodemailer');
+const fs = require('fs');
+const path = require('path');
 
-const s3Client = new S3Client();
-const snsClient = new SNSClient();
-const sesClient = new SESClient();
+const s3 = new AWS.S3();
+const sns = new AWS.SNS();
+
+// Database connection configuration
+const dbConfig = {
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_NAME,
+  ssl: {
+    rejectUnauthorized: false
+  }
+};
+
+// Email configuration
+const emailConfig = {
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.SENDER_EMAIL,
+    pass: process.env.EMAIL_PASSWORD
+  }
+};
+
+const transporter = nodemailer.createTransport(emailConfig);
 
 exports.handler = async (event) => {
-    try {
-        console.log('Event received:', JSON.stringify(event));
-        
-        // Parse the event - handle both direct S3 events and SNS-wrapped S3 events
-        let s3Event;
-        
-        if (event.Records && event.Records[0].Sns) {
-            // This is an SNS event wrapping an S3 event
-            console.log('Processing SNS-wrapped S3 event');
-            const snsMessage = JSON.parse(event.Records[0].Sns.Message);
-            s3Event = snsMessage.Records[0].s3;
-        } else if (event.Records && event.Records[0].s3) {
-            // This is a direct S3 event
-            console.log('Processing direct S3 event');
-            s3Event = event.Records[0].s3;
-        } else {
-            throw new Error('Unsupported event format');
-        }
-        
-        const bucketName = s3Event.bucket.name;
-        const objectKey = decodeURIComponent(s3Event.object.key.replace(/\+/g, ' '));
-        
-        console.log(`Processing template from bucket: ${bucketName}, key: ${objectKey}`);
+  try {
+    // Parse the SNS message
+    const snsMessage = JSON.parse(event.Records[0].Sns.Message);
+    const { email, templateName, data } = snsMessage;
 
-        // Get the template from S3
-        const getObjectCommand = new GetObjectCommand({
-            Bucket: bucketName,
-            Key: objectKey
-        });
-        const templateResponse = await s3Client.send(getObjectCommand);
-        const templateContent = await templateResponse.Body.transformToString();
-        console.log('Template retrieved successfully');
+    // Get the template from S3
+    const templateParams = {
+      Bucket: process.env.TEMPLATE_BUCKET,
+      Key: `${templateName}.html`
+    };
 
-        // Get subscribers from the database
-        console.log('Connecting to database...');
-        const dbClient = new Client({
-            host: process.env.DB_HOST,
-            port: process.env.DB_PORT || 5432,
-            database: process.env.DB_NAME,
-            user: process.env.DB_USER,
-            password: process.env.DB_PASSWORD,
-            ssl: true
-        });
+    const templateObject = await s3.getObject(templateParams).promise();
+    let templateContent = templateObject.Body.toString('utf-8');
 
-        await dbClient.connect();
-        console.log('Connected to database');
-        
-        const result = await dbClient.query('SELECT email FROM subscribers WHERE is_active = true');
-        const subscribers = result.rows.map(row => row.email);
-        console.log(`Found ${subscribers.length} subscribers`);
-        
-        await dbClient.end();
-        console.log('Database connection closed');
+    // Replace placeholders in the template
+    Object.keys(data).forEach(key => {
+      const regex = new RegExp(`{{${key}}}`, 'g');
+      templateContent = templateContent.replace(regex, data[key]);
+    });
 
-        // Send email to each subscriber
-        console.log('Sending emails to subscribers...');
-        for (const email of subscribers) {
-            console.log(`Sending email to ${email}`);
-            const sendEmailCommand = new SendEmailCommand({
-                Source: process.env.SENDER_EMAIL,
-                Destination: {
-                    ToAddresses: [email]
-                },
-                Message: {
-                    Subject: {
-                        Data: 'New Special Offer from Genwin'
-                    },
-                    Body: {
-                        Html: {
-                            Data: templateContent
-                        }
-                    }
-                }
-            });
+    // Send the email
+    const mailOptions = {
+      from: process.env.SENDER_EMAIL,
+      to: email,
+      subject: data.subject || 'New Offer from Genwin',
+      html: templateContent
+    };
 
-            await sesClient.send(sendEmailCommand);
-            console.log(`Email sent to ${email}`);
-        }
+    await transporter.sendMail(mailOptions);
 
-        // Publish success message to SNS
-        console.log('Publishing success message to SNS');
-        const publishCommand = new PublishCommand({
-            TopicArn: process.env.SNS_TOPIC_ARN,
-            Message: JSON.stringify({
-                status: 'success',
-                template: objectKey,
-                subscribersCount: subscribers.length,
-                timestamp: new Date().toISOString()
-            })
-        });
+    // Log the email sent in the database
+    const client = new Client(dbConfig);
+    await client.connect();
 
-        await snsClient.send(publishCommand);
-        console.log('Success message published to SNS');
+    const query = `
+      INSERT INTO email_logs (recipient_email, template_name, sent_at)
+      VALUES ($1, $2, NOW())
+    `;
 
-        return {
-            statusCode: 200,
-            body: JSON.stringify({
-                message: 'Emails sent successfully',
-                subscribersCount: subscribers.length
-            })
-        };
-    } catch (error) {
-        console.error('Error:', error);
-        console.error('Error stack:', error.stack);
-        
-        // Publish error message to SNS
-        try {
-            const publishCommand = new PublishCommand({
-                TopicArn: process.env.SNS_TOPIC_ARN,
-                Message: JSON.stringify({
-                    status: 'error',
-                    error: error.message,
-                    timestamp: new Date().toISOString()
-                })
-            });
+    await client.query(query, [email, templateName]);
+    await client.end();
 
-            await snsClient.send(publishCommand);
-            console.log('Error message published to SNS');
-        } catch (snsError) {
-            console.error('Failed to publish error to SNS:', snsError);
-        }
-
-        throw error;
-    }
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ message: 'Email sent successfully' })
+    };
+  } catch (error) {
+    console.error('Error:', error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: error.message })
+    };
+  }
 }; 

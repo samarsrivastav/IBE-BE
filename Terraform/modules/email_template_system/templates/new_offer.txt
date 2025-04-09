@@ -1,0 +1,23 @@
+New Offer from Genwin
+
+Dear {{customer_name}},
+
+We're excited to inform you about a new offer that's just for you!
+
+Offer Details:
+-------------
+Title: {{offer_title}}
+Description: {{offer_description}}
+Valid until: {{valid_until}}
+Special Price: {{offer_price}}
+
+Don't miss out on this amazing opportunity! Visit the following link to view the offer details and take advantage of this special deal:
+
+{{offer_link}}
+
+Best regards,
+The Genwin Team
+
+---
+This email was sent by Genwin. If you no longer wish to receive these emails, you can unsubscribe here.
+© 2024 Genwin. All rights reserved. 
