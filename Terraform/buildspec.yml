@@ -6,11 +6,15 @@ phases:
       nodejs: 18
     commands:
       - npm install -g npm@10.2.4
+      - wget https://releases.hashicorp.com/terraform/1.5.7/terraform_1.5.7_linux_amd64.zip
+      - unzip terraform_1.5.7_linux_amd64.zip
+      - mv terraform /usr/local/bin/
       - cd Terraform
       - terraform init
 
   pre_build:
     commands:
+      - cd Terraform
       - echo "Building Lambda function..."
       - cd modules/email_template_system/lambda
       - chmod +x install-deps.sh
