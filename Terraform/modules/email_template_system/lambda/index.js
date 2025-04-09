@@ -37,6 +37,7 @@ exports.handler = async (event) => {
     
     // Connect to the database
     await client.connect();
+    console.log('Connected to database');
     
     // Get all emails from the special_offers table
     const result = await client.query('SELECT email FROM special_offers');
@@ -44,7 +45,7 @@ exports.handler = async (event) => {
     
     console.log(`Found ${emails.length} emails to send to`);
     
-    // Send emails to all users
+    // Send emails to all users using SNS
     for (const email of emails) {
       const params = {
         Message: template,
@@ -76,5 +77,6 @@ exports.handler = async (event) => {
   } finally {
     // Always close the database connection
     await client.end();
+    console.log('Database connection closed');
   }
 }; 

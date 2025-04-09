@@ -1,3 +1,19 @@
+# Data Sources for SSM Parameters
+data "aws_ssm_parameter" "db_user" {
+  name            = "/genwin/db-user"
+  with_decryption = true
+}
+
+data "aws_ssm_parameter" "db_pass" {
+  name            = "/genwin/db-pass"
+  with_decryption = true
+}
+
+data "aws_ssm_parameter" "db_url" {
+  name            = "/genwin/${var.environment}/db_url"
+  with_decryption = true
+}
+
 # S3 Bucket for email templates
 resource "aws_s3_bucket" "email_templates" {
   bucket = "genwin-dev-email-templates"
@@ -25,7 +41,12 @@ resource "aws_sns_topic" "email_notifications" {
   name = "genwin-email-notifications"
 }
 
-# SNS Topic Policy
+# SNS Topic for sending emails to users
+resource "aws_sns_topic" "user_emails" {
+  name = "genwin-user-emails"
+}
+
+# SNS Topic Policy for email notifications
 resource "aws_sns_topic_policy" "email_notifications" {
   arn = aws_sns_topic.email_notifications.arn
 
@@ -44,6 +65,25 @@ resource "aws_sns_topic_policy" "email_notifications" {
   })
 }
 
+# SNS Topic Policy for user emails
+resource "aws_sns_topic_policy" "user_emails" {
+  arn = aws_sns_topic.user_emails.arn
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Principal = {
+          Service = "lambda.amazonaws.com"
+        }
+        Action   = "sns:Publish"
+        Resource = aws_sns_topic.user_emails.arn
+      }
+    ]
+  })
+}
+
 # Lambda Function
 resource "aws_lambda_function" "email_processor" {
   filename         = data.archive_file.lambda_zip.output_path
@@ -56,7 +96,7 @@ resource "aws_lambda_function" "email_processor" {
 
   environment {
     variables = {
-      SNS_TOPIC_ARN = aws_sns_topic.email_notifications.arn
+      SNS_TOPIC_ARN = aws_sns_topic.user_emails.arn
       SENDER_EMAIL  = "genwin.kdu@yopmail.com"
       DB_USER       = data.aws_ssm_parameter.db_user.value
       DB_PASSWORD   = data.aws_ssm_parameter.db_pass.value
@@ -76,6 +116,13 @@ resource "aws_security_group" "lambda_sg" {
   name        = "genwin-email-processor-sg"
   description = "Security group for email processor Lambda"
   vpc_id      = var.vpc_id
+
+  ingress {
+    from_port   = 5432
+    to_port     = 5432
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # This should be restricted to the RDS security group in production
+  }
 
   egress {
     from_port   = 0
@@ -120,6 +167,7 @@ resource "aws_iam_role_policy" "lambda_policy" {
         ]
         Resource = [
           aws_sns_topic.email_notifications.arn,
+          aws_sns_topic.user_emails.arn,
           "${aws_s3_bucket.email_templates.arn}/*",
           aws_s3_bucket.email_templates.arn
         ]
@@ -143,6 +191,16 @@ resource "aws_iam_role_policy" "lambda_policy" {
           "ec2:UnassignPrivateIpAddresses"
         ]
         Resource = "*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "ssm:GetParameter",
+          "ssm:GetParameters"
+        ]
+        Resource = [
+          "arn:aws:ssm:*:*:parameter/genwin/*"
+        ]
       }
     ]
   })

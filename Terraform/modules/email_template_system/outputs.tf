@@ -13,6 +13,11 @@ output "sns_topic_arn" {
   value       = aws_sns_topic.email_notifications.arn
 }
 
+output "user_emails_topic_arn" {
+  description = "ARN of the SNS topic for sending emails to users"
+  value       = aws_sns_topic.user_emails.arn
+}
+
 output "lambda_function_arn" {
   description = "ARN of the Lambda function"
   value       = aws_lambda_function.email_processor.arn
