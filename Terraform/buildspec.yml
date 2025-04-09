@@ -20,6 +20,7 @@ phases:
         fi
       - echo "Using backend config file ${BACKEND_CONFIG}"
       - terraform init -backend-config=${BACKEND_CONFIG} -migrate-state
+      - terraform init -upgrade  # This ensures all providers are downloaded
   build:
     commands:
       - echo "Planning Terraform changes..."
