@@ -86,7 +86,7 @@ resource "aws_sns_topic_policy" "user_emails" {
 
 # Lambda Function
 resource "aws_lambda_function" "email_processor" {
-  filename         = data.archive_file.lambda_zip.output_path
+  filename         = "${path.module}/lambda/function.zip"
   function_name    = "genwin-email-processor"
   role            = aws_iam_role.lambda_role.arn
   handler         = "index.handler"
@@ -201,6 +201,14 @@ resource "aws_iam_role_policy" "lambda_policy" {
         Resource = [
           "arn:aws:ssm:*:*:parameter/genwin/*"
         ]
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "ses:SendEmail",
+          "ses:SendRawEmail"
+        ]
+        Resource = "*"
       }
     ]
   })
@@ -231,20 +239,4 @@ resource "aws_sns_topic_subscription" "lambda_target" {
   topic_arn = aws_sns_topic.email_notifications.arn
   protocol  = "lambda"
   endpoint  = aws_lambda_function.email_processor.arn
-}
-
-# Lambda Function Code
-data "archive_file" "lambda_zip" {
-  type        = "zip"
-  output_path = "${path.module}/lambda.zip"
-
-  source {
-    content  = file("${path.module}/lambda/index.js")
-    filename = "index.js"
-  }
-
-  source {
-    content  = file("${path.module}/lambda/package.json")
-    filename = "package.json"
-  }
 } 
