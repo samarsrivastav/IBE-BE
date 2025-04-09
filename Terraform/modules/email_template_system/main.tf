@@ -97,11 +97,10 @@ resource "aws_lambda_function" "email_processor" {
   environment {
     variables = {
       SNS_TOPIC_ARN = aws_sns_topic.user_emails.arn
-      SENDER_EMAIL  = "genwin.kdu@yopmail.com"
       DB_USER       = data.aws_ssm_parameter.db_user.value
       DB_PASSWORD   = data.aws_ssm_parameter.db_pass.value
-      DB_HOST       = replace(replace(data.aws_ssm_parameter.db_url.value, "jdbc:postgresql://", ""), "/:.*", "")
-      DB_NAME       = "postgres"
+      DB_HOST       = "ibe2025-kdu25rdsinstance61f66da9-8harocvoxzt8.c3ysg6m2290x.ap-south-1.rds.amazonaws.com"
+      DB_NAME       = "Database_8_dev"
       DB_PORT       = "5432"
     }
   }
@@ -202,14 +201,6 @@ resource "aws_iam_role_policy" "lambda_policy" {
         Resource = [
           "arn:aws:ssm:*:*:parameter/genwin/*"
         ]
-      },
-      {
-        Effect = "Allow"
-        Action = [
-          "ses:SendEmail",
-          "ses:SendRawEmail"
-        ]
-        Resource = "*"
       }
     ]
   })
