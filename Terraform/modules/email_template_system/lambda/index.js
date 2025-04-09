@@ -1,11 +1,11 @@
-const AWS = require('aws-sdk');
+const { S3Client, GetObjectCommand } = require('@aws-sdk/client-s3');
+const { SNSClient } = require('@aws-sdk/client-sns');
+const { SESClient, SendEmailCommand } = require('@aws-sdk/client-ses');
 const { Client } = require('pg');
-const nodemailer = require('nodemailer');
-const fs = require('fs');
-const path = require('path');
 
-const s3 = new AWS.S3();
-const sns = new AWS.SNS();
+const s3Client = new S3Client();
+const snsClient = new SNSClient();
+const sesClient = new SESClient();
 
 // Database connection configuration
 const dbConfig = {
@@ -19,23 +19,14 @@ const dbConfig = {
   }
 };
 
-// Email configuration
-const emailConfig = {
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.SENDER_EMAIL,
-    pass: process.env.EMAIL_PASSWORD
-  }
-};
-
-const transporter = nodemailer.createTransport(emailConfig);
-
 exports.handler = async (event) => {
   try {
+    console.log('Event received:', JSON.stringify(event));
+    
     // Parse the SNS message
     const snsMessage = JSON.parse(event.Records[0].Sns.Message);
+    console.log('SNS message:', JSON.stringify(snsMessage));
+    
     const { email, templateName, data } = snsMessage;
 
     // Get the template from S3
@@ -43,9 +34,17 @@ exports.handler = async (event) => {
       Bucket: process.env.TEMPLATE_BUCKET,
       Key: `${templateName}.html`
     };
-
-    const templateObject = await s3.getObject(templateParams).promise();
-    let templateContent = templateObject.Body.toString('utf-8');
+    
+    console.log('Fetching template from S3:', JSON.stringify(templateParams));
+    const getObjectCommand = new GetObjectCommand(templateParams);
+    const templateObject = await s3Client.send(getObjectCommand);
+    
+    // Convert stream to string
+    const chunks = [];
+    for await (const chunk of templateObject.Body) {
+      chunks.push(chunk);
+    }
+    let templateContent = Buffer.concat(chunks).toString('utf-8');
 
     // Replace placeholders in the template
     Object.keys(data).forEach(key => {
@@ -53,27 +52,57 @@ exports.handler = async (event) => {
       templateContent = templateContent.replace(regex, data[key]);
     });
 
-    // Send the email
-    const mailOptions = {
-      from: process.env.SENDER_EMAIL,
-      to: email,
-      subject: data.subject || 'New Offer from Genwin',
-      html: templateContent
+    // Send the email using SES
+    const emailParams = {
+      Source: process.env.SENDER_EMAIL,
+      Destination: {
+        ToAddresses: [email]
+      },
+      Message: {
+        Subject: {
+          Data: data.subject || 'New Offer from Genwin'
+        },
+        Body: {
+          Html: {
+            Data: templateContent
+          }
+        }
+      }
     };
-
-    await transporter.sendMail(mailOptions);
+    
+    console.log('Sending email to:', email);
+    const sendEmailCommand = new SendEmailCommand(emailParams);
+    await sesClient.send(sendEmailCommand);
+    console.log('Email sent successfully');
 
     // Log the email sent in the database
-    const client = new Client(dbConfig);
-    await client.connect();
+    try {
+      console.log('Connecting to database with config:', {
+        user: dbConfig.user,
+        host: dbConfig.host,
+        port: dbConfig.port,
+        database: dbConfig.database
+      });
+      
+      const client = new Client(dbConfig);
+      await client.connect();
+      console.log('Database connection established');
 
-    const query = `
-      INSERT INTO email_logs (recipient_email, template_name, sent_at)
-      VALUES ($1, $2, NOW())
-    `;
+      const query = `
+        INSERT INTO email_logs (recipient_email, template_name, sent_at)
+        VALUES ($1, $2, NOW())
+      `;
 
-    await client.query(query, [email, templateName]);
-    await client.end();
+      await client.query(query, [email, templateName]);
+      console.log('Email log inserted into database');
+      
+      await client.end();
+      console.log('Database connection closed');
+    } catch (dbError) {
+      console.error('Database error:', dbError);
+      // Continue execution even if database logging fails
+      // We don't want to fail the email sending if just the logging fails
+    }
 
     return {
       statusCode: 200,

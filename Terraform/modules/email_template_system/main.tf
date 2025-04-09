@@ -100,7 +100,7 @@ resource "aws_lambda_function" "email_processor" {
       SENDER_EMAIL  = "genwin.kdu@yopmail.com"
       DB_USER       = data.aws_ssm_parameter.db_user.value
       DB_PASSWORD   = data.aws_ssm_parameter.db_pass.value
-      DB_HOST       = data.aws_ssm_parameter.db_url.value
+      DB_HOST       = replace(replace(data.aws_ssm_parameter.db_url.value, "jdbc:postgresql://", ""), "/:.*", "")
       DB_NAME       = "postgres"
       DB_PORT       = "5432"
     }
