@@ -22,35 +22,3 @@ variable "public_subnets" {
   description = "List of public subnet IDs"
   type        = list(string)
 }
-
-variable "smtp_host" {
-  description = "SMTP server host"
-  type        = string
-}
-
-variable "smtp_port" {
-  description = "SMTP server port"
-  type        = string
-}
-
-variable "smtp_secure" {
-  description = "Whether to use SSL/TLS for SMTP connection"
-  type        = string
-  default     = "true"
-}
-
-variable "smtp_user" {
-  description = "SMTP server username"
-  type        = string
-}
-
-variable "smtp_password" {
-  description = "SMTP server password"
-  type        = string
-  sensitive   = true
-}
-
-variable "smtp_from" {
-  description = "Email address to send from"
-  type        = string
-} 
