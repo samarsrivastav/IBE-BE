@@ -67,6 +67,19 @@ module "beanstalk" {
 }
 
 ################################################
+# Promotions Module
+################################################
+module "promotions" {
+  source           = "./modules/promotions"
+  team_name        = var.team_name
+  environment      = var.environment
+  vpc_id           = var.vpc_id
+  private_subnets  = var.private_subnets
+  postgres_url     = data.aws_ssm_parameter.db_url.value
+  subscriber_emails = ["genwin.kdu@yopmail.com"] # Add your email here
+}
+
+################################################
 # Conditionally Create API Gateway (dev only)
 ################################################
 locals {
