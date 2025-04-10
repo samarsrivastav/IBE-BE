@@ -53,12 +53,11 @@ resource "aws_lambda_function" "email_processor" {
       DB_HOST       = "ibe2025-kdu25rdsinstance61f66da9-8harocvoxzt8.c3ysg6m2290x.ap-south-1.rds.amazonaws.com"
       DB_NAME       = "Database_8_dev"
       DB_PORT       = "5432"
-      SMTP_HOST     = "smtp.gmail.com"
+      SMTP_HOST     = "smtp-relay.brevo.com"
       SMTP_PORT     = "587"
-      SMTP_SECURE   = "true"
-      SMTP_USER     = "thoravenger56787@gmail.com"
-      SMTP_PASSWORD = "iubyrwzmsrlqzyvr"
-      SMTP_FROM     = "thoravenger56787@gmail.com"
+      SMTP_USER     = "8a03e1001@smtp-brevo.com"
+      SMTP_PASSWORD = "w0xZ41UtYkXMIysS"
+      SMTP_FROM     = "samar.kumar@kickdrum.com"
     }
   }
 
