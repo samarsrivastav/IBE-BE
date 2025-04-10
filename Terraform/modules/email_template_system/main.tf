@@ -55,9 +55,9 @@ resource "aws_lambda_function" "email_processor" {
       DB_PORT       = "5432"
       SMTP_HOST     = "smtp-relay.brevo.com"
       SMTP_PORT     = "587"
-      SMTP_USER     = "8a03e1001@smtp-brevo.com"
-      SMTP_PASSWORD = "w0xZ41UtYkXMIysS"
-      SMTP_FROM     = "samar.kumar@kickdrum.com"
+      SMTP_USER     = "8a03fb001@smtp-brevo.com"
+      SMTP_PASSWORD = "Crp0ctE3OXFY2hk9"
+      SMTP_FROM     = "samarsrivastav38@gmail.com"
     }
   }
 
