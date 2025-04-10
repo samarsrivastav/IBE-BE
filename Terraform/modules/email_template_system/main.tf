@@ -68,7 +68,7 @@ resource "aws_lambda_function" "email_processor" {
   }
 }
 
-# Lambda Security Group
+# Lambda Security Group for email processor
 resource "aws_security_group" "lambda_sg" {
   name        = "genwin-email-processor-sg"
   description = "Security group for email processor Lambda"
