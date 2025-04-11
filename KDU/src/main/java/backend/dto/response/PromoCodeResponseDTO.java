@@ -1,6 +1,6 @@
 package backend.dto.response;
 
-import backend.entity.Enum.PromoType;
+import backend.entity.enums.PromoType;
 import lombok.Data;
 
 @Data

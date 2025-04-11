@@ -2,7 +2,7 @@ package backend.controller;
 
 import backend.dto.request.PromoCodeValidationRequestDTO;
 import backend.dto.response.PromoCodeResponseDTO;
-import backend.entity.Enum.PromoType;
+import backend.entity.enums.PromoType;
 import backend.service.PromoCodeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
