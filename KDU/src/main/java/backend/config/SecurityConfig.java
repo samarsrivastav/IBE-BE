@@ -43,8 +43,8 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> {
                 log.info("Configuring authorization rules...");
                 auth
-                    .requestMatchers("/api/v1/bookings/initiate", "/api/v1/bookings/verify-otp").permitAll()
-                    .anyRequest().authenticated();
+                    .requestMatchers("/api/bookings/my-bookings").authenticated()
+                    .anyRequest().permitAll();
             })
             .oauth2ResourceServer(oauth2 -> {
                 log.info("Configuring OAuth2 resource server...");
