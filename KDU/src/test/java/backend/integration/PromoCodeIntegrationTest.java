@@ -2,7 +2,7 @@ package backend.integration;
 
 import backend.dto.request.PromoCodeValidationRequestDTO;
 import backend.dto.response.PromoCodeResponseDTO;
-import backend.entity.Enum.PromoType;
+import backend.entity.enums.PromoType;
 import backend.entity.PromoCode;
 import backend.repository.PromoCodeRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;

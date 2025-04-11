@@ -3,7 +3,7 @@ package backend.service.impl;
 import backend.dto.request.PromoCodeValidationRequestDTO;
 import backend.dto.response.PromoCodeResponseDTO;
 import backend.entity.PromoCode;
-import backend.entity.Enum.PromoType;
+import backend.entity.enums.PromoType;
 import backend.repository.PromoCodeRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;

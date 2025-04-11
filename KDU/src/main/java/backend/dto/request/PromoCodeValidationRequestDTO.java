@@ -1,6 +1,6 @@
 package backend.dto.request;
 
-import backend.entity.Enum.PromoType;
+import backend.entity.enums.PromoType;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
