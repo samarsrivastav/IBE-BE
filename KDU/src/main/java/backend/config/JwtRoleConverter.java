@@ -24,21 +24,21 @@ public class JwtRoleConverter implements Converter<Jwt, AbstractAuthenticationTo
         Collection<GrantedAuthority> authorities = extractAuthorities(jwt);
         String email = jwt.getClaimAsString("email");
         log.info("Email from JWT: {}", email);
-        
+
         // Create a new JwtAuthenticationToken with the email as the principal name
         return new JwtAuthenticationToken(jwt, authorities, email);
     }
 
     private Collection<GrantedAuthority> extractAuthorities(Jwt jwt) {
         Set<GrantedAuthority> authorities = new HashSet<>();
-        
+
         // Add default authorities
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         log.info("Added ROLE_USER authority");
-        
+
         // Add any additional authorities from the token
         authorities.addAll(jwtGrantedAuthoritiesConverter.convert(jwt));
-        
+
         log.info("Final authorities: {}", authorities);
         return authorities;
     }
