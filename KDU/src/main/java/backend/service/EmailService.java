@@ -37,6 +37,9 @@ public class EmailService {
     @Value("${application.name:Hotel Booking System}")
     private String appName;
 
+    @Value("${admin.email:admin@example.com}")
+    private String adminEmail;
+
     // Existing OTP email functionality
     public void sendOtpEmail(String toEmail, String otp) {
         try {
@@ -153,6 +156,28 @@ public class EmailService {
         } catch (Exception e) {
             log.error("Error building booking confirmation email: {}", e.getMessage(), e);
             throw new RuntimeException("Failed to build booking confirmation email", e);
+        }
+    }
+
+    /**
+     * Send an email to the admin
+     * @param subject The email subject
+     * @param body The email body
+     */
+    public void sendEmailToAdmin(String subject, String body) {
+        try {
+            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
+
+            helper.setFrom(fromEmail, appName);
+            helper.setTo(adminEmail);
+            helper.setSubject(subject);
+            helper.setText(body, true);
+
+            mailSender.send(mimeMessage);
+            log.info("Admin email sent successfully with subject: {}", subject);
+        } catch (Exception e) {
+            log.error("Failed to send admin email: {}", e.getMessage(), e);
         }
     }
 
