@@ -699,7 +699,6 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
                 current = current.plusMinutes(1);
             }
         }
-        
         // Calculate percentage
         return (double) minutesWorked.size() / totalShiftMinutes * 100;
     }
