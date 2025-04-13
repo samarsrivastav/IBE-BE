@@ -1,6 +1,7 @@
 package backend.service.impl;
 
 import backend.entity.Staff;
+import backend.entity.TenantConfiguration;
 import backend.entity.enums.CleaningStatus;
 import backend.entity.enums.CleaningType;
 import backend.entity.enums.RoomCleaningType;
@@ -13,7 +14,10 @@ import backend.repository.StaffRepository;
 import backend.service.BookedRoomsService;
 import backend.service.EmailService;
 import backend.service.HouseCleaningService;
+import backend.service.TenantConfigurationService;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,26 +40,36 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
     private final StaffRepository staffRepository;
     private final EmailService emailService;
     private final BookedRoomsService bookedRoomsService;
+    private final TenantConfigurationService tenantConfigurationService;
 
-    // Check-in time is 11 AM
-    private static final LocalTime CHECK_IN_TIME = LocalTime.of(13, 0);
-    // Check-out time is 9 AM
-    private static final LocalTime CHECK_OUT_TIME = LocalTime.of(11, 0);
-    // Cleaning durations in minutes
-    private static final int DEEP_CLEANING_DURATION = 120; // 2 hours
-    private static final int DAILY_CLEANING_DURATION = 30; // 30 minutes
-    // Time interval for scheduling (30 minutes)
-    private static final int TIME_INTERVAL = 30;
-    // Shift duration in hours
-    private static final int SHIFT_DURATION_HOURS = 4;
-    
+    // Replace hardcoded constants with default values
+    // These will be overridden by values from tenant configuration
+    private static final LocalTime DEFAULT_CHECK_IN_TIME = LocalTime.of(13, 0);
+    private static final LocalTime DEFAULT_CHECK_OUT_TIME = LocalTime.of(11, 0);
+    private static final int DEFAULT_DEEP_CLEANING_DURATION = 120; // 2 hours
+    private static final int DEFAULT_DAILY_CLEANING_DURATION = 30; // 30 minutes
+    private static final int DEFAULT_TIME_INTERVAL = 30; // 30 minutes
+    private static final int DEFAULT_SHIFT_DURATION_HOURS = 4; // 4 hours
+
+    // Default shift start times
+    private static final LocalTime DEFAULT_MORNING_SHIFT_START = LocalTime.of(7, 0); // 7 AM
+    private static final LocalTime DEFAULT_AFTERNOON_SHIFT_START = LocalTime.of(11, 0); // 11 AM
+    private static final LocalTime DEFAULT_EVENING_SHIFT_START = LocalTime.of(15, 0); // 3 PM
+
     @Value("${property.id:8}")
     private int propertyId;
+
+    @Value("${tenant.id:1}")
+    private Long tenantId; // Default tenant ID, can be overridden in application properties
 
     @Override
     @Transactional
     public List<RoomCleaningSchedule> generateCleaningSchedules(LocalDate date) {
         log.info("Generating cleaning schedules for date: {}", date);
+        
+        // Get dynamic configuration values
+        LocalTime checkInTime = getCheckInTime();
+        LocalTime checkOutTime = getCheckOutTime();
         
         // Format date for repository queries
         String dateStr = date.format(DateTimeFormatter.ISO_DATE);
@@ -137,8 +151,8 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
                     RoomCleaningType.CHECKIN_CHECKOUT : RoomCleaningType.CHECKIN_ONLY;
             
             CleaningType cleaningType = getCleaningTypeForRoomType(roomType);
-            Shift shift = getShiftForRoomType(roomType, CHECK_IN_TIME, hasCheckOut ? CHECK_OUT_TIME : null);
-            LocalTime scheduledTime = getScheduledTimeForRoomType(roomType, CHECK_IN_TIME, hasCheckOut ? CHECK_OUT_TIME : null);
+            Shift shift = getShiftForRoomType(roomType, checkInTime, hasCheckOut ? checkOutTime : null);
+            LocalTime scheduledTime = getScheduledTimeForRoomType(roomType, checkInTime, hasCheckOut ? checkOutTime : null);
             
             RoomCleaningSchedule schedule = new RoomCleaningSchedule();
             schedule.setRoomId(String.valueOf(roomId));
@@ -169,8 +183,13 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
                 schedule.setDate(date);
                 schedule.setRoomCleaningType(RoomCleaningType.CHECKOUT_ONLY);
                 schedule.setCleaningType(CleaningType.DEEP_CLEANING);
-                schedule.setAssignedShift(Shift.MORNING_SHIFT);
-                schedule.setScheduledTime(LocalTime.of(6, 0)); // 6 AM
+                
+                // Use the methods to determine shift and scheduled time with dynamic check-out time
+                Shift shift = getShiftForRoomType(RoomCleaningType.CHECKOUT_ONLY, null, checkOutTime);
+                LocalTime scheduledTime = getScheduledTimeForRoomType(RoomCleaningType.CHECKOUT_ONLY, null, checkOutTime);
+                
+                schedule.setAssignedShift(shift);
+                schedule.setScheduledTime(scheduledTime);
                 schedule.setCleaningStatus(CleaningStatus.PENDING);
                 
                 // Set booking ID from the map
@@ -195,8 +214,13 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
                 schedule.setDate(date);
                 schedule.setRoomCleaningType(RoomCleaningType.BOOKED_NO_CHANGE);
                 schedule.setCleaningType(CleaningType.DAILY_CLEANING);
-                schedule.setAssignedShift(Shift.AFTERNOON_SHIFT);
-                schedule.setScheduledTime(LocalTime.of(10, 0)); // 10 AM
+                
+                // Use the methods to determine shift and scheduled time instead of hardcoding
+                Shift shift = getShiftForRoomType(RoomCleaningType.BOOKED_NO_CHANGE, null, null);
+                LocalTime scheduledTime = getScheduledTimeForRoomType(RoomCleaningType.BOOKED_NO_CHANGE, null, null);
+                
+                schedule.setAssignedShift(shift);
+                schedule.setScheduledTime(scheduledTime);
                 schedule.setCleaningStatus(CleaningStatus.PENDING);
                 
                 // Set booking ID from the map
@@ -256,6 +280,11 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
     public List<RoomCleaningSchedule> assignStaffToSchedules(LocalDate date, Shift shift) {
         log.info("Assigning staff to schedules for date: {} and shift: {}", date, shift);
         
+        // Get dynamic configuration values
+        int shiftDurationHours = getShiftDuration();
+        int dailyCleaningDuration = getDailyCleaningDuration();
+        int deepCleaningDuration = getDeepCleaningDuration();
+        
         // Get all pending schedules for the date and shift
         List<RoomCleaningSchedule> pendingSchedules = roomCleaningScheduleRepository
                 .findByDateAndShiftAndStatus(date, shift, CleaningStatus.PENDING);
@@ -265,28 +294,48 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
             return new ArrayList<>();
         }
         
+        // Calculate how many staff we actually need for this shift using dynamic values
+        int roomsPerStaff = shiftDurationHours * 60 / dailyCleaningDuration; 
+        int requiredStaffCount = (int) Math.ceil((double) pendingSchedules.size() / roomsPerStaff);
+        
         // Get all active staff for the shift
         List<Staff> activeStaff = staffRepository.findByShiftIdAndIsActiveTrue(shift.name());
         
-        if (activeStaff.isEmpty()) {
-            log.warn("No active staff found for shift: {}", shift);
-            return pendingSchedules;
+        // Check if we need to redistribute staff before proceeding
+        if (activeStaff.isEmpty() || activeStaff.size() < requiredStaffCount) {
+            log.warn("Staff shortage detected for shift {}. Required: {}, Available: {}. Attempting to redistribute staff from other shifts.", 
+                    shift, requiredStaffCount, activeStaff.size());
+            
+            // Redistribute staff from other shifts to this one based on need
+            redistributeStaffAcrossShifts(date, shift, requiredStaffCount);
+            
+            // Refresh the active staff list after redistribution
+            activeStaff = staffRepository.findByShiftIdAndIsActiveTrue(shift.name());
+            
+            if (activeStaff.isEmpty()) {
+                log.error("CRITICAL STAFF SHORTAGE: No staff available for shift {} after redistribution attempt.", shift);
+                return pendingSchedules;
+            } else {
+                log.info("After redistribution: {} staff available for shift {}", activeStaff.size(), shift);
+            }
         }
         
         // Get shift start and end times
         LocalTime shiftStartTime = getShiftStartTime(shift);
-        LocalTime shiftEndTime = shiftStartTime.plusHours(SHIFT_DURATION_HOURS);
+        LocalTime shiftEndTime = getShiftEndTime(shift);
         
         log.info("Shift time: {} to {}", shiftStartTime, shiftEndTime);
         
         // Calculate staff capacity
-        int roomsPerStaff = SHIFT_DURATION_HOURS * 60 / DAILY_CLEANING_DURATION; // 4 hours * 60 minutes / 30 minutes = 8 rooms
         int totalStaffCapacity = activeStaff.size() * roomsPerStaff;
         
-        // Check if we have enough staff capacity
-        if (pendingSchedules.size() > totalStaffCapacity) {
-            log.warn("Not enough staff capacity for all rooms. Need {} more staff members.", 
-                    (pendingSchedules.size() - totalStaffCapacity + roomsPerStaff - 1) / roomsPerStaff);
+        // Log staff requirements
+        if (requiredStaffCount <= activeStaff.size()) {
+            log.info("STAFF REQUIREMENTS: {} staff needed for {} rooms in shift {}. {} staff available, {} excess staff.", 
+                    requiredStaffCount, pendingSchedules.size(), shift, activeStaff.size(), activeStaff.size() - requiredStaffCount);
+        } else {
+            log.warn("STAFF SHORTAGE: {} staff needed for {} rooms in shift {}. Only {} staff available. Need {} more staff.", 
+                    requiredStaffCount, pendingSchedules.size(), shift, activeStaff.size(), requiredStaffCount - activeStaff.size());
             // In a real system, we would send an email alert here
         }
         
@@ -304,15 +353,14 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
         }
         
         // Determine how many staff we actually need
-        int requiredStaffCount = Math.min(activeStaff.size(), 
-                                         (pendingSchedules.size() + roomsPerStaff - 1) / roomsPerStaff);
+        int staffToUseCount = Math.min(activeStaff.size(), requiredStaffCount);
         
         // Create a list to keep track of unassigned schedules
         List<RoomCleaningSchedule> unassignedSchedules = new ArrayList<>();
         
         // Create a list of staff IDs we'll use
         List<Long> staffIds = new ArrayList<>();
-        for (int i = 0; i < requiredStaffCount; i++) {
+        for (int i = 0; i < staffToUseCount; i++) {
             staffIds.add(activeStaff.get(i).getStaffId());
         }
         
@@ -336,9 +384,9 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
                 }
             }
             
-            // Calculate cleaning duration for this schedule
+            // Calculate cleaning duration for this schedule using dynamic values
             int cleaningDuration = schedule.getCleaningType() == CleaningType.DEEP_CLEANING ? 
-                    DEEP_CLEANING_DURATION : DAILY_CLEANING_DURATION;
+                    deepCleaningDuration : dailyCleaningDuration;
             
             // Get the current staff's next available time
             LocalTime startTime = nextAvailableTime.get(leastUtilizedStaffId);
@@ -383,7 +431,7 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
             
             log.info("Assigned staff {} to room {} for cleaning from {} to {}, staff utilization={}%", 
                     leastUtilizedStaffId, schedule.getRoomId(), startTime, endTime,
-                    (staffMinutesBooked.get(leastUtilizedStaffId) * 100.0 / (SHIFT_DURATION_HOURS * 60)));
+                    (staffMinutesBooked.get(leastUtilizedStaffId) * 100.0 / (shiftDurationHours * 60)));
         }
         
         // Handle any unassigned schedules as a last resort
@@ -400,9 +448,9 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
                 }
             }
             
-            // Calculate cleaning duration for this schedule
+            // Calculate cleaning duration for this schedule using dynamic values
             int cleaningDuration = schedule.getCleaningType() == CleaningType.DEEP_CLEANING ? 
-                    DEEP_CLEANING_DURATION : DAILY_CLEANING_DURATION;
+                    deepCleaningDuration : dailyCleaningDuration;
             
             // Assign to the least utilized staff at the shift start time
             schedule.setStaffId(leastUtilizedStaffId);
@@ -414,6 +462,11 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
             log.warn("Last resort assignment: Staff {} to room {} at shift start time", 
                     leastUtilizedStaffId, schedule.getRoomId());
         }
+        
+        // Keep track of staff usage status
+        Set<Long> usedStaffIds = new HashSet<>();
+        Set<Long> underutilizedStaffIds = new HashSet<>();
+        Set<Long> unusedStaffIds = new HashSet<>();
         
         // Log the final assignments for debugging
         for (Staff staff : activeStaff) {
@@ -428,12 +481,23 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
             }
             
             if (roomCount == 0) {
-                log.info("Staff {} is not assigned to any rooms in this shift. Consider moving to another shift.", staffId);
+                log.info("Staff {} is not assigned to any rooms in this shift. Will move to another shift.", staffId);
+                unusedStaffIds.add(staffId);
                 continue;
             }
             
-            log.info("Staff {} has {} rooms assigned (utilization: {}%)", staffId, roomCount, 
-                    (staffMinutesBooked.get(staffId) * 100.0 / (SHIFT_DURATION_HOURS * 60)));
+            // Calculate utilization percentage
+            double utilizationPercent = staffMinutesBooked.get(staffId) * 100.0 / (shiftDurationHours * 60);
+            
+            if (utilizationPercent < 70) {
+                underutilizedStaffIds.add(staffId);
+                log.info("Staff {} is underutilized ({}%). Consider moving to another shift.", 
+                        staffId, utilizationPercent);
+            } else {
+                usedStaffIds.add(staffId);
+            }
+            
+            log.info("Staff {} has {} rooms assigned (utilization: {}%)", staffId, roomCount, utilizationPercent);
             
             // Log each room assigned to this staff
             List<RoomCleaningSchedule> staffSchedulesSorted = pendingSchedules.stream()
@@ -451,14 +515,18 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
                 LocalTime latestEnd = staffSchedulesSorted.get(staffSchedulesSorted.size() - 1).getScheduledTime();
                 
                 int lastCleaningDuration = staffSchedulesSorted.get(staffSchedulesSorted.size() - 1).getCleaningType() == 
-                    CleaningType.DEEP_CLEANING ? DEEP_CLEANING_DURATION : DAILY_CLEANING_DURATION;
+                    CleaningType.DEEP_CLEANING ? deepCleaningDuration : dailyCleaningDuration;
                 
                 latestEnd = latestEnd.plusMinutes(lastCleaningDuration);
                 
                 log.info("  - Staff {} is working from {} to {} (utilization: {}%)", 
-                        staffId, earliestStart, latestEnd, 
-                        (staffMinutesBooked.get(staffId) * 100.0 / (SHIFT_DURATION_HOURS * 60)));
+                        staffId, earliestStart, latestEnd, utilizationPercent);
             }
+        }
+        
+        // Reassign unused staff to other shifts where needed
+        if (!unusedStaffIds.isEmpty() || !underutilizedStaffIds.isEmpty()) {
+            reassignStaffToOtherShifts(date, shift, unusedStaffIds, underutilizedStaffIds);
         }
         
         // Save the schedules
@@ -471,92 +539,6 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
         }
         
         return savedSchedules;
-    }
-    
-    /**
-     * Get the start time for a shift
-     */
-    private LocalTime getShiftStartTime(Shift shift) {
-        switch (shift) {
-            case MORNING_SHIFT:
-                return LocalTime.of(7, 0); // 7 AM
-            case AFTERNOON_SHIFT:
-                return LocalTime.of(11, 0); // 11 AM
-            case EVENING_SHIFT:
-                return LocalTime.of(15, 0); // 3 PM
-            default:
-                return LocalTime.of(7, 0); // Default to 7 AM
-        }
-    }
-    
-    /**
-     * Find an available staff member for the given time slot
-     */
-    private Staff findAvailableStaff(List<Staff> activeStaff, Map<Long, List<TimeSlot>> staffAvailability, 
-                                     LocalTime startTime, LocalTime endTime) {
-        // Try to find a staff member who is not busy during this time slot
-        for (Staff staff : activeStaff) {
-            List<TimeSlot> staffSlots = staffAvailability.get(staff.getStaffId());
-            
-            // Check if the staff is available during the requested time slot
-            boolean isAvailable = true;
-            for (TimeSlot slot : staffSlots) {
-                if (timeSlotsOverlap(startTime, endTime, slot.startTime, slot.endTime)) {
-                    isAvailable = false;
-                    break;
-                }
-            }
-            
-            if (isAvailable) {
-                return staff;
-            }
-        }
-        
-        // If no staff is available for the exact time slot, try to find one who can be assigned
-        // by adjusting the schedule slightly
-        for (Staff staff : activeStaff) {
-            List<TimeSlot> staffSlots = staffAvailability.get(staff.getStaffId());
-            
-            // Sort the staff's existing slots by start time
-            staffSlots.sort(Comparator.comparing(slot -> slot.startTime));
-            
-            // Find gaps between existing slots
-            for (int i = 0; i < staffSlots.size() - 1; i++) {
-                TimeSlot currentSlot = staffSlots.get(i);
-                TimeSlot nextSlot = staffSlots.get(i + 1);
-                
-                // Calculate the gap between slots
-                LocalTime gapStart = currentSlot.endTime;
-                LocalTime gapEnd = nextSlot.startTime;
-                
-                // Check if the requested time slot can fit in this gap
-                if (gapEnd.isAfter(gapStart) && 
-                    !startTime.isBefore(gapStart) && 
-                    !endTime.isAfter(gapEnd)) {
-                    return staff;
-                }
-            }
-            
-            // Check if the slot can be added before the first slot
-            if (!staffSlots.isEmpty()) {
-                TimeSlot firstSlot = staffSlots.get(0);
-                if (!startTime.isBefore(firstSlot.startTime) && 
-                    !endTime.isAfter(firstSlot.startTime)) {
-                    return staff;
-                }
-            }
-            
-            // Check if the slot can be added after the last slot
-            if (!staffSlots.isEmpty()) {
-                TimeSlot lastSlot = staffSlots.get(staffSlots.size() - 1);
-                if (!startTime.isBefore(lastSlot.endTime) && 
-                    !endTime.isAfter(lastSlot.endTime.plusHours(1))) { // Allow some flexibility
-                    return staff;
-                }
-            }
-        }
-        
-        return null;
     }
     
     /**
@@ -577,6 +559,151 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
             this.startTime = startTime;
             this.endTime = endTime;
         }
+    }
+    
+    /**
+     * Reassign staff to other shifts where they might be needed
+     */
+    private void reassignStaffToOtherShifts(LocalDate date, Shift currentShift, 
+                                           Set<Long> unusedStaffIds, Set<Long> underutilizedStaffIds) {
+        // Get dynamic values for calculations
+        int dailyCleaningDuration = getDailyCleaningDuration();
+        int shiftDuration = getShiftDuration();
+        
+        // Get counts for all shifts to determine where staff is needed
+        Map<Shift, Integer> shiftRoomCounts = new HashMap<>();
+        Map<Shift, Integer> shiftStaffCounts = new HashMap<>();
+        
+        for (Shift shift : Shift.values()) {
+            // Skip the current shift
+            if (shift == currentShift) {
+                continue;
+            }
+            
+            // Get room count for this shift
+            List<RoomCleaningSchedule> shiftSchedules = roomCleaningScheduleRepository
+                .findByDateAndShiftAndStatus(date, shift, CleaningStatus.PENDING);
+            shiftRoomCounts.put(shift, shiftSchedules.size());
+            
+            // Get staff count for this shift
+            List<Staff> shiftStaff = staffRepository.findByShiftIdAndIsActiveTrue(shift.name());
+            shiftStaffCounts.put(shift, shiftStaff.size());
+            
+            // Calculate required staff for this shift
+            int roomsPerStaff = shiftDuration * 60 / dailyCleaningDuration;
+            int requiredStaff = (int) Math.ceil((double) shiftSchedules.size() / roomsPerStaff);
+            
+            log.info("STAFF ANALYSIS - Shift {}: {} rooms, {} staff available, {} staff required", 
+                    shift, shiftSchedules.size(), shiftStaff.size(), requiredStaff);
+        }
+        
+        // First, handle unused staff
+        if (!unusedStaffIds.isEmpty()) {
+            log.info("Attempting to reassign {} unused staff members from {} shift", 
+                    unusedStaffIds.size(), currentShift);
+            
+            for (Long staffId : unusedStaffIds) {
+                Shift targetShift = findMostNeededShift(shiftRoomCounts, shiftStaffCounts);
+                
+                if (targetShift != null) {
+                    // Move this staff to the target shift
+                    Optional<Staff> staffOpt = staffRepository.findById(staffId.toString());
+                    if (staffOpt.isPresent()) {
+                        Staff staff = staffOpt.get();
+                        String oldShift = staff.getShiftId();
+                        staff.setShiftId(targetShift.name());
+                        staffRepository.save(staff);
+                        
+                        // Update counts
+                        shiftStaffCounts.put(targetShift, shiftStaffCounts.get(targetShift) + 1);
+                        
+                        log.info("Moved unused staff {} from shift {} to shift {}", 
+                                staffId, oldShift, targetShift);
+                    }
+                } else {
+                    log.info("No other shifts need additional staff. Staff {} remains in shift {}", 
+                            staffId, currentShift);
+                }
+            }
+        }
+        
+        // Then, handle underutilized staff if needed
+        if (!underutilizedStaffIds.isEmpty()) {
+            log.info("Considering {} underutilized staff members from {} shift for reassignment", 
+                    underutilizedStaffIds.size(), currentShift);
+            
+            // Only reassign underutilized staff if there's a major shortage elsewhere
+            for (Shift shift : Shift.values()) {
+                if (shift == currentShift) continue;
+                
+                int roomsPerStaff = shiftDuration * 60 / dailyCleaningDuration;
+                int requiredStaff = (int) Math.ceil((double) shiftRoomCounts.get(shift) / roomsPerStaff);
+                int availableStaff = shiftStaffCounts.get(shift);
+                
+                // If there's a significant shortage (more than 2 staff needed)
+                if (requiredStaff > availableStaff + 2) {
+                    for (Long staffId : underutilizedStaffIds) {
+                        Optional<Staff> staffOpt = staffRepository.findById(staffId.toString());
+                        if (staffOpt.isPresent()) {
+                            Staff staff = staffOpt.get();
+                            String oldShift = staff.getShiftId();
+                            staff.setShiftId(shift.name());
+                            staffRepository.save(staff);
+                            
+                            // Update counts
+                            shiftStaffCounts.put(shift, shiftStaffCounts.get(shift) + 1);
+                            
+                            log.info("Moved underutilized staff {} from shift {} to shift {} due to high demand", 
+                                    staffId, oldShift, shift);
+                            
+                            // If we've addressed the shortage, stop reassigning
+                            if (shiftStaffCounts.get(shift) >= requiredStaff) {
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    /**
+     * Find the shift that needs staff the most
+     */
+    private Shift findMostNeededShift(Map<Shift, Integer> shiftRoomCounts, Map<Shift, Integer> shiftStaffCounts) {
+        Shift mostNeededShift = null;
+        double highestNeed = -1;
+        
+        // Get dynamic values for calculations
+        int dailyCleaningDuration = getDailyCleaningDuration();
+        int shiftDuration = getShiftDuration();
+        
+        for (Shift shift : Shift.values()) {
+            if (!shiftRoomCounts.containsKey(shift) || !shiftStaffCounts.containsKey(shift)) {
+                continue;
+            }
+            
+            int roomCount = shiftRoomCounts.get(shift);
+            int staffCount = shiftStaffCounts.get(shift);
+            
+            if (roomCount == 0) {
+                continue; // No rooms, no need for staff
+            }
+            
+            int roomsPerStaff = shiftDuration * 60 / dailyCleaningDuration;
+            int requiredStaff = (int) Math.ceil((double) roomCount / roomsPerStaff);
+            
+            // Calculate need as the ratio of required to available staff
+            double needRatio = staffCount > 0 ? (double) requiredStaff / staffCount : Double.MAX_VALUE;
+            
+            // If this shift needs more staff than what we've found so far
+            if (needRatio > highestNeed && requiredStaff > staffCount) {
+                highestNeed = needRatio;
+                mostNeededShift = shift;
+            }
+        }
+        
+        return mostNeededShift;
     }
 
     @Override
@@ -635,16 +762,17 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
         switch (roomCleaningType) {
             case CHECKIN_CHECKOUT:
                 // For check-in and check-out on the same day, schedule between check-out and check-in
-                return Shift.MORNING_SHIFT;
+                // This should be after checkout time but before check-in time
+                return Shift.AFTERNOON_SHIFT; // Checkout at 11 AM, so afternoon shift (11 AM - 3 PM) is appropriate
             case CHECKIN_ONLY:
                 // For check-in only, schedule before check-in time
-                return Shift.MORNING_SHIFT;
+                return Shift.MORNING_SHIFT; // Morning shift (7 AM - 11 AM) is before 1 PM check-in
             case CHECKOUT_ONLY:
-                // For check-out only, schedule early morning
-                return Shift.MORNING_SHIFT;
+                // For check-out only, schedule after checkout time for deep cleaning
+                return Shift.AFTERNOON_SHIFT; // After 11 AM checkout, so afternoon shift (11 AM - 3 PM)
             case BOOKED_NO_CHANGE:
-                // For booked rooms without check-in or check-out, schedule in the afternoon
-                return Shift.AFTERNOON_SHIFT;
+                // For booked rooms without check-in or check-out, daily cleaning at any available time
+                return Shift.AFTERNOON_SHIFT; // Keep as is, afternoon is fine for daily cleaning
             default:
                 return Shift.AFTERNOON_SHIFT;
         }
@@ -652,21 +780,25 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
 
     @Override
     public LocalTime getScheduledTimeForRoomType(RoomCleaningType roomCleaningType, LocalTime checkInTime, LocalTime checkOutTime) {
+        // Get dynamic configuration values
+        int timeInterval = getTimeInterval();
+        int shiftDurationHours = getShiftDuration();
+        
         // Get the shift start time based on the room type
         Shift shift = getShiftForRoomType(roomCleaningType, checkInTime, checkOutTime);
         LocalTime shiftStartTime = getShiftStartTime(shift);
         
         // Calculate the total available time in the shift (in minutes)
-        int totalShiftMinutes = SHIFT_DURATION_HOURS * 60;
+        int totalShiftMinutes = shiftDurationHours * 60;
         
         // Calculate the number of intervals in the shift
-        int totalIntervals = totalShiftMinutes / TIME_INTERVAL;
+        int totalIntervals = totalShiftMinutes / timeInterval;
         
         // Calculate a random interval within the shift (0 to totalIntervals-1)
         int intervalOffset = new Random().nextInt(totalIntervals);
         
         // Calculate the scheduled time by adding the interval offset to the shift start time
-        return shiftStartTime.plusMinutes(intervalOffset * TIME_INTERVAL);
+        return shiftStartTime.plusMinutes(intervalOffset * timeInterval);
     }
 
     /**
@@ -674,7 +806,7 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
      */
     private double calculateUtilizationPercentage(List<TimeSlot> slots, LocalTime shiftStart, LocalTime shiftEnd) {
         // Calculate total shift minutes
-        long totalShiftMinutes = SHIFT_DURATION_HOURS * 60;
+        long totalShiftMinutes = getShiftDuration() * 60;
         
         // Calculate total assigned minutes (accounting for overlaps)
         Set<Integer> minutesWorked = new HashSet<>();
@@ -701,5 +833,644 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
         }
         // Calculate percentage
         return (double) minutesWorked.size() / totalShiftMinutes * 100;
+    }
+
+    /**
+     * Get the start time for a shift
+     */
+    private LocalTime getShiftStartTime(Shift shift) {
+        try {
+            // Default values in case configuration is not found
+            LocalTime morningShiftStart = DEFAULT_MORNING_SHIFT_START;
+            LocalTime afternoonShiftStart = DEFAULT_AFTERNOON_SHIFT_START;
+            LocalTime eveningShiftStart = DEFAULT_EVENING_SHIFT_START;
+            
+            // Try to get the configuration from tenant table
+            List<TenantConfiguration> configurations = tenantConfigurationService.getConfigurationsByTenant(tenantId);
+            
+            if (!configurations.isEmpty()) {
+                for (TenantConfiguration config : configurations) {
+                    JsonNode configJson = config.getConfigurationJson();
+                    
+                    // Check if shift timings are present in the configuration
+                    if (configJson.has("shiftTimings")) {
+                        JsonNode shiftTimings = configJson.get("shiftTimings");
+                        
+                        if (shiftTimings.has("morningShift")) {
+                            String morningTime = shiftTimings.get("morningShift").asText();
+                            morningShiftStart = LocalTime.parse(morningTime);
+                            log.info("Configured morning shift start time: {}", morningShiftStart);
+                        }
+                        
+                        if (shiftTimings.has("afternoonShift")) {
+                            String afternoonTime = shiftTimings.get("afternoonShift").asText();
+                            afternoonShiftStart = LocalTime.parse(afternoonTime);
+                            log.info("Configured afternoon shift start time: {}", afternoonShiftStart);
+                        }
+                        
+                        if (shiftTimings.has("eveningShift")) {
+                            String eveningTime = shiftTimings.get("eveningShift").asText();
+                            eveningShiftStart = LocalTime.parse(eveningTime);
+                            log.info("Configured evening shift start time: {}", eveningShiftStart);
+                        }
+                    }
+                }
+            } else {
+                log.warn("No tenant configuration found, using default shift timings");
+            }
+            
+            // Return the appropriate shift start time
+            switch (shift) {
+                case MORNING_SHIFT:
+                    return morningShiftStart;
+                case AFTERNOON_SHIFT:
+                    return afternoonShiftStart;
+                case EVENING_SHIFT:
+                    return eveningShiftStart;
+                default:
+                    return morningShiftStart;
+            }
+        } catch (Exception e) {
+            log.error("Error retrieving shift times from configuration: {}", e.getMessage(), e);
+            // Fallback to default values
+            switch (shift) {
+                case MORNING_SHIFT:
+                    return DEFAULT_MORNING_SHIFT_START;
+                case AFTERNOON_SHIFT:
+                    return DEFAULT_AFTERNOON_SHIFT_START;
+                case EVENING_SHIFT:
+                    return DEFAULT_EVENING_SHIFT_START;
+                default:
+                    return DEFAULT_MORNING_SHIFT_START;
+            }
+        }
+    }
+
+    /**
+     * Calculates the end time for a shift
+     * @param shift The shift to calculate end time for
+     * @return The end time of the shift
+     */
+    private LocalTime getShiftEndTime(Shift shift) {
+        LocalTime startTime = getShiftStartTime(shift);
+        return startTime.plusHours(getShiftDuration());
+    }
+
+    /**
+     * Redistributes staff across shifts based on needs before assignment happens.
+     * This proactively moves staff from shifts with excess capacity to shifts with shortages.
+     * 
+     * @param date The date for which to redistribute staff
+     * @param targetShift The shift that needs staff
+     * @param requiredStaffCount How many staff are needed for the target shift
+     */
+    private void redistributeStaffAcrossShifts(LocalDate date, Shift targetShift, int requiredStaffCount) {
+        log.info("STAFF REDISTRIBUTION: Analyzing all shifts to find staff for {}", targetShift);
+        
+        // Get dynamic values
+        int dailyCleaningDuration = getDailyCleaningDuration();
+        int shiftDurationHours = getShiftDuration();
+        
+        // Get counts for all shifts to determine availability
+        Map<Shift, Integer> shiftRoomCounts = new HashMap<>();
+        Map<Shift, Integer> shiftStaffCounts = new HashMap<>();
+        Map<Shift, Integer> shiftRequiredStaff = new HashMap<>();
+        Map<Shift, Integer> shiftExcessStaff = new HashMap<>();
+        
+        // Calculate requirements for the target shift
+        shiftRequiredStaff.put(targetShift, requiredStaffCount);
+        
+        // Current staff for target shift
+        List<Staff> targetShiftStaff = staffRepository.findByShiftIdAndIsActiveTrue(targetShift.name());
+        shiftStaffCounts.put(targetShift, targetShiftStaff.size());
+        
+        // Calculate how many staff we need to move to target shift
+        int staffShortage = requiredStaffCount - targetShiftStaff.size();
+        
+        if (staffShortage <= 0) {
+            log.info("No staff redistribution needed for shift {}", targetShift);
+            return;
+        }
+        
+        log.info("Need to move {} staff to shift {}", staffShortage, targetShift);
+        
+        // Analyze all other shifts to find available staff
+        for (Shift shift : Shift.values()) {
+            if (shift == targetShift) {
+                continue;
+            }
+            
+            // Get room count for this shift
+            List<RoomCleaningSchedule> shiftSchedules = roomCleaningScheduleRepository
+                .findByDateAndShiftAndStatus(date, shift, CleaningStatus.PENDING);
+            shiftRoomCounts.put(shift, shiftSchedules.size());
+            
+            // Get staff count for this shift
+            List<Staff> shiftStaff = staffRepository.findByShiftIdAndIsActiveTrue(shift.name());
+            shiftStaffCounts.put(shift, shiftStaff.size());
+            
+            // Calculate required staff for this shift
+            int roomsPerStaff = shiftDurationHours * 60 / dailyCleaningDuration;
+            int requiredStaff = (int) Math.ceil((double) shiftSchedules.size() / roomsPerStaff);
+            shiftRequiredStaff.put(shift, requiredStaff);
+            
+            // Calculate excess staff for this shift
+            int excessStaff = shiftStaff.size() - requiredStaff;
+            shiftExcessStaff.put(shift, Math.max(0, excessStaff));
+            
+            log.info("STAFF ANALYSIS - Shift {}: {} rooms, {} staff available, {} staff required, {} excess staff", 
+                    shift, shiftSchedules.size(), shiftStaff.size(), requiredStaff, Math.max(0, excessStaff));
+        }
+        
+        // Staff we've moved so far
+        int staffMoved = 0;
+        
+        // First, try to take staff from shifts with excess capacity
+        for (Shift shift : Shift.values()) {
+            if (shift == targetShift) {
+                continue;
+            }
+            
+            int excessStaff = shiftExcessStaff.get(shift);
+            
+            if (excessStaff > 0) {
+                // This shift has excess staff we can move
+                int staffToMove = Math.min(excessStaff, staffShortage - staffMoved);
+                
+                if (staffToMove > 0) {
+                    log.info("Moving {} excess staff from shift {} to shift {}", 
+                            staffToMove, shift, targetShift);
+                    
+                    // Find staff to move
+                    List<Staff> availableStaff = staffRepository.findByShiftIdAndIsActiveTrue(shift.name());
+                    
+                    // Move up to staffToMove staff
+                    int movedInThisIteration = moveStaffBetweenShifts(availableStaff, shift, targetShift, staffToMove);
+                    staffMoved += movedInThisIteration;
+                    
+                    if (staffMoved >= staffShortage) {
+                        log.info("Successfully moved {} staff to shift {}. Requirement met.", 
+                                staffMoved, targetShift);
+                        return;
+                    }
+                }
+            }
+        }
+        
+        // If we still need more staff, we'll have to take from shifts that may need them
+        // but we'll prioritize shifts with the smallest shortages
+        if (staffMoved < staffShortage) {
+            // Sort shifts by their staff requirements (ascending)
+            List<Shift> shiftsOrderedByNeed = Shift.values().length > 0 ? Arrays.asList(Shift.values()) : new ArrayList<>();
+            shiftsOrderedByNeed.sort((a, b) -> {
+                if (a == targetShift) return 1;
+                if (b == targetShift) return -1;
+                
+                int aReq = shiftRequiredStaff.getOrDefault(a, 0);
+                int aAvail = shiftStaffCounts.getOrDefault(a, 0);
+                int aNeed = Math.max(0, aReq - aAvail);
+                
+                int bReq = shiftRequiredStaff.getOrDefault(b, 0);
+                int bAvail = shiftStaffCounts.getOrDefault(b, 0);
+                int bNeed = Math.max(0, bReq - bAvail);
+                
+                return Integer.compare(aNeed, bNeed);
+            });
+            
+            for (Shift shift : shiftsOrderedByNeed) {
+                if (shift == targetShift) {
+                    continue;
+                }
+                
+                int availableStaffCount = shiftStaffCounts.getOrDefault(shift, 0);
+                
+                if (availableStaffCount > 0) {
+                    // Determine how many staff we can take without causing severe shortage
+                    int requiredStaffForShift = shiftRequiredStaff.getOrDefault(shift, 0);
+                    int maxStaffToTake = Math.max(0, availableStaffCount - Math.max(1, requiredStaffForShift / 2));
+                    
+                    int staffToMove = Math.min(maxStaffToTake, staffShortage - staffMoved);
+                    
+                    if (staffToMove > 0) {
+                        log.info("Moving {} staff from shift {} to shift {} (this may impact the source shift)", 
+                                staffToMove, shift, targetShift);
+                        
+                        // Find staff to move
+                        List<Staff> availableStaff = staffRepository.findByShiftIdAndIsActiveTrue(shift.name());
+                        
+                        // Move up to staffToMove staff
+                        int movedInThisIteration = moveStaffBetweenShifts(availableStaff, shift, targetShift, staffToMove);
+                        staffMoved += movedInThisIteration;
+                        
+                        if (staffMoved >= staffShortage) {
+                            log.info("Successfully moved {} staff to shift {}. Requirement met.", 
+                                    staffMoved, targetShift);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        
+        log.warn("Only moved {} of {} required staff to shift {}. Staff shortage may still exist.", 
+                staffMoved, staffShortage, targetShift);
+    }
+    
+    /**
+     * Moves a specified number of staff from one shift to another.
+     * 
+     * @param availableStaff List of staff in the source shift
+     * @param sourceShift The shift to move staff from
+     * @param targetShift The shift to move staff to
+     * @param staffToMove How many staff to move
+     * @return The number of staff actually moved
+     */
+    private int moveStaffBetweenShifts(List<Staff> availableStaff, Shift sourceShift, Shift targetShift, int staffToMove) {
+        int staffMoved = 0;
+        
+        for (int i = 0; i < availableStaff.size() && staffMoved < staffToMove; i++) {
+            Staff staff = availableStaff.get(i);
+            String oldShift = staff.getShiftId();
+            staff.setShiftId(targetShift.name());
+            staffRepository.save(staff);
+            staffMoved++;
+            
+            log.info("Moved staff {} from shift {} to shift {}", 
+                    staff.getStaffId(), oldShift, targetShift);
+        }
+        
+        return staffMoved;
+    }
+
+    /**
+     * Updates the shift timing configuration for a tenant
+     * @param tenantId The tenant ID
+     * @param morningShiftStart Morning shift start time in format HH:mm
+     * @param afternoonShiftStart Afternoon shift start time in format HH:mm
+     * @param eveningShiftStart Evening shift start time in format HH:mm
+     * @return true if updated successfully, false otherwise
+     */
+    public boolean updateShiftTimings(Long tenantId, String morningShiftStart, String afternoonShiftStart, String eveningShiftStart) {
+        try {
+            // Validate time formats
+            LocalTime.parse(morningShiftStart);
+            LocalTime.parse(afternoonShiftStart);
+            LocalTime.parse(eveningShiftStart);
+            
+            List<TenantConfiguration> configurations = tenantConfigurationService.getConfigurationsByTenant(tenantId);
+            ObjectMapper objectMapper = new ObjectMapper();
+            
+            TenantConfiguration configToUpdate = null;
+            
+            // Find existing configuration or create new one
+            if (!configurations.isEmpty()) {
+                for (TenantConfiguration config : configurations) {
+                    JsonNode configJson = config.getConfigurationJson();
+                    if (configJson.has("shiftTimings")) {
+                        configToUpdate = config;
+                        break;
+                    }
+                }
+            }
+            
+            if (configToUpdate == null) {
+                // Create new configuration
+                configToUpdate = new TenantConfiguration();
+                configToUpdate.setTenantId(tenantId);
+                
+                // Create initial JSON
+                ObjectNode rootNode = objectMapper.createObjectNode();
+                ObjectNode shiftTimingsNode = rootNode.putObject("shiftTimings");
+                shiftTimingsNode.put("morningShift", morningShiftStart);
+                shiftTimingsNode.put("afternoonShift", afternoonShiftStart);
+                shiftTimingsNode.put("eveningShift", eveningShiftStart);
+                
+                configToUpdate.setConfigurationJson(rootNode);
+            } else {
+                // Update existing configuration
+                JsonNode existingJson = configToUpdate.getConfigurationJson();
+                ((ObjectNode) existingJson).with("shiftTimings").put("morningShift", morningShiftStart);
+                ((ObjectNode) existingJson).with("shiftTimings").put("afternoonShift", afternoonShiftStart);
+                ((ObjectNode) existingJson).with("shiftTimings").put("eveningShift", eveningShiftStart);
+                
+                configToUpdate.setConfigurationJson(existingJson);
+            }
+            
+            // Save the configuration
+            tenantConfigurationService.saveConfiguration(tenantId, configToUpdate.getConfigurationJson());
+            log.info("Updated shift timings for tenant {}: morning={}, afternoon={}, evening={}", 
+                     tenantId, morningShiftStart, afternoonShiftStart, eveningShiftStart);
+            
+            return true;
+        } catch (Exception e) {
+            log.error("Failed to update shift timings: {}", e.getMessage(), e);
+            return false;
+        }
+    }
+
+    // Helper method to get check-in time from configuration
+    private LocalTime getCheckInTime() {
+        try {
+            // Try to get the configuration
+            List<TenantConfiguration> configurations = tenantConfigurationService.getConfigurationsByTenant(tenantId);
+            
+            if (!configurations.isEmpty()) {
+                for (TenantConfiguration config : configurations) {
+                    JsonNode configJson = config.getConfigurationJson();
+                    
+                    // Check if hotel timings are present in the configuration
+                    if (configJson.has("hotelTimings") && configJson.get("hotelTimings").has("checkInTime")) {
+                        String checkInTime = configJson.get("hotelTimings").get("checkInTime").asText();
+                        LocalTime time = LocalTime.parse(checkInTime);
+                        log.info("Using configured check-in time: {}", time);
+                        return time;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error retrieving check-in time from configuration: {}", e.getMessage(), e);
+        }
+        
+        log.info("Using default check-in time: {}", DEFAULT_CHECK_IN_TIME);
+        return DEFAULT_CHECK_IN_TIME;
+    }
+
+    // Helper method to get check-out time from configuration
+    private LocalTime getCheckOutTime() {
+        try {
+            // Try to get the configuration
+            List<TenantConfiguration> configurations = tenantConfigurationService.getConfigurationsByTenant(tenantId);
+            
+            if (!configurations.isEmpty()) {
+                for (TenantConfiguration config : configurations) {
+                    JsonNode configJson = config.getConfigurationJson();
+                    
+                    // Check if hotel timings are present in the configuration
+                    if (configJson.has("hotelTimings") && configJson.get("hotelTimings").has("checkOutTime")) {
+                        String checkOutTime = configJson.get("hotelTimings").get("checkOutTime").asText();
+                        LocalTime time = LocalTime.parse(checkOutTime);
+                        log.info("Using configured check-out time: {}", time);
+                        return time;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error retrieving check-out time from configuration: {}", e.getMessage(), e);
+        }
+        
+        log.info("Using default check-out time: {}", DEFAULT_CHECK_OUT_TIME);
+        return DEFAULT_CHECK_OUT_TIME;
+    }
+
+    // Helper method to get deep cleaning duration from configuration
+    private int getDeepCleaningDuration() {
+        try {
+            // Try to get the configuration
+            List<TenantConfiguration> configurations = tenantConfigurationService.getConfigurationsByTenant(tenantId);
+            
+            if (!configurations.isEmpty()) {
+                for (TenantConfiguration config : configurations) {
+                    JsonNode configJson = config.getConfigurationJson();
+                    
+                    // Check if cleaning durations are present in the configuration
+                    if (configJson.has("cleaningDurations") && configJson.get("cleaningDurations").has("deepCleaning")) {
+                        int duration = configJson.get("cleaningDurations").get("deepCleaning").asInt();
+                        log.info("Using configured deep cleaning duration: {} minutes", duration);
+                        return duration;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error retrieving deep cleaning duration from configuration: {}", e.getMessage(), e);
+        }
+        
+        log.info("Using default deep cleaning duration: {} minutes", DEFAULT_DEEP_CLEANING_DURATION);
+        return DEFAULT_DEEP_CLEANING_DURATION;
+    }
+
+    // Helper method to get daily cleaning duration from configuration
+    private int getDailyCleaningDuration() {
+        try {
+            // Try to get the configuration
+            List<TenantConfiguration> configurations = tenantConfigurationService.getConfigurationsByTenant(tenantId);
+            
+            if (!configurations.isEmpty()) {
+                for (TenantConfiguration config : configurations) {
+                    JsonNode configJson = config.getConfigurationJson();
+                    
+                    // Check if cleaning durations are present in the configuration
+                    if (configJson.has("cleaningDurations") && configJson.get("cleaningDurations").has("dailyCleaning")) {
+                        int duration = configJson.get("cleaningDurations").get("dailyCleaning").asInt();
+                        log.info("Using configured daily cleaning duration: {} minutes", duration);
+                        return duration;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error retrieving daily cleaning duration from configuration: {}", e.getMessage(), e);
+        }
+        
+        log.info("Using default daily cleaning duration: {} minutes", DEFAULT_DAILY_CLEANING_DURATION);
+        return DEFAULT_DAILY_CLEANING_DURATION;
+    }
+
+    // Helper method to get time interval from configuration
+    private int getTimeInterval() {
+        try {
+            // Try to get the configuration
+            List<TenantConfiguration> configurations = tenantConfigurationService.getConfigurationsByTenant(tenantId);
+            
+            if (!configurations.isEmpty()) {
+                for (TenantConfiguration config : configurations) {
+                    JsonNode configJson = config.getConfigurationJson();
+                    
+                    // Check if scheduling settings are present in the configuration
+                    if (configJson.has("scheduling") && configJson.get("scheduling").has("timeInterval")) {
+                        int interval = configJson.get("scheduling").get("timeInterval").asInt();
+                        log.info("Using configured time interval: {} minutes", interval);
+                        return interval;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error retrieving time interval from configuration: {}", e.getMessage(), e);
+        }
+        
+        log.info("Using default time interval: {} minutes", DEFAULT_TIME_INTERVAL);
+        return DEFAULT_TIME_INTERVAL;
+    }
+
+    // Helper method to get shift duration from configuration
+    private int getShiftDuration() {
+        try {
+            // Try to get the configuration
+            List<TenantConfiguration> configurations = tenantConfigurationService.getConfigurationsByTenant(tenantId);
+            
+            if (!configurations.isEmpty()) {
+                for (TenantConfiguration config : configurations) {
+                    JsonNode configJson = config.getConfigurationJson();
+                    
+                    // Check if shift settings are present in the configuration
+                    if (configJson.has("shifts") && configJson.get("shifts").has("duration")) {
+                        int duration = configJson.get("shifts").get("duration").asInt();
+                        log.info("Using configured shift duration: {} hours", duration);
+                        return duration;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error retrieving shift duration from configuration: {}", e.getMessage(), e);
+        }
+        
+        log.info("Using default shift duration: {} hours", DEFAULT_SHIFT_DURATION_HOURS);
+        return DEFAULT_SHIFT_DURATION_HOURS;
+    }
+
+    // Add a comprehensive method to update all time-related configurations
+    public boolean updateTimeConfigurations(Long tenantId, 
+                                          String morningShiftStart, 
+                                          String afternoonShiftStart, 
+                                          String eveningShiftStart,
+                                          String checkInTime,
+                                          String checkOutTime,
+                                          Integer deepCleaningDuration,
+                                          Integer dailyCleaningDuration,
+                                          Integer timeInterval,
+                                          Integer shiftDuration) {
+        try {
+            // Validate time formats
+            if (morningShiftStart != null) LocalTime.parse(morningShiftStart);
+            if (afternoonShiftStart != null) LocalTime.parse(afternoonShiftStart);
+            if (eveningShiftStart != null) LocalTime.parse(eveningShiftStart);
+            if (checkInTime != null) LocalTime.parse(checkInTime);
+            if (checkOutTime != null) LocalTime.parse(checkOutTime);
+            
+            List<TenantConfiguration> configurations = tenantConfigurationService.getConfigurationsByTenant(tenantId);
+            ObjectMapper objectMapper = new ObjectMapper();
+            
+            TenantConfiguration configToUpdate = null;
+            
+            // Find existing configuration or create new one
+            if (!configurations.isEmpty()) {
+                for (TenantConfiguration config : configurations) {
+                    configToUpdate = config;
+                    break;
+                }
+            }
+            
+            if (configToUpdate == null) {
+                // Create new configuration
+                configToUpdate = new TenantConfiguration();
+                configToUpdate.setTenantId(tenantId);
+                configToUpdate.setConfigurationJson(objectMapper.createObjectNode());
+            }
+            
+            // Get the existing JSON or create a new one
+            JsonNode existingJson = configToUpdate.getConfigurationJson();
+            ObjectNode rootNode;
+            
+            if (existingJson != null && existingJson instanceof ObjectNode) {
+                rootNode = (ObjectNode) existingJson;
+            } else {
+                rootNode = objectMapper.createObjectNode();
+            }
+            
+            // Update shift timings
+            ObjectNode shiftTimingsNode;
+            if (rootNode.has("shiftTimings") && rootNode.get("shiftTimings").isObject()) {
+                shiftTimingsNode = (ObjectNode) rootNode.get("shiftTimings");
+            } else {
+                shiftTimingsNode = rootNode.putObject("shiftTimings");
+            }
+            
+            if (morningShiftStart != null) shiftTimingsNode.put("morningShift", morningShiftStart);
+            if (afternoonShiftStart != null) shiftTimingsNode.put("afternoonShift", afternoonShiftStart);
+            if (eveningShiftStart != null) shiftTimingsNode.put("eveningShift", eveningShiftStart);
+            
+            // Update hotel timings
+            ObjectNode hotelTimingsNode;
+            if (rootNode.has("hotelTimings") && rootNode.get("hotelTimings").isObject()) {
+                hotelTimingsNode = (ObjectNode) rootNode.get("hotelTimings");
+            } else {
+                hotelTimingsNode = rootNode.putObject("hotelTimings");
+            }
+            
+            if (checkInTime != null) hotelTimingsNode.put("checkInTime", checkInTime);
+            if (checkOutTime != null) hotelTimingsNode.put("checkOutTime", checkOutTime);
+            
+            // Update cleaning durations
+            ObjectNode cleaningDurationsNode;
+            if (rootNode.has("cleaningDurations") && rootNode.get("cleaningDurations").isObject()) {
+                cleaningDurationsNode = (ObjectNode) rootNode.get("cleaningDurations");
+            } else {
+                cleaningDurationsNode = rootNode.putObject("cleaningDurations");
+            }
+            
+            if (deepCleaningDuration != null) cleaningDurationsNode.put("deepCleaning", deepCleaningDuration);
+            if (dailyCleaningDuration != null) cleaningDurationsNode.put("dailyCleaning", dailyCleaningDuration);
+            
+            // Update scheduling settings
+            ObjectNode schedulingNode;
+            if (rootNode.has("scheduling") && rootNode.get("scheduling").isObject()) {
+                schedulingNode = (ObjectNode) rootNode.get("scheduling");
+            } else {
+                schedulingNode = rootNode.putObject("scheduling");
+            }
+            
+            if (timeInterval != null) schedulingNode.put("timeInterval", timeInterval);
+            
+            // Update shift settings
+            ObjectNode shiftsNode;
+            if (rootNode.has("shifts") && rootNode.get("shifts").isObject()) {
+                shiftsNode = (ObjectNode) rootNode.get("shifts");
+            } else {
+                shiftsNode = rootNode.putObject("shifts");
+            }
+            
+            if (shiftDuration != null) shiftsNode.put("duration", shiftDuration);
+            
+            // Save the configuration
+            configToUpdate.setConfigurationJson(rootNode);
+            tenantConfigurationService.saveConfiguration(tenantId, rootNode);
+            
+            log.info("Updated time configurations for tenant {}", tenantId);
+            return true;
+        } catch (Exception e) {
+            log.error("Failed to update time configurations: {}", e.getMessage(), e);
+            return false;
+        }
+    }
+
+    /**
+     * Creates default tenant configuration with all time-related settings if none exists
+     * @param tenantId The tenant ID to create configuration for
+     * @return true if successful, false otherwise
+     */
+    public boolean createDefaultTimeConfiguration(Long tenantId) {
+        try {
+            // Check if configuration already exists
+            List<TenantConfiguration> configurations = tenantConfigurationService.getConfigurationsByTenant(tenantId);
+            if (!configurations.isEmpty()) {
+                log.info("Tenant configuration already exists for tenant {}", tenantId);
+                return true;
+            }
+            
+            // Create default configuration with all time-related settings
+            return updateTimeConfigurations(
+                tenantId,
+                DEFAULT_MORNING_SHIFT_START.toString(),
+                DEFAULT_AFTERNOON_SHIFT_START.toString(),
+                DEFAULT_EVENING_SHIFT_START.toString(),
+                DEFAULT_CHECK_IN_TIME.toString(),
+                DEFAULT_CHECK_OUT_TIME.toString(),
+                DEFAULT_DEEP_CLEANING_DURATION,
+                DEFAULT_DAILY_CLEANING_DURATION,
+                DEFAULT_TIME_INTERVAL,
+                DEFAULT_SHIFT_DURATION_HOURS
+            );
+        } catch (Exception e) {
+            log.error("Failed to create default time configuration: {}", e.getMessage(), e);
+            return false;
+        }
     }
 } 
