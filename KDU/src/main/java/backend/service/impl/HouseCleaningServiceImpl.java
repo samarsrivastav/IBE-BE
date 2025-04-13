@@ -265,12 +265,30 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
             return new ArrayList<>();
         }
         
+        // Calculate how many staff we actually need for this shift
+        int roomsPerStaff = SHIFT_DURATION_HOURS * 60 / DAILY_CLEANING_DURATION; 
+        int requiredStaffCount = (int) Math.ceil((double) pendingSchedules.size() / roomsPerStaff);
+        
         // Get all active staff for the shift
         List<Staff> activeStaff = staffRepository.findByShiftIdAndIsActiveTrue(shift.name());
         
-        if (activeStaff.isEmpty()) {
-            log.warn("No active staff found for shift: {}", shift);
-            return pendingSchedules;
+        // Check if we need to redistribute staff before proceeding
+        if (activeStaff.isEmpty() || activeStaff.size() < requiredStaffCount) {
+            log.warn("Staff shortage detected for shift {}. Required: {}, Available: {}. Attempting to redistribute staff from other shifts.", 
+                    shift, requiredStaffCount, activeStaff.size());
+            
+            // Redistribute staff from other shifts to this one based on need
+            redistributeStaffAcrossShifts(date, shift, requiredStaffCount);
+            
+            // Refresh the active staff list after redistribution
+            activeStaff = staffRepository.findByShiftIdAndIsActiveTrue(shift.name());
+            
+            if (activeStaff.isEmpty()) {
+                log.error("CRITICAL STAFF SHORTAGE: No staff available for shift {} after redistribution attempt.", shift);
+                return pendingSchedules;
+            } else {
+                log.info("After redistribution: {} staff available for shift {}", activeStaff.size(), shift);
+            }
         }
         
         // Get shift start and end times
@@ -280,13 +298,15 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
         log.info("Shift time: {} to {}", shiftStartTime, shiftEndTime);
         
         // Calculate staff capacity
-        int roomsPerStaff = SHIFT_DURATION_HOURS * 60 / DAILY_CLEANING_DURATION; // 4 hours * 60 minutes / 30 minutes = 8 rooms
         int totalStaffCapacity = activeStaff.size() * roomsPerStaff;
         
-        // Check if we have enough staff capacity
-        if (pendingSchedules.size() > totalStaffCapacity) {
-            log.warn("Not enough staff capacity for all rooms. Need {} more staff members.", 
-                    (pendingSchedules.size() - totalStaffCapacity + roomsPerStaff - 1) / roomsPerStaff);
+        // Log staff requirements
+        if (requiredStaffCount <= activeStaff.size()) {
+            log.info("STAFF REQUIREMENTS: {} staff needed for {} rooms in shift {}. {} staff available, {} excess staff.", 
+                    requiredStaffCount, pendingSchedules.size(), shift, activeStaff.size(), activeStaff.size() - requiredStaffCount);
+        } else {
+            log.warn("STAFF SHORTAGE: {} staff needed for {} rooms in shift {}. Only {} staff available. Need {} more staff.", 
+                    requiredStaffCount, pendingSchedules.size(), shift, activeStaff.size(), requiredStaffCount - activeStaff.size());
             // In a real system, we would send an email alert here
         }
         
@@ -304,15 +324,14 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
         }
         
         // Determine how many staff we actually need
-        int requiredStaffCount = Math.min(activeStaff.size(), 
-                                         (pendingSchedules.size() + roomsPerStaff - 1) / roomsPerStaff);
+        int staffToUseCount = Math.min(activeStaff.size(), requiredStaffCount);
         
         // Create a list to keep track of unassigned schedules
         List<RoomCleaningSchedule> unassignedSchedules = new ArrayList<>();
         
         // Create a list of staff IDs we'll use
         List<Long> staffIds = new ArrayList<>();
-        for (int i = 0; i < requiredStaffCount; i++) {
+        for (int i = 0; i < staffToUseCount; i++) {
             staffIds.add(activeStaff.get(i).getStaffId());
         }
         
@@ -415,6 +434,11 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
                     leastUtilizedStaffId, schedule.getRoomId());
         }
         
+        // Keep track of staff usage status
+        Set<Long> usedStaffIds = new HashSet<>();
+        Set<Long> underutilizedStaffIds = new HashSet<>();
+        Set<Long> unusedStaffIds = new HashSet<>();
+        
         // Log the final assignments for debugging
         for (Staff staff : activeStaff) {
             Long staffId = staff.getStaffId();
@@ -428,12 +452,23 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
             }
             
             if (roomCount == 0) {
-                log.info("Staff {} is not assigned to any rooms in this shift. Consider moving to another shift.", staffId);
+                log.info("Staff {} is not assigned to any rooms in this shift. Will move to another shift.", staffId);
+                unusedStaffIds.add(staffId);
                 continue;
             }
             
-            log.info("Staff {} has {} rooms assigned (utilization: {}%)", staffId, roomCount, 
-                    (staffMinutesBooked.get(staffId) * 100.0 / (SHIFT_DURATION_HOURS * 60)));
+            // Calculate utilization percentage
+            double utilizationPercent = staffMinutesBooked.get(staffId) * 100.0 / (SHIFT_DURATION_HOURS * 60);
+            
+            if (utilizationPercent < 70) {
+                underutilizedStaffIds.add(staffId);
+                log.info("Staff {} is underutilized ({}%). Consider moving to another shift.", 
+                        staffId, utilizationPercent);
+            } else {
+                usedStaffIds.add(staffId);
+            }
+            
+            log.info("Staff {} has {} rooms assigned (utilization: {}%)", staffId, roomCount, utilizationPercent);
             
             // Log each room assigned to this staff
             List<RoomCleaningSchedule> staffSchedulesSorted = pendingSchedules.stream()
@@ -456,9 +491,13 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
                 latestEnd = latestEnd.plusMinutes(lastCleaningDuration);
                 
                 log.info("  - Staff {} is working from {} to {} (utilization: {}%)", 
-                        staffId, earliestStart, latestEnd, 
-                        (staffMinutesBooked.get(staffId) * 100.0 / (SHIFT_DURATION_HOURS * 60)));
+                        staffId, earliestStart, latestEnd, utilizationPercent);
             }
+        }
+        
+        // Reassign unused staff to other shifts where needed
+        if (!unusedStaffIds.isEmpty() || !underutilizedStaffIds.isEmpty()) {
+            reassignStaffToOtherShifts(date, shift, unusedStaffIds, underutilizedStaffIds);
         }
         
         // Save the schedules
@@ -471,92 +510,6 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
         }
         
         return savedSchedules;
-    }
-    
-    /**
-     * Get the start time for a shift
-     */
-    private LocalTime getShiftStartTime(Shift shift) {
-        switch (shift) {
-            case MORNING_SHIFT:
-                return LocalTime.of(7, 0); // 7 AM
-            case AFTERNOON_SHIFT:
-                return LocalTime.of(11, 0); // 11 AM
-            case EVENING_SHIFT:
-                return LocalTime.of(15, 0); // 3 PM
-            default:
-                return LocalTime.of(7, 0); // Default to 7 AM
-        }
-    }
-    
-    /**
-     * Find an available staff member for the given time slot
-     */
-    private Staff findAvailableStaff(List<Staff> activeStaff, Map<Long, List<TimeSlot>> staffAvailability, 
-                                     LocalTime startTime, LocalTime endTime) {
-        // Try to find a staff member who is not busy during this time slot
-        for (Staff staff : activeStaff) {
-            List<TimeSlot> staffSlots = staffAvailability.get(staff.getStaffId());
-            
-            // Check if the staff is available during the requested time slot
-            boolean isAvailable = true;
-            for (TimeSlot slot : staffSlots) {
-                if (timeSlotsOverlap(startTime, endTime, slot.startTime, slot.endTime)) {
-                    isAvailable = false;
-                    break;
-                }
-            }
-            
-            if (isAvailable) {
-                return staff;
-            }
-        }
-        
-        // If no staff is available for the exact time slot, try to find one who can be assigned
-        // by adjusting the schedule slightly
-        for (Staff staff : activeStaff) {
-            List<TimeSlot> staffSlots = staffAvailability.get(staff.getStaffId());
-            
-            // Sort the staff's existing slots by start time
-            staffSlots.sort(Comparator.comparing(slot -> slot.startTime));
-            
-            // Find gaps between existing slots
-            for (int i = 0; i < staffSlots.size() - 1; i++) {
-                TimeSlot currentSlot = staffSlots.get(i);
-                TimeSlot nextSlot = staffSlots.get(i + 1);
-                
-                // Calculate the gap between slots
-                LocalTime gapStart = currentSlot.endTime;
-                LocalTime gapEnd = nextSlot.startTime;
-                
-                // Check if the requested time slot can fit in this gap
-                if (gapEnd.isAfter(gapStart) && 
-                    !startTime.isBefore(gapStart) && 
-                    !endTime.isAfter(gapEnd)) {
-                    return staff;
-                }
-            }
-            
-            // Check if the slot can be added before the first slot
-            if (!staffSlots.isEmpty()) {
-                TimeSlot firstSlot = staffSlots.get(0);
-                if (!startTime.isBefore(firstSlot.startTime) && 
-                    !endTime.isAfter(firstSlot.startTime)) {
-                    return staff;
-                }
-            }
-            
-            // Check if the slot can be added after the last slot
-            if (!staffSlots.isEmpty()) {
-                TimeSlot lastSlot = staffSlots.get(staffSlots.size() - 1);
-                if (!startTime.isBefore(lastSlot.endTime) && 
-                    !endTime.isAfter(lastSlot.endTime.plusHours(1))) { // Allow some flexibility
-                    return staff;
-                }
-            }
-        }
-        
-        return null;
     }
     
     /**
@@ -577,6 +530,143 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
             this.startTime = startTime;
             this.endTime = endTime;
         }
+    }
+    
+    /**
+     * Reassign staff to other shifts where they might be needed
+     */
+    private void reassignStaffToOtherShifts(LocalDate date, Shift currentShift, 
+                                           Set<Long> unusedStaffIds, Set<Long> underutilizedStaffIds) {
+        // Get counts for all shifts to determine where staff is needed
+        Map<Shift, Integer> shiftRoomCounts = new HashMap<>();
+        Map<Shift, Integer> shiftStaffCounts = new HashMap<>();
+        
+        for (Shift shift : Shift.values()) {
+            // Skip the current shift
+            if (shift == currentShift) {
+                continue;
+            }
+            
+            // Get room count for this shift
+            List<RoomCleaningSchedule> shiftSchedules = roomCleaningScheduleRepository
+                .findByDateAndShiftAndStatus(date, shift, CleaningStatus.PENDING);
+            shiftRoomCounts.put(shift, shiftSchedules.size());
+            
+            // Get staff count for this shift
+            List<Staff> shiftStaff = staffRepository.findByShiftIdAndIsActiveTrue(shift.name());
+            shiftStaffCounts.put(shift, shiftStaff.size());
+            
+            // Calculate required staff for this shift
+            int roomsPerStaff = SHIFT_DURATION_HOURS * 60 / DAILY_CLEANING_DURATION;
+            int requiredStaff = (int) Math.ceil((double) shiftSchedules.size() / roomsPerStaff);
+            
+            log.info("STAFF ANALYSIS - Shift {}: {} rooms, {} staff available, {} staff required", 
+                    shift, shiftSchedules.size(), shiftStaff.size(), requiredStaff);
+        }
+        
+        // First, handle unused staff
+        if (!unusedStaffIds.isEmpty()) {
+            log.info("Attempting to reassign {} unused staff members from {} shift", 
+                    unusedStaffIds.size(), currentShift);
+            
+            for (Long staffId : unusedStaffIds) {
+                Shift targetShift = findMostNeededShift(shiftRoomCounts, shiftStaffCounts);
+                
+                if (targetShift != null) {
+                    // Move this staff to the target shift
+                    Optional<Staff> staffOpt = staffRepository.findById(staffId.toString());
+                    if (staffOpt.isPresent()) {
+                        Staff staff = staffOpt.get();
+                        String oldShift = staff.getShiftId();
+                        staff.setShiftId(targetShift.name());
+                        staffRepository.save(staff);
+                        
+                        // Update counts
+                        shiftStaffCounts.put(targetShift, shiftStaffCounts.get(targetShift) + 1);
+                        
+                        log.info("Moved unused staff {} from shift {} to shift {}", 
+                                staffId, oldShift, targetShift);
+                    }
+                } else {
+                    log.info("No other shifts need additional staff. Staff {} remains in shift {}", 
+                            staffId, currentShift);
+                }
+            }
+        }
+        
+        // Then, handle underutilized staff if needed
+        if (!underutilizedStaffIds.isEmpty()) {
+            log.info("Considering {} underutilized staff members from {} shift for reassignment", 
+                    underutilizedStaffIds.size(), currentShift);
+            
+            // Only reassign underutilized staff if there's a major shortage elsewhere
+            for (Shift shift : Shift.values()) {
+                if (shift == currentShift) continue;
+                
+                int roomsPerStaff = SHIFT_DURATION_HOURS * 60 / DAILY_CLEANING_DURATION;
+                int requiredStaff = (int) Math.ceil((double) shiftRoomCounts.get(shift) / roomsPerStaff);
+                int availableStaff = shiftStaffCounts.get(shift);
+                
+                // If there's a significant shortage (more than 2 staff needed)
+                if (requiredStaff > availableStaff + 2) {
+                    for (Long staffId : underutilizedStaffIds) {
+                        Optional<Staff> staffOpt = staffRepository.findById(staffId.toString());
+                        if (staffOpt.isPresent()) {
+                            Staff staff = staffOpt.get();
+                            String oldShift = staff.getShiftId();
+                            staff.setShiftId(shift.name());
+                            staffRepository.save(staff);
+                            
+                            // Update counts
+                            shiftStaffCounts.put(shift, shiftStaffCounts.get(shift) + 1);
+                            
+                            log.info("Moved underutilized staff {} from shift {} to shift {} due to high demand", 
+                                    staffId, oldShift, shift);
+                            
+                            // If we've addressed the shortage, stop reassigning
+                            if (shiftStaffCounts.get(shift) >= requiredStaff) {
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    /**
+     * Find the shift that needs staff the most
+     */
+    private Shift findMostNeededShift(Map<Shift, Integer> shiftRoomCounts, Map<Shift, Integer> shiftStaffCounts) {
+        Shift mostNeededShift = null;
+        double highestNeed = -1;
+        
+        for (Shift shift : Shift.values()) {
+            if (!shiftRoomCounts.containsKey(shift) || !shiftStaffCounts.containsKey(shift)) {
+                continue;
+            }
+            
+            int roomCount = shiftRoomCounts.get(shift);
+            int staffCount = shiftStaffCounts.get(shift);
+            
+            if (roomCount == 0) {
+                continue; // No rooms, no need for staff
+            }
+            
+            int roomsPerStaff = SHIFT_DURATION_HOURS * 60 / DAILY_CLEANING_DURATION;
+            int requiredStaff = (int) Math.ceil((double) roomCount / roomsPerStaff);
+            
+            // Calculate need as the ratio of required to available staff
+            double needRatio = staffCount > 0 ? (double) requiredStaff / staffCount : Double.MAX_VALUE;
+            
+            // If this shift needs more staff than what we've found so far
+            if (needRatio > highestNeed && requiredStaff > staffCount) {
+                highestNeed = needRatio;
+                mostNeededShift = shift;
+            }
+        }
+        
+        return mostNeededShift;
     }
 
     @Override
@@ -702,5 +792,203 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
         
         // Calculate percentage
         return (double) minutesWorked.size() / totalShiftMinutes * 100;
+    }
+
+    /**
+     * Get the start time for a shift
+     */
+    private LocalTime getShiftStartTime(Shift shift) {
+        switch (shift) {
+            case MORNING_SHIFT:
+                return LocalTime.of(7, 0); // 7 AM
+            case AFTERNOON_SHIFT:
+                return LocalTime.of(11, 0); // 11 AM
+            case EVENING_SHIFT:
+                return LocalTime.of(15, 0); // 3 PM
+            default:
+                return LocalTime.of(7, 0); // Default to 7 AM
+        }
+    }
+
+    /**
+     * Redistributes staff across shifts based on needs before assignment happens.
+     * This proactively moves staff from shifts with excess capacity to shifts with shortages.
+     * 
+     * @param date The date for which to redistribute staff
+     * @param targetShift The shift that needs staff
+     * @param requiredStaffCount How many staff are needed for the target shift
+     */
+    private void redistributeStaffAcrossShifts(LocalDate date, Shift targetShift, int requiredStaffCount) {
+        log.info("STAFF REDISTRIBUTION: Analyzing all shifts to find staff for {}", targetShift);
+        
+        // Get counts for all shifts to determine availability
+        Map<Shift, Integer> shiftRoomCounts = new HashMap<>();
+        Map<Shift, Integer> shiftStaffCounts = new HashMap<>();
+        Map<Shift, Integer> shiftRequiredStaff = new HashMap<>();
+        Map<Shift, Integer> shiftExcessStaff = new HashMap<>();
+        
+        // Calculate requirements for the target shift
+        shiftRequiredStaff.put(targetShift, requiredStaffCount);
+        
+        // Current staff for target shift
+        List<Staff> targetShiftStaff = staffRepository.findByShiftIdAndIsActiveTrue(targetShift.name());
+        shiftStaffCounts.put(targetShift, targetShiftStaff.size());
+        
+        // Calculate how many staff we need to move to target shift
+        int staffShortage = requiredStaffCount - targetShiftStaff.size();
+        
+        if (staffShortage <= 0) {
+            log.info("No staff redistribution needed for shift {}", targetShift);
+            return;
+        }
+        
+        log.info("Need to move {} staff to shift {}", staffShortage, targetShift);
+        
+        // Analyze all other shifts to find available staff
+        for (Shift shift : Shift.values()) {
+            if (shift == targetShift) {
+                continue;
+            }
+            
+            // Get room count for this shift
+            List<RoomCleaningSchedule> shiftSchedules = roomCleaningScheduleRepository
+                .findByDateAndShiftAndStatus(date, shift, CleaningStatus.PENDING);
+            shiftRoomCounts.put(shift, shiftSchedules.size());
+            
+            // Get staff count for this shift
+            List<Staff> shiftStaff = staffRepository.findByShiftIdAndIsActiveTrue(shift.name());
+            shiftStaffCounts.put(shift, shiftStaff.size());
+            
+            // Calculate required staff for this shift
+            int roomsPerStaff = SHIFT_DURATION_HOURS * 60 / DAILY_CLEANING_DURATION;
+            int requiredStaff = (int) Math.ceil((double) shiftSchedules.size() / roomsPerStaff);
+            shiftRequiredStaff.put(shift, requiredStaff);
+            
+            // Calculate excess staff for this shift
+            int excessStaff = shiftStaff.size() - requiredStaff;
+            shiftExcessStaff.put(shift, Math.max(0, excessStaff));
+            
+            log.info("STAFF ANALYSIS - Shift {}: {} rooms, {} staff available, {} staff required, {} excess staff", 
+                    shift, shiftSchedules.size(), shiftStaff.size(), requiredStaff, Math.max(0, excessStaff));
+        }
+        
+        // Staff we've moved so far
+        int staffMoved = 0;
+        
+        // First, try to take staff from shifts with excess capacity
+        for (Shift shift : Shift.values()) {
+            if (shift == targetShift) {
+                continue;
+            }
+            
+            int excessStaff = shiftExcessStaff.get(shift);
+            
+            if (excessStaff > 0) {
+                // This shift has excess staff we can move
+                int staffToMove = Math.min(excessStaff, staffShortage - staffMoved);
+                
+                if (staffToMove > 0) {
+                    log.info("Moving {} excess staff from shift {} to shift {}", 
+                            staffToMove, shift, targetShift);
+                    
+                    // Find staff to move
+                    List<Staff> availableStaff = staffRepository.findByShiftIdAndIsActiveTrue(shift.name());
+                    
+                    // Move up to staffToMove staff
+                    int movedInThisIteration = moveStaffBetweenShifts(availableStaff, shift, targetShift, staffToMove);
+                    staffMoved += movedInThisIteration;
+                    
+                    if (staffMoved >= staffShortage) {
+                        log.info("Successfully moved {} staff to shift {}. Requirement met.", 
+                                staffMoved, targetShift);
+                        return;
+                    }
+                }
+            }
+        }
+        
+        // If we still need more staff, we'll have to take from shifts that may need them
+        // but we'll prioritize shifts with the smallest shortages
+        if (staffMoved < staffShortage) {
+            // Sort shifts by their staff requirements (ascending)
+            List<Shift> shiftsOrderedByNeed = Shift.values().length > 0 ? Arrays.asList(Shift.values()) : new ArrayList<>();
+            shiftsOrderedByNeed.sort((a, b) -> {
+                if (a == targetShift) return 1;
+                if (b == targetShift) return -1;
+                
+                int aReq = shiftRequiredStaff.getOrDefault(a, 0);
+                int aAvail = shiftStaffCounts.getOrDefault(a, 0);
+                int aNeed = Math.max(0, aReq - aAvail);
+                
+                int bReq = shiftRequiredStaff.getOrDefault(b, 0);
+                int bAvail = shiftStaffCounts.getOrDefault(b, 0);
+                int bNeed = Math.max(0, bReq - bAvail);
+                
+                return Integer.compare(aNeed, bNeed);
+            });
+            
+            for (Shift shift : shiftsOrderedByNeed) {
+                if (shift == targetShift) {
+                    continue;
+                }
+                
+                int availableStaffCount = shiftStaffCounts.getOrDefault(shift, 0);
+                
+                if (availableStaffCount > 0) {
+                    // Determine how many staff we can take without causing severe shortage
+                    int requiredStaffForShift = shiftRequiredStaff.getOrDefault(shift, 0);
+                    int maxStaffToTake = Math.max(0, availableStaffCount - Math.max(1, requiredStaffForShift / 2));
+                    
+                    int staffToMove = Math.min(maxStaffToTake, staffShortage - staffMoved);
+                    
+                    if (staffToMove > 0) {
+                        log.info("Moving {} staff from shift {} to shift {} (this may impact the source shift)", 
+                                staffToMove, shift, targetShift);
+                        
+                        // Find staff to move
+                        List<Staff> availableStaff = staffRepository.findByShiftIdAndIsActiveTrue(shift.name());
+                        
+                        // Move up to staffToMove staff
+                        int movedInThisIteration = moveStaffBetweenShifts(availableStaff, shift, targetShift, staffToMove);
+                        staffMoved += movedInThisIteration;
+                        
+                        if (staffMoved >= staffShortage) {
+                            log.info("Successfully moved {} staff to shift {}. Requirement met.", 
+                                    staffMoved, targetShift);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        
+        log.warn("Only moved {} of {} required staff to shift {}. Staff shortage may still exist.", 
+                staffMoved, staffShortage, targetShift);
+    }
+    
+    /**
+     * Moves a specified number of staff from one shift to another.
+     * 
+     * @param availableStaff List of staff in the source shift
+     * @param sourceShift The shift to move staff from
+     * @param targetShift The shift to move staff to
+     * @param staffToMove How many staff to move
+     * @return The number of staff actually moved
+     */
+    private int moveStaffBetweenShifts(List<Staff> availableStaff, Shift sourceShift, Shift targetShift, int staffToMove) {
+        int staffMoved = 0;
+        
+        for (int i = 0; i < availableStaff.size() && staffMoved < staffToMove; i++) {
+            Staff staff = availableStaff.get(i);
+            String oldShift = staff.getShiftId();
+            staff.setShiftId(targetShift.name());
+            staffRepository.save(staff);
+            staffMoved++;
+            
+            log.info("Moved staff {} from shift {} to shift {}", 
+                    staff.getStaffId(), oldShift, targetShift);
+        }
+        
+        return staffMoved;
     }
 } 

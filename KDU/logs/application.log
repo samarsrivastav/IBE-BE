@@ -5302,3 +5302,831 @@ Caused by: org.postgresql.util.PSQLException: ERROR: foreign key constraint "fky
 2025-04-13 02:50:19 [http-nio-8081-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/house-cleaning/assign-staff?date=2025-04-08&shift=MORNING_SHIFT
 2025-04-13 02:50:19 [http-nio-8081-exec-10] INFO  b.s.impl.HouseCleaningServiceImpl - Assigning staff to schedules for date: 2025-04-08 and shift: MORNING_SHIFT
 2025-04-13 02:50:19 [http-nio-8081-exec-10] WARN  b.s.impl.HouseCleaningServiceImpl - No active staff found for shift: MORNING_SHIFT
+2025-04-13 03:35:17 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m19s253ms).
+2025-04-13 03:51:37 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m20s13ms).
+2025-04-13 04:07:56 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m19s889ms).
+2025-04-13 04:10:06 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s669ms).
+2025-04-13 04:11:51 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m44s745ms).
+2025-04-13 04:13:36 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m44s758ms).
+2025-04-13 04:29:55 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m19s816ms).
+2025-04-13 04:32:05 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s672ms).
+2025-04-13 04:48:25 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m19s870ms).
+2025-04-13 04:50:35 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s618ms).
+2025-04-13 05:07:45 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m10s4ms).
+2025-04-13 05:09:29 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m44s755ms).
+2025-04-13 05:20:01 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10m31s511ms).
+2025-04-13 05:36:46 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m44s809ms).
+2025-04-13 05:38:55 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s679ms).
+2025-04-13 05:41:05 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s666ms).
+2025-04-13 05:42:50 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m44s491ms).
+2025-04-13 05:44:59 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s683ms).
+2025-04-13 05:47:09 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s680ms).
+2025-04-13 06:04:19 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m9s640ms).
+2025-04-13 06:06:28 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s667ms).
+2025-04-13 06:22:38 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m9s410ms).
+2025-04-13 06:24:47 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s673ms).
+2025-04-13 06:40:42 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m54s968ms).
+2025-04-13 06:42:52 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s705ms).
+2025-04-13 07:22:32 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=39m40s254ms).
+2025-04-13 07:23:27 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=54s940ms).
+2025-04-13 07:40:12 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m44s811ms).
+2025-04-13 07:42:22 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s684ms).
+2025-04-13 07:43:42 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m19s847ms).
+2025-04-13 08:00:26 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m44s800ms).
+2025-04-13 08:02:11 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m44s753ms).
+2025-04-13 08:19:21 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m9s651ms).
+2025-04-13 08:20:16 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=54s926ms).
+2025-04-13 08:39:40 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=19m23s971ms).
+2025-04-13 08:41:49 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s666ms).
+2025-04-13 08:43:59 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s667ms).
+2025-04-13 08:46:09 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s666ms).
+2025-04-13 08:48:18 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s667ms).
+2025-04-13 08:50:03 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m44s749ms).
+2025-04-13 08:52:13 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s676ms).
+2025-04-13 08:53:08 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=54s936ms).
+2025-04-13 09:10:17 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m9s653ms).
+2025-04-13 09:12:27 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s661ms).
+2025-04-13 09:24:04 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=11m37s74ms).
+2025-04-13 09:41:14 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m9s777ms).
+2025-04-13 09:43:23 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s680ms).
+2025-04-13 09:45:33 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s685ms).
+2025-04-13 09:47:18 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m44s591ms).
+2025-04-13 09:49:27 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s694ms).
+2025-04-13 09:51:37 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s681ms).
+2025-04-13 09:53:46 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s126ms).
+2025-04-13 10:10:39 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m52s494ms).
+2025-04-13 10:12:24 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m44s762ms).
+2025-04-13 10:26:06 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=13m42s244ms).
+2025-04-13 10:28:15 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s644ms).
+2025-04-13 10:44:10 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m54s985ms).
+2025-04-13 10:46:20 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s676ms).
+2025-04-13 11:06:44 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=20m23s858ms).
+2025-04-13 11:44:02 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=37m18s461ms).
+2025-04-13 11:44:57 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=54s943ms).
+2025-04-13 12:00:52 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m54s925ms).
+2025-04-13 14:06:13 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m19s849ms).
+2025-04-13 14:23:03 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m20s25ms).
+2025-04-13 14:24:48 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m44s887ms).
+2025-04-13 14:41:08 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m19s867ms).
+2025-04-13 14:43:18 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s750ms).
+2025-04-13 15:00:03 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m44s888ms).
+2025-04-13 15:02:13 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m10s193ms).
+2025-04-13 15:20:53 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m9s695ms).
+2025-04-13 15:37:39 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m45s521ms).
+2025-04-13 15:55:54 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m44s852ms).
+2025-04-13 15:57:14 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m19s856ms).
+2025-04-13 16:13:58 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m44s845ms).
+2025-04-13 16:15:18 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m19s861ms).
+2025-04-13 16:25:00 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8m41s578ms).
+2025-04-13 16:43:15 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m44s737ms).
+2025-04-13 16:45:24 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s693ms).
+2025-04-13 16:46:19 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=54s927ms).
+2025-04-13 17:03:26 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m6s377ms).
+2025-04-13 17:05:11 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m44s782ms).
+2025-04-13 17:22:36 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m54s908ms).
+2025-04-13 17:24:45 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s678ms).
+2025-04-13 17:41:55 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m9s700ms).
+2025-04-13 17:44:05 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s670ms).
+2025-04-13 18:02:19 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m44s775ms).
+2025-04-13 18:19:29 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m9s705ms).
+2025-04-13 18:21:14 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m44s766ms).
+2025-04-13 18:38:23 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m9s654ms).
+2025-04-13 18:55:33 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m9s806ms).
+2025-04-13 18:57:43 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s681ms).
+2025-04-13 18:59:03 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m19s862ms).
+2025-04-13 19:15:58 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m54s969ms).
+2025-04-13 19:16:53 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=54s928ms).
+2025-04-13 19:34:13 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m19s897ms).
+2025-04-13 19:35:57 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m44s464ms).
+2025-04-13 19:53:07 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m9s732ms).
+2025-04-13 19:54:27 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m19s846ms).
+2025-04-13 20:10:22 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m55s22ms).
+2025-04-13 20:27:42 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m19s900ms).
+2025-04-13 20:28:37 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=54s941ms).
+2025-04-13 20:45:25 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m18s855ms).
+2025-04-13 20:47:10 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m44s756ms).
+2025-04-13 21:08:00 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m19s925ms).
+2025-04-13 21:09:45 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m44s864ms).
+2025-04-13 21:27:35 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m19s891ms).
+2025-04-13 21:29:20 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m44s750ms).
+2025-04-13 21:45:40 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m19s935ms).
+2025-04-13 21:46:35 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=54s932ms).
+2025-04-13 22:04:19 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m44s793ms).
+2025-04-13 22:21:29 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m9s326ms).
+2025-04-13 22:23:38 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m9s678ms).
+2025-04-13 22:35:29 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=11m50s752ms).
+2025-04-13 22:45:15 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-13 22:45:15 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-04-13 22:45:15 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-13 22:45:15 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-13 22:45:15 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-13 22:45:23 [main] INFO  backend.HotelBookingApplication - Starting HotelBookingApplication using Java 17.0.13 with PID 14497 (/Users/sukuna/Documents/coding/IBE/IBE-BE/KDU/target/classes started by sukuna in /Users/sukuna/Documents/coding/IBE/IBE-BE/KDU)
+2025-04-13 22:45:23 [main] INFO  backend.HotelBookingApplication - The following 1 profile is active: "dev"
+2025-04-13 22:45:24 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-13 22:45:24 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 63 ms. Found 15 JPA repository interfaces.
+2025-04-13 22:45:24 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-04-13 22:45:24 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2025-04-13 22:45:24 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-13 22:45:24 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-04-13 22:45:24 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-13 22:45:24 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1539 ms
+2025-04-13 22:45:25 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-13 22:45:30 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2e6b379c
+2025-04-13 22:45:30 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-13 22:45:31 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-13 22:45:31 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-13 22:45:32 [main] WARN  o.h.t.s.i.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "alter table if exists staff_room_map alter column staff_id set data type bigint" via JDBC [ERROR: column "staff_id" cannot be cast automatically to type bigint
+  Hint: You might need to specify "USING staff_id::bigint".]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table if exists staff_room_map alter column staff_id set data type bigint" via JDBC [ERROR: column "staff_id" cannot be cast automatically to type bigint
+  Hint: You might need to specify "USING staff_id::bigint".]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:576)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:516)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:334)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:233)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:112)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:280)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:144)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1421)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:141)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:324)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:463)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1517)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:419)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:400)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1859)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1808)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:970)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at backend.HotelBookingApplication.main(HotelBookingApplication.java:15)
+Caused by: org.postgresql.util.PSQLException: ERROR: column "staff_id" cannot be cast automatically to type bigint
+  Hint: You might need to specify "USING staff_id::bigint".
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:517)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:434)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:356)
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:341)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:317)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:312)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80)
+	... 37 common frames omitted
+2025-04-13 22:45:32 [main] WARN  o.h.t.s.i.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "alter table if exists staff_room_map add constraint FKyd20ehofj2axxe92vl67pqvx foreign key (staff_id) references staff" via JDBC [ERROR: foreign key constraint "fkyd20ehofj2axxe92vl67pqvx" cannot be implemented
+  Detail: Key columns "staff_id" and "staff_id" are of incompatible types: character varying and bigint.]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table if exists staff_room_map add constraint FKyd20ehofj2axxe92vl67pqvx foreign key (staff_id) references staff" via JDBC [ERROR: foreign key constraint "fkyd20ehofj2axxe92vl67pqvx" cannot be implemented
+  Detail: Key columns "staff_id" and "staff_id" are of incompatible types: character varying and bigint.]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:576)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:516)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applyForeignKeys(AbstractSchemaMigrator.java:448)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:269)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:112)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:280)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:144)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1421)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:141)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:324)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:463)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1517)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:419)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:400)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1859)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1808)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:970)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at backend.HotelBookingApplication.main(HotelBookingApplication.java:15)
+Caused by: org.postgresql.util.PSQLException: ERROR: foreign key constraint "fkyd20ehofj2axxe92vl67pqvx" cannot be implemented
+  Detail: Key columns "staff_id" and "staff_id" are of incompatible types: character varying and bigint.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:517)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:434)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:356)
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:341)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:317)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:312)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80)
+	... 36 common frames omitted
+2025-04-13 22:45:32 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-13 22:45:32 [main] INFO  backend.config.CorsConfig - CORS Configuration Loaded!
+2025-04-13 22:45:32 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'spring.security.oauth2.resourceserver.jwt.issuer-uri' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:45:33 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-13 22:45:33 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:45:33 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:45:33 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api.key' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:45:33 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.url' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:45:33 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'spring.mail.username' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:45:33 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'otp.expiry.minutes' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:45:33 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'otp.max.attempts' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:45:33 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:45:33 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:45:33 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api.key' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:45:33 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.url' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:45:33 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:45:33 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:45:33 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:45:33 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.apiKey' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:45:33 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:45:33 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.apiKey' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:45:33 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'api.base.url' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:45:33 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-13 22:45:34 [main] INFO  backend.config.CorsConfig - Applying CORS settings...
+2025-04-13 22:45:34 [main] DEBUG o.s.s.c.a.a.c.AuthenticationConfiguration$DefaultPasswordEncoderAuthenticationManagerBuilder - No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+2025-04-13 22:45:34 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoints beneath base path '/actuator'
+2025-04-13 22:45:34 [main] INFO  backend.config.SecurityConfig - Configuring security filter chain...
+2025-04-13 22:45:34 [main] INFO  backend.config.SecurityConfig - Using issuer URI: https://cognito-idp.ap-south-1.amazonaws.com/ap-south-1_IGHZ9OObg
+2025-04-13 22:45:34 [main] INFO  backend.config.SecurityConfig - Configuring authorization rules...
+2025-04-13 22:45:34 [main] INFO  backend.config.SecurityConfig - Configuring OAuth2 resource server...
+2025-04-13 22:45:34 [main] INFO  backend.config.SecurityConfig - Configuring JWT...
+2025-04-13 22:45:34 [main] INFO  backend.config.SecurityConfig - Creating JWT decoder with issuer URI: https://cognito-idp.ap-south-1.amazonaws.com/ap-south-1_IGHZ9OObg
+2025-04-13 22:45:34 [main] INFO  backend.config.SecurityConfig - Configuring session management...
+2025-04-13 22:45:34 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, BearerTokenAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-04-13 22:45:35 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2025-04-13 22:45:35 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2025-04-13 22:45:35 [main] INFO  backend.HotelBookingApplication - Started HotelBookingApplication in 12.973 seconds (process running for 14.294)
+2025-04-13 22:45:48 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-13 22:45:48 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-04-13 22:45:48 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 6 ms
+2025-04-13 22:45:49 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/house-cleaning/generate?date=2025-04-08
+2025-04-13 22:45:49 [http-nio-8081-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-13 22:45:49 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/house-cleaning/generate?date=2025-04-08
+2025-04-13 22:45:49 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Generating cleaning schedules for date: 2025-04-08
+2025-04-13 22:45:49 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Found 0 check-in bookings, 5 check-out bookings, and 5 current bookings for date 2025-04-08
+2025-04-13 22:45:49 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Checking check-in rooms for date: 2025-05-15
+2025-04-13 22:45:49 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Found 0 transactions with check-in date 2025-05-15
+2025-04-13 22:45:49 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Booking IDs for check-in: []
+2025-04-13 22:45:49 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - No booking IDs found, returning empty list
+2025-04-13 22:45:49 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Checking check-out rooms for date: 2025-05-15
+2025-04-13 22:45:49 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Found 2 transactions with check-out date 2025-05-15
+2025-04-13 22:45:49 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Booking IDs for check-out: [110, 318]
+2025-04-13 22:45:54 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Room IDs for bookings [110, 318]: [470]
+2025-04-13 22:45:54 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Checking currently booked rooms for date: 2025-05-15T00:00:00Z
+2025-04-13 22:45:55 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Currently booked room IDs: [422, 470]
+2025-04-13 22:45:55 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Found 0 check-in rooms, 1 check-out rooms, and 2 current rooms for date 2025-04-08
+2025-04-13 22:45:55 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 159
+2025-04-13 22:45:55 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 23
+2025-04-13 22:45:55 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 160
+2025-04-13 22:45:55 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 25
+2025-04-13 22:45:55 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 26
+2025-04-13 22:45:55 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 159
+2025-04-13 22:45:55 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 23
+2025-04-13 22:45:55 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 160
+2025-04-13 22:45:55 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 25
+2025-04-13 22:45:55 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 26
+2025-04-13 22:45:55 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Room to booking map: {}
+2025-04-13 22:45:55 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 470
+2025-04-13 22:45:55 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 422
+2025-04-13 22:46:02 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/house-cleaning/assign-staff?date=2025-04-08&shift=MORNING_SHIFT
+2025-04-13 22:46:02 [http-nio-8081-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-13 22:46:02 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/house-cleaning/assign-staff?date=2025-04-08&shift=MORNING_SHIFT
+2025-04-13 22:46:02 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Assigning staff to schedules for date: 2025-04-08 and shift: MORNING_SHIFT
+2025-04-13 22:46:02 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Shift time: 07:00 to 11:00
+2025-04-13 22:46:02 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - STAFF REQUIREMENTS: 1 staff needed for 1 rooms in shift MORNING_SHIFT. 3 staff available, 2 excess staff.
+2025-04-13 22:46:02 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Assigned staff 4 to room 470 for cleaning from 07:00 to 09:00, staff utilization=50.0%
+2025-04-13 22:46:02 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Staff 4 is underutilized (50.0%). Consider moving to another shift.
+2025-04-13 22:46:02 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Staff 4 has 1 rooms assigned (utilization: 50.0%)
+2025-04-13 22:46:02 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl -   - Room 470 at 07:00
+2025-04-13 22:46:02 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl -   - Staff 4 is working from 07:00 to 09:00 (utilization: 50.0%)
+2025-04-13 22:46:02 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Staff 10 is not assigned to any rooms in this shift. Will move to another shift.
+2025-04-13 22:46:02 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Staff 7 is not assigned to any rooms in this shift. Will move to another shift.
+2025-04-13 22:46:02 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - STAFF ANALYSIS - Shift AFTERNOON_SHIFT: 1 rooms, 2 staff available, 1 staff required
+2025-04-13 22:46:02 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - STAFF ANALYSIS - Shift EVENING_SHIFT: 0 rooms, 3 staff available, 0 staff required
+2025-04-13 22:46:02 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Attempting to reassign 2 unused staff members from MORNING_SHIFT shift
+2025-04-13 22:46:02 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - No other shifts need additional staff. Staff 7 remains in shift MORNING_SHIFT
+2025-04-13 22:46:02 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - No other shifts need additional staff. Staff 10 remains in shift MORNING_SHIFT
+2025-04-13 22:46:02 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Considering 1 underutilized staff members from MORNING_SHIFT shift for reassignment
+2025-04-13 22:46:02 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Saved schedule for room 470: staffId=4, scheduledTime=07:00
+2025-04-13 22:48:15 [http-nio-8081-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/house-cleaning/generate?date=2025-04-08
+2025-04-13 22:48:15 [http-nio-8081-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-13 22:48:15 [http-nio-8081-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/house-cleaning/generate?date=2025-04-08
+2025-04-13 22:48:15 [http-nio-8081-exec-5] INFO  b.s.impl.HouseCleaningServiceImpl - Generating cleaning schedules for date: 2025-04-08
+2025-04-13 22:48:15 [http-nio-8081-exec-5] INFO  b.s.impl.HouseCleaningServiceImpl - Found 0 check-in bookings, 5 check-out bookings, and 5 current bookings for date 2025-04-08
+2025-04-13 22:48:15 [http-nio-8081-exec-5] INFO  b.s.impl.BookedRoomsServiceImpl - Checking check-in rooms for date: 2025-05-15
+2025-04-13 22:48:15 [http-nio-8081-exec-5] INFO  b.s.impl.BookedRoomsServiceImpl - Found 0 transactions with check-in date 2025-05-15
+2025-04-13 22:48:15 [http-nio-8081-exec-5] INFO  b.s.impl.BookedRoomsServiceImpl - Booking IDs for check-in: []
+2025-04-13 22:48:15 [http-nio-8081-exec-5] INFO  b.s.impl.BookedRoomsServiceImpl - No booking IDs found, returning empty list
+2025-04-13 22:48:15 [http-nio-8081-exec-5] INFO  b.s.impl.BookedRoomsServiceImpl - Checking check-out rooms for date: 2025-05-15
+2025-04-13 22:48:15 [http-nio-8081-exec-5] INFO  b.s.impl.BookedRoomsServiceImpl - Found 2 transactions with check-out date 2025-05-15
+2025-04-13 22:48:15 [http-nio-8081-exec-5] INFO  b.s.impl.BookedRoomsServiceImpl - Booking IDs for check-out: [110, 318]
+2025-04-13 22:48:20 [http-nio-8081-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/house-cleaning/assign-staff?date=2025-04-08&shift=MORNING_SHIFT
+2025-04-13 22:48:20 [http-nio-8081-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-13 22:48:20 [http-nio-8081-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/house-cleaning/assign-staff?date=2025-04-08&shift=MORNING_SHIFT
+2025-04-13 22:48:20 [http-nio-8081-exec-6] INFO  b.s.impl.HouseCleaningServiceImpl - Assigning staff to schedules for date: 2025-04-08 and shift: MORNING_SHIFT
+2025-04-13 22:48:20 [http-nio-8081-exec-6] WARN  b.s.impl.HouseCleaningServiceImpl - No active staff found for shift: MORNING_SHIFT
+2025-04-13 22:48:22 [http-nio-8081-exec-5] INFO  b.s.impl.BookedRoomsServiceImpl - Room IDs for bookings [110, 318]: [470]
+2025-04-13 22:48:22 [http-nio-8081-exec-5] INFO  b.s.impl.BookedRoomsServiceImpl - Checking currently booked rooms for date: 2025-05-15T00:00:00Z
+2025-04-13 22:48:22 [http-nio-8081-exec-5] INFO  b.s.impl.BookedRoomsServiceImpl - Currently booked room IDs: [422, 470]
+2025-04-13 22:48:22 [http-nio-8081-exec-5] INFO  b.s.impl.HouseCleaningServiceImpl - Found 0 check-in rooms, 1 check-out rooms, and 2 current rooms for date 2025-04-08
+2025-04-13 22:48:22 [http-nio-8081-exec-5] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 159
+2025-04-13 22:48:22 [http-nio-8081-exec-5] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 23
+2025-04-13 22:48:22 [http-nio-8081-exec-5] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 160
+2025-04-13 22:48:22 [http-nio-8081-exec-5] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 25
+2025-04-13 22:48:22 [http-nio-8081-exec-5] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 26
+2025-04-13 22:48:22 [http-nio-8081-exec-5] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 159
+2025-04-13 22:48:22 [http-nio-8081-exec-5] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 23
+2025-04-13 22:48:22 [http-nio-8081-exec-5] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 160
+2025-04-13 22:48:22 [http-nio-8081-exec-5] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 25
+2025-04-13 22:48:22 [http-nio-8081-exec-5] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 26
+2025-04-13 22:48:22 [http-nio-8081-exec-5] INFO  b.s.impl.HouseCleaningServiceImpl - Room to booking map: {}
+2025-04-13 22:48:22 [http-nio-8081-exec-5] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 470
+2025-04-13 22:48:22 [http-nio-8081-exec-5] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 422
+2025-04-13 22:48:28 [http-nio-8081-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/house-cleaning/assign-staff?date=2025-04-08&shift=MORNING_SHIFT
+2025-04-13 22:48:28 [http-nio-8081-exec-9] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-13 22:48:28 [http-nio-8081-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/house-cleaning/assign-staff?date=2025-04-08&shift=MORNING_SHIFT
+2025-04-13 22:48:28 [http-nio-8081-exec-9] INFO  b.s.impl.HouseCleaningServiceImpl - Assigning staff to schedules for date: 2025-04-08 and shift: MORNING_SHIFT
+2025-04-13 22:48:28 [http-nio-8081-exec-9] WARN  b.s.impl.HouseCleaningServiceImpl - No active staff found for shift: MORNING_SHIFT
+2025-04-13 22:49:02 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/house-cleaning/assign-staff?date=2025-04-08&shift=MORNING_SHIFT
+2025-04-13 22:49:02 [http-nio-8081-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-13 22:49:02 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/house-cleaning/assign-staff?date=2025-04-08&shift=MORNING_SHIFT
+2025-04-13 22:49:02 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Assigning staff to schedules for date: 2025-04-08 and shift: MORNING_SHIFT
+2025-04-13 22:49:02 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - No active staff found for shift: MORNING_SHIFT
+2025-04-13 22:53:02 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-13 22:53:02 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-04-13 22:53:02 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-13 22:53:02 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-13 22:53:02 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-13 22:53:09 [main] INFO  backend.HotelBookingApplication - Starting HotelBookingApplication using Java 17.0.13 with PID 14708 (/Users/sukuna/Documents/coding/IBE/IBE-BE/KDU/target/classes started by sukuna in /Users/sukuna/Documents/coding/IBE/IBE-BE/KDU)
+2025-04-13 22:53:09 [main] INFO  backend.HotelBookingApplication - The following 1 profile is active: "dev"
+2025-04-13 22:53:09 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-13 22:53:09 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 66 ms. Found 15 JPA repository interfaces.
+2025-04-13 22:53:10 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-04-13 22:53:10 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2025-04-13 22:53:10 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-13 22:53:10 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-04-13 22:53:10 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-13 22:53:10 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1494 ms
+2025-04-13 22:53:10 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-13 22:53:11 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5e7e7a7e
+2025-04-13 22:53:11 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-13 22:53:11 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-13 22:53:11 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-13 22:53:12 [main] WARN  o.h.t.s.i.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "alter table if exists staff_room_map alter column staff_id set data type bigint" via JDBC [ERROR: column "staff_id" cannot be cast automatically to type bigint
+  Hint: You might need to specify "USING staff_id::bigint".]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table if exists staff_room_map alter column staff_id set data type bigint" via JDBC [ERROR: column "staff_id" cannot be cast automatically to type bigint
+  Hint: You might need to specify "USING staff_id::bigint".]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:576)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:516)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:334)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:233)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:112)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:280)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:144)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1421)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:141)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:324)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:463)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1517)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:419)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:400)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1859)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1808)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:970)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at backend.HotelBookingApplication.main(HotelBookingApplication.java:15)
+Caused by: org.postgresql.util.PSQLException: ERROR: column "staff_id" cannot be cast automatically to type bigint
+  Hint: You might need to specify "USING staff_id::bigint".
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:517)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:434)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:356)
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:341)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:317)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:312)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80)
+	... 37 common frames omitted
+2025-04-13 22:53:13 [main] WARN  o.h.t.s.i.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "alter table if exists staff_room_map add constraint FKyd20ehofj2axxe92vl67pqvx foreign key (staff_id) references staff" via JDBC [ERROR: foreign key constraint "fkyd20ehofj2axxe92vl67pqvx" cannot be implemented
+  Detail: Key columns "staff_id" and "staff_id" are of incompatible types: character varying and bigint.]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table if exists staff_room_map add constraint FKyd20ehofj2axxe92vl67pqvx foreign key (staff_id) references staff" via JDBC [ERROR: foreign key constraint "fkyd20ehofj2axxe92vl67pqvx" cannot be implemented
+  Detail: Key columns "staff_id" and "staff_id" are of incompatible types: character varying and bigint.]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:576)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:516)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applyForeignKeys(AbstractSchemaMigrator.java:448)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:269)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:112)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:280)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:144)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1421)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:141)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:324)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:463)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1517)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:419)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:400)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1859)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1808)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:970)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at backend.HotelBookingApplication.main(HotelBookingApplication.java:15)
+Caused by: org.postgresql.util.PSQLException: ERROR: foreign key constraint "fkyd20ehofj2axxe92vl67pqvx" cannot be implemented
+  Detail: Key columns "staff_id" and "staff_id" are of incompatible types: character varying and bigint.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:517)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:434)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:356)
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:341)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:317)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:312)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80)
+	... 36 common frames omitted
+2025-04-13 22:53:13 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-13 22:53:13 [main] INFO  backend.config.CorsConfig - CORS Configuration Loaded!
+2025-04-13 22:53:13 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'spring.security.oauth2.resourceserver.jwt.issuer-uri' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:53:13 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-13 22:53:13 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:53:13 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:53:13 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api.key' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:53:14 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.url' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:53:14 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'spring.mail.username' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:53:14 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'otp.expiry.minutes' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:53:14 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'otp.max.attempts' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:53:14 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:53:14 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:53:14 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api.key' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:53:14 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.url' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:53:14 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:53:14 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:53:14 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:53:14 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.apiKey' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:53:14 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:53:14 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.apiKey' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:53:14 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'api.base.url' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 22:53:14 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-13 22:53:14 [main] INFO  backend.config.CorsConfig - Applying CORS settings...
+2025-04-13 22:53:14 [main] DEBUG o.s.s.c.a.a.c.AuthenticationConfiguration$DefaultPasswordEncoderAuthenticationManagerBuilder - No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+2025-04-13 22:53:14 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoints beneath base path '/actuator'
+2025-04-13 22:53:14 [main] INFO  backend.config.SecurityConfig - Configuring security filter chain...
+2025-04-13 22:53:14 [main] INFO  backend.config.SecurityConfig - Using issuer URI: https://cognito-idp.ap-south-1.amazonaws.com/ap-south-1_IGHZ9OObg
+2025-04-13 22:53:14 [main] INFO  backend.config.SecurityConfig - Configuring authorization rules...
+2025-04-13 22:53:14 [main] INFO  backend.config.SecurityConfig - Configuring OAuth2 resource server...
+2025-04-13 22:53:14 [main] INFO  backend.config.SecurityConfig - Configuring JWT...
+2025-04-13 22:53:14 [main] INFO  backend.config.SecurityConfig - Creating JWT decoder with issuer URI: https://cognito-idp.ap-south-1.amazonaws.com/ap-south-1_IGHZ9OObg
+2025-04-13 22:53:15 [main] INFO  backend.config.SecurityConfig - Configuring session management...
+2025-04-13 22:53:15 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, BearerTokenAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-04-13 22:53:15 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2025-04-13 22:53:15 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2025-04-13 22:53:15 [main] INFO  backend.HotelBookingApplication - Started HotelBookingApplication in 7.508 seconds (process running for 8.039)
+2025-04-13 22:53:18 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-13 22:53:18 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-04-13 22:53:18 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2025-04-13 22:53:18 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/house-cleaning/generate?date=2025-04-08
+2025-04-13 22:53:18 [http-nio-8081-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-13 22:53:18 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/house-cleaning/generate?date=2025-04-08
+2025-04-13 22:53:18 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Generating cleaning schedules for date: 2025-04-08
+2025-04-13 22:53:18 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Found 0 check-in bookings, 5 check-out bookings, and 5 current bookings for date 2025-04-08
+2025-04-13 22:53:18 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Checking check-in rooms for date: 2025-05-15
+2025-04-13 22:53:18 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Found 0 transactions with check-in date 2025-05-15
+2025-04-13 22:53:18 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Booking IDs for check-in: []
+2025-04-13 22:53:18 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - No booking IDs found, returning empty list
+2025-04-13 22:53:18 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Checking check-out rooms for date: 2025-05-15
+2025-04-13 22:53:19 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Found 2 transactions with check-out date 2025-05-15
+2025-04-13 22:53:19 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Booking IDs for check-out: [110, 318]
+2025-04-13 22:53:24 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Room IDs for bookings [110, 318]: [470]
+2025-04-13 22:53:24 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Checking currently booked rooms for date: 2025-05-15T00:00:00Z
+2025-04-13 22:53:25 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Currently booked room IDs: [422, 470]
+2025-04-13 22:53:25 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Found 0 check-in rooms, 1 check-out rooms, and 2 current rooms for date 2025-04-08
+2025-04-13 22:53:25 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 159
+2025-04-13 22:53:25 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 23
+2025-04-13 22:53:25 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 160
+2025-04-13 22:53:25 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 25
+2025-04-13 22:53:25 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 26
+2025-04-13 22:53:25 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 159
+2025-04-13 22:53:25 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 23
+2025-04-13 22:53:25 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 160
+2025-04-13 22:53:25 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 25
+2025-04-13 22:53:25 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 26
+2025-04-13 22:53:25 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Room to booking map: {}
+2025-04-13 22:53:25 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 470
+2025-04-13 22:53:25 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 422
+2025-04-13 22:53:36 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/house-cleaning/assign-staff?date=2025-04-08&shift=MORNING_SHIFT
+2025-04-13 22:53:36 [http-nio-8081-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-13 22:53:36 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/house-cleaning/assign-staff?date=2025-04-08&shift=MORNING_SHIFT
+2025-04-13 22:53:36 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Assigning staff to schedules for date: 2025-04-08 and shift: MORNING_SHIFT
+2025-04-13 22:53:36 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - No active staff found for shift: MORNING_SHIFT
+2025-04-13 22:54:05 [http-nio-8081-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/house-cleaning/assign-staff?date=2025-04-08&shift=MORNING_SHIFT
+2025-04-13 22:54:05 [http-nio-8081-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-13 22:54:05 [http-nio-8081-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/house-cleaning/assign-staff?date=2025-04-08&shift=MORNING_SHIFT
+2025-04-13 22:54:05 [http-nio-8081-exec-5] INFO  b.s.impl.HouseCleaningServiceImpl - Assigning staff to schedules for date: 2025-04-08 and shift: MORNING_SHIFT
+2025-04-13 22:54:05 [http-nio-8081-exec-5] INFO  b.s.impl.HouseCleaningServiceImpl - Shift time: 07:00 to 11:00
+2025-04-13 22:54:05 [http-nio-8081-exec-5] INFO  b.s.impl.HouseCleaningServiceImpl - STAFF REQUIREMENTS: 1 staff needed for 1 rooms in shift MORNING_SHIFT. 1 staff available, 0 excess staff.
+2025-04-13 22:54:05 [http-nio-8081-exec-5] INFO  b.s.impl.HouseCleaningServiceImpl - FINAL STAFF STATUS: Adequate staffing for shift MORNING_SHIFT: 1 staff for 1 required positions.
+2025-04-13 22:54:05 [http-nio-8081-exec-5] INFO  b.s.impl.HouseCleaningServiceImpl - Assigned staff 4 to room 470 for cleaning from 07:00 to 09:00, staff utilization=50.0%
+2025-04-13 22:54:05 [http-nio-8081-exec-5] INFO  b.s.impl.HouseCleaningServiceImpl - Staff 4 is underutilized (50.0%). Consider moving to another shift.
+2025-04-13 22:54:05 [http-nio-8081-exec-5] INFO  b.s.impl.HouseCleaningServiceImpl - Staff 4 has 1 rooms assigned (utilization: 50.0%)
+2025-04-13 22:54:05 [http-nio-8081-exec-5] INFO  b.s.impl.HouseCleaningServiceImpl -   - Room 470 at 07:00
+2025-04-13 22:54:05 [http-nio-8081-exec-5] INFO  b.s.impl.HouseCleaningServiceImpl -   - Staff 4 is working from 07:00 to 09:00 (utilization: 50.0%)
+2025-04-13 22:54:05 [http-nio-8081-exec-5] INFO  b.s.impl.HouseCleaningServiceImpl - STAFF ANALYSIS - Shift AFTERNOON_SHIFT: 1 rooms, 2 staff available, 1 staff required
+2025-04-13 22:54:05 [http-nio-8081-exec-5] INFO  b.s.impl.HouseCleaningServiceImpl - STAFF ANALYSIS - Shift EVENING_SHIFT: 0 rooms, 3 staff available, 0 staff required
+2025-04-13 22:54:05 [http-nio-8081-exec-5] INFO  b.s.impl.HouseCleaningServiceImpl - Considering 1 underutilized staff members from MORNING_SHIFT shift for reassignment
+2025-04-13 22:54:05 [http-nio-8081-exec-5] INFO  b.s.impl.HouseCleaningServiceImpl - Saved schedule for room 470: staffId=4, scheduledTime=07:00
+2025-04-13 23:00:00 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-13 23:00:00 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-04-13 23:00:00 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-13 23:00:00 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-13 23:00:00 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-13 23:00:06 [main] INFO  backend.HotelBookingApplication - Starting HotelBookingApplication using Java 17.0.13 with PID 15736 (/Users/sukuna/Documents/coding/IBE/IBE-BE/KDU/target/classes started by sukuna in /Users/sukuna/Documents/coding/IBE/IBE-BE/KDU)
+2025-04-13 23:00:06 [main] INFO  backend.HotelBookingApplication - The following 1 profile is active: "dev"
+2025-04-13 23:00:08 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-13 23:00:08 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 70 ms. Found 15 JPA repository interfaces.
+2025-04-13 23:00:08 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-04-13 23:00:08 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2025-04-13 23:00:08 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-13 23:00:08 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-04-13 23:00:08 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-13 23:00:08 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2136 ms
+2025-04-13 23:00:09 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-13 23:00:09 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5e7e7a7e
+2025-04-13 23:00:09 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-13 23:00:09 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-13 23:00:09 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-13 23:00:11 [main] WARN  o.h.t.s.i.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "alter table if exists staff_room_map alter column staff_id set data type bigint" via JDBC [ERROR: column "staff_id" cannot be cast automatically to type bigint
+  Hint: You might need to specify "USING staff_id::bigint".]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table if exists staff_room_map alter column staff_id set data type bigint" via JDBC [ERROR: column "staff_id" cannot be cast automatically to type bigint
+  Hint: You might need to specify "USING staff_id::bigint".]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:576)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:516)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.migrateTable(AbstractSchemaMigrator.java:334)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:84)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:233)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:112)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:280)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:144)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1421)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:141)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:324)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:463)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1517)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:419)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:400)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1859)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1808)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:970)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at backend.HotelBookingApplication.main(HotelBookingApplication.java:15)
+Caused by: org.postgresql.util.PSQLException: ERROR: column "staff_id" cannot be cast automatically to type bigint
+  Hint: You might need to specify "USING staff_id::bigint".
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:517)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:434)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:356)
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:341)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:317)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:312)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80)
+	... 37 common frames omitted
+2025-04-13 23:00:11 [main] WARN  o.h.t.s.i.ExceptionHandlerLoggedImpl - GenerationTarget encountered exception accepting command : Error executing DDL "alter table if exists staff_room_map add constraint FKyd20ehofj2axxe92vl67pqvx foreign key (staff_id) references staff" via JDBC [ERROR: foreign key constraint "fkyd20ehofj2axxe92vl67pqvx" cannot be implemented
+  Detail: Key columns "staff_id" and "staff_id" are of incompatible types: character varying and bigint.]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table if exists staff_room_map add constraint FKyd20ehofj2axxe92vl67pqvx foreign key (staff_id) references staff" via JDBC [ERROR: foreign key constraint "fkyd20ehofj2axxe92vl67pqvx" cannot be implemented
+  Detail: Key columns "staff_id" and "staff_id" are of incompatible types: character varying and bigint.]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:576)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:516)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applyForeignKeys(AbstractSchemaMigrator.java:448)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:269)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:112)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:280)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:144)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1421)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:141)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:324)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:463)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1517)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:419)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:400)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1859)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1808)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:970)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at backend.HotelBookingApplication.main(HotelBookingApplication.java:15)
+Caused by: org.postgresql.util.PSQLException: ERROR: foreign key constraint "fkyd20ehofj2axxe92vl67pqvx" cannot be implemented
+  Detail: Key columns "staff_id" and "staff_id" are of incompatible types: character varying and bigint.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2420)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:517)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:434)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:356)
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:341)
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:317)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:312)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80)
+	... 36 common frames omitted
+2025-04-13 23:00:11 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-13 23:00:11 [main] INFO  backend.config.CorsConfig - CORS Configuration Loaded!
+2025-04-13 23:00:11 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'spring.security.oauth2.resourceserver.jwt.issuer-uri' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 23:00:11 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-13 23:00:11 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 23:00:11 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 23:00:12 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api.key' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 23:00:12 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.url' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 23:00:12 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'spring.mail.username' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 23:00:12 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'otp.expiry.minutes' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 23:00:12 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'otp.max.attempts' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 23:00:12 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 23:00:12 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 23:00:12 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api.key' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 23:00:12 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.url' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 23:00:12 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 23:00:12 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 23:00:12 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 23:00:12 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.apiKey' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 23:00:12 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 23:00:12 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.apiKey' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 23:00:12 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'api.base.url' in PropertySource 'environmentProperties' with value of type String
+2025-04-13 23:00:12 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-13 23:00:12 [main] INFO  backend.config.CorsConfig - Applying CORS settings...
+2025-04-13 23:00:12 [main] DEBUG o.s.s.c.a.a.c.AuthenticationConfiguration$DefaultPasswordEncoderAuthenticationManagerBuilder - No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+2025-04-13 23:00:12 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoints beneath base path '/actuator'
+2025-04-13 23:00:12 [main] INFO  backend.config.SecurityConfig - Configuring security filter chain...
+2025-04-13 23:00:12 [main] INFO  backend.config.SecurityConfig - Using issuer URI: https://cognito-idp.ap-south-1.amazonaws.com/ap-south-1_IGHZ9OObg
+2025-04-13 23:00:12 [main] INFO  backend.config.SecurityConfig - Configuring authorization rules...
+2025-04-13 23:00:12 [main] INFO  backend.config.SecurityConfig - Configuring OAuth2 resource server...
+2025-04-13 23:00:12 [main] INFO  backend.config.SecurityConfig - Configuring JWT...
+2025-04-13 23:00:12 [main] INFO  backend.config.SecurityConfig - Creating JWT decoder with issuer URI: https://cognito-idp.ap-south-1.amazonaws.com/ap-south-1_IGHZ9OObg
+2025-04-13 23:00:13 [main] INFO  backend.config.SecurityConfig - Configuring session management...
+2025-04-13 23:00:13 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, BearerTokenAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-04-13 23:00:13 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2025-04-13 23:00:13 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2025-04-13 23:00:13 [main] INFO  backend.HotelBookingApplication - Started HotelBookingApplication in 8.174 seconds (process running for 8.917)
+2025-04-13 23:00:19 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-13 23:00:19 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-04-13 23:00:19 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2025-04-13 23:00:19 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/house-cleaning/generate?date=2025-04-08
+2025-04-13 23:00:19 [http-nio-8081-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-13 23:00:19 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/house-cleaning/generate?date=2025-04-08
+2025-04-13 23:00:19 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Generating cleaning schedules for date: 2025-04-08
+2025-04-13 23:00:20 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Found 0 check-in bookings, 5 check-out bookings, and 5 current bookings for date 2025-04-08
+2025-04-13 23:00:20 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Checking check-in rooms for date: 2025-05-15
+2025-04-13 23:00:20 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Found 0 transactions with check-in date 2025-05-15
+2025-04-13 23:00:20 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Booking IDs for check-in: []
+2025-04-13 23:00:20 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - No booking IDs found, returning empty list
+2025-04-13 23:00:20 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Checking check-out rooms for date: 2025-05-15
+2025-04-13 23:00:20 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Found 2 transactions with check-out date 2025-05-15
+2025-04-13 23:00:20 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Booking IDs for check-out: [110, 318]
+2025-04-13 23:00:22 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Room IDs for bookings [110, 318]: [470]
+2025-04-13 23:00:22 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Checking currently booked rooms for date: 2025-05-15T00:00:00Z
+2025-04-13 23:00:22 [http-nio-8081-exec-1] INFO  b.s.impl.BookedRoomsServiceImpl - Currently booked room IDs: [422, 470]
+2025-04-13 23:00:22 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Found 0 check-in rooms, 1 check-out rooms, and 2 current rooms for date 2025-04-08
+2025-04-13 23:00:22 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 159
+2025-04-13 23:00:22 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 23
+2025-04-13 23:00:22 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 160
+2025-04-13 23:00:22 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 25
+2025-04-13 23:00:22 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 26
+2025-04-13 23:00:22 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 159
+2025-04-13 23:00:22 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 23
+2025-04-13 23:00:22 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 160
+2025-04-13 23:00:22 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 25
+2025-04-13 23:00:22 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 26
+2025-04-13 23:00:22 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Room to booking map: {}
+2025-04-13 23:00:22 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 470
+2025-04-13 23:00:22 [http-nio-8081-exec-1] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 422
+2025-04-13 23:00:51 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/house-cleaning/assign-staff?date=2025-04-08&shift=MORNING_SHIFT
+2025-04-13 23:00:51 [http-nio-8081-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-13 23:00:51 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/house-cleaning/assign-staff?date=2025-04-08&shift=MORNING_SHIFT
+2025-04-13 23:00:51 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Assigning staff to schedules for date: 2025-04-08 and shift: MORNING_SHIFT
+2025-04-13 23:00:51 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - Staff shortage detected for shift MORNING_SHIFT. Required: 1, Available: 0. Attempting to redistribute staff from other shifts.
+2025-04-13 23:00:51 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - STAFF REDISTRIBUTION: Analyzing all shifts to find staff for MORNING_SHIFT
+2025-04-13 23:00:51 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Need to move 1 staff to shift MORNING_SHIFT
+2025-04-13 23:00:51 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - STAFF ANALYSIS - Shift AFTERNOON_SHIFT: 1 rooms, 2 staff available, 1 staff required, 1 excess staff
+2025-04-13 23:00:51 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - STAFF ANALYSIS - Shift EVENING_SHIFT: 0 rooms, 3 staff available, 0 staff required, 3 excess staff
+2025-04-13 23:00:51 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Moving 1 excess staff from shift AFTERNOON_SHIFT to shift MORNING_SHIFT
+2025-04-13 23:00:51 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Moved staff 2 from shift AFTERNOON_SHIFT to shift MORNING_SHIFT
+2025-04-13 23:00:51 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Successfully moved 1 staff to shift MORNING_SHIFT. Requirement met.
+2025-04-13 23:00:51 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - After redistribution: 1 staff available for shift MORNING_SHIFT
+2025-04-13 23:00:51 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Shift time: 07:00 to 11:00
+2025-04-13 23:00:51 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - STAFF REQUIREMENTS: 1 staff needed for 1 rooms in shift MORNING_SHIFT. 1 staff available, 0 excess staff.
+2025-04-13 23:00:51 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Assigned staff 2 to room 470 for cleaning from 07:00 to 09:00, staff utilization=50.0%
+2025-04-13 23:00:51 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Staff 2 is underutilized (50.0%). Consider moving to another shift.
+2025-04-13 23:00:51 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Staff 2 has 1 rooms assigned (utilization: 50.0%)
+2025-04-13 23:00:51 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl -   - Room 470 at 07:00
+2025-04-13 23:00:51 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl -   - Staff 2 is working from 07:00 to 09:00 (utilization: 50.0%)
+2025-04-13 23:00:51 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - STAFF ANALYSIS - Shift AFTERNOON_SHIFT: 1 rooms, 1 staff available, 1 staff required
+2025-04-13 23:00:51 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - STAFF ANALYSIS - Shift EVENING_SHIFT: 0 rooms, 3 staff available, 0 staff required
+2025-04-13 23:00:51 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Considering 1 underutilized staff members from MORNING_SHIFT shift for reassignment
+2025-04-13 23:00:51 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Saved schedule for room 470: staffId=2, scheduledTime=07:00
