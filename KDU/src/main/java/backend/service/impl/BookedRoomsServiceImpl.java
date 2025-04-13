@@ -117,6 +117,7 @@ public class BookedRoomsServiceImpl implements BookedRoomsService {
         return roomIds;
     }
 
+
     private List<Integer> getRoomTypeIdsForProperty(int propertyId) {
         if (propertyId == 8) {
             return List.of(43, 44, 45, 46, 47, 48);

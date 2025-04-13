@@ -231,4 +231,40 @@ public class BookingController {
             return ResponseEntity.badRequest().build();
         }
     }
-} 
+
+    @PostMapping("/direct-booking")
+    public ResponseEntity<OTPDto.OTPVerificationResponse> directBooking(@RequestBody BookingRequestDto bookingRequestDto) {
+        log.info("=== Starting Direct Booking Process ===");
+        log.info("Received direct booking request for property: {}, room type: {}",
+                bookingRequestDto.getConfirmationDetails().getPropertyId(),
+                bookingRequestDto.getConfirmationDetails().getRoomTypeId());
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userEmail = authentication.getName();
+        bookingRequestDto.getBillingInfo().setEmail(userEmail);
+        log.info("Authenticated user email from JWT: {}", userEmail);
+        log.info("Booking dates: {} to {}",
+                bookingRequestDto.getConfirmationDetails().getStartDate(),
+                bookingRequestDto.getConfirmationDetails().getEndDate());
+
+        try {
+            // Process direct booking
+            UUID confirmationId = bookingService.checkIfBookingIsPossible(
+                    bookingRequestDto.getConfirmationDetails().getPropertyId(),
+                    bookingRequestDto.getConfirmationDetails().getStartDate(),
+                    bookingRequestDto.getConfirmationDetails().getEndDate(),
+                    bookingRequestDto.getConfirmationDetails().getRoomTypeId(),
+                    bookingRequestDto.getConfirmationDetails().getRoomCount(),
+                    bookingRequestDto
+            );
+            log.info("Direct booking processed successfully. Confirmation ID: {}", confirmationId);
+            return ResponseEntity.ok(new OTPDto.OTPVerificationResponse(true,
+                    "Direct booking confirmed successfully. Confirmation ID: " + confirmationId));
+        } catch (Exception e) {
+            log.error("Error during OTP verification and booking process: {}", e.getMessage(), e);
+            return ResponseEntity.ok(new OTPDto.OTPVerificationResponse(false,
+                    "Failed to process booking: " + e.getMessage()));
+        }
+    }
+
+}
