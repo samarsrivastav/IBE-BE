@@ -45,7 +45,7 @@ public class BookedRoomsServiceImpl implements BookedRoomsService {
 
     @Override
     public List<Long> getCheckInRoomsForToday(int propertyId) {
-        String testDate = "2025-05-01";
+        String testDate = "2025-06-21";
         log.info("Checking check-in rooms for date: {}", testDate);
         
         List<BookingTransaction> transactions = bookingTransactionRepository.findByCheckInDate(testDate);
@@ -61,7 +61,7 @@ public class BookedRoomsServiceImpl implements BookedRoomsService {
 
     @Override
     public List<Long> getCheckOutRoomsForToday(int propertyId) {
-        String testDate = "2025-05-01";
+        String testDate = "2025-06-21";
         log.info("Checking check-out rooms for date: {}", testDate);
         
         List<BookingTransaction> transactions = bookingTransactionRepository.findByCheckOutDate(testDate);
@@ -80,7 +80,7 @@ public class BookedRoomsServiceImpl implements BookedRoomsService {
 
     @Override
     public List<Long> getCurrentlyBookedRooms(int propertyId) {
-        String testDate = "2025-05-01T00:00:00Z";
+        String testDate = "2025-06-21T00:00:00Z";
         log.info("Checking currently booked rooms for date: {}", testDate);
         
         List<Integer> roomTypeIds = getRoomTypeIdsForProperty(propertyId);
