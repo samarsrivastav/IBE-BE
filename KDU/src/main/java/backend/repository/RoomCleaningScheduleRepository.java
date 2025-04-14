@@ -5,9 +5,11 @@ import backend.entity.enums.RoomCleaningType;
 import backend.entity.enums.Shift;
 import backend.model.RoomCleaningSchedule;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -33,4 +35,9 @@ public interface RoomCleaningScheduleRepository extends JpaRepository<RoomCleani
             @Param("date") LocalDate date, 
             @Param("startTime") LocalTime startTime, 
             @Param("endTime") LocalTime endTime);
+            
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM RoomCleaningSchedule r WHERE r.date = :date")
+    int deleteByDate(@Param("date") LocalDate date);
 } 
