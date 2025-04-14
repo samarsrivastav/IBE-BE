@@ -39,7 +39,6 @@ public class SecurityConfig {
         log.info("Using issuer URI: {}", issuerUri);
 
         http
-                .cors()
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
                     log.info("Configuring authorization rules...");
