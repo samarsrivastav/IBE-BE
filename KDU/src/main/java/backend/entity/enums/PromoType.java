@@ -1,4 +1,4 @@
-package backend.entity.Enum;
+package backend.entity.enums;
 
 public enum PromoType {
     ONE_TIME_USE,

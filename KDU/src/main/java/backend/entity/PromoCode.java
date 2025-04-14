@@ -1,6 +1,6 @@
 package backend.entity;
 
-import backend.entity.Enum.PromoType;
+import backend.entity.enums.PromoType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
