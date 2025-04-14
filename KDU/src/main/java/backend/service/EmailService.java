@@ -1,9 +1,11 @@
 package backend.service;
 
 import backend.entity.Booking;
-
 import backend.entity.Room;
+import backend.entity.enums.CleaningType;
+import backend.entity.enums.Shift;
 import backend.model.BookingTransaction;
+import backend.model.RoomCleaningSchedule;
 import backend.repository.BookingTransactionRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -37,7 +40,7 @@ public class EmailService {
     @Value("${application.name:Hotel Booking System}")
     private String appName;
 
-    @Value("${admin.email:admin@example.com}")
+    @Value("${admin.email:guptamanan24@gmail.com}")
     private String adminEmail;
 
     // Existing OTP email functionality
@@ -92,22 +95,22 @@ public class EmailService {
     }
 
     private String buildOtpEmail(String otp) {
-    String timestamp = LocalDate.now().format(DateTimeFormatter.ofPattern("MMM d, yyyy"));
-    String messageId = "OTP-" + System.currentTimeMillis();
+        String timestamp = LocalDate.now().format(DateTimeFormatter.ofPattern("MMM d, yyyy"));
+        String messageId = "OTP-" + System.currentTimeMillis();
 
-    return "<div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 5px;'>"
-            + "<h2 style='color: #3498db;'>Hello!</h2>"
-            + "<p>We received a request to verify your purchase on <strong>" + timestamp + "</strong>.</p>"
-            + "<p>Your One-Time Password (OTP) is:</p>"
-            + "<div style='font-size: 36px; font-weight: bold; letter-spacing: 4px; text-align: center; margin: 30px 0; color: #2c3e50; background-color: #f1f1f1; padding: 15px; border-radius: 8px;'>"
-            + otp + "</div>"
-            + "<p>This code will expire in 5 minutes. Please do not share it with anyone.</p>"
-            + "<p>If you did not initiate this request, you can safely ignore this email.</p>"
-            + "<p style='margin-top: 30px;'>Thank you,<br/><strong>" + appName + " Team</strong></p>"
-            + "<hr style='border: none; border-top: 1px solid #ccc; margin-top: 40px;'/>"
-            + "<p style='font-size: 12px; color: #888;'>This is an automated message. Please do not reply to this email.</p>"
-            + "<p style='display: none;'>Message ID: " + messageId + "</p>"
-            + "</div>";
+        return "<div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 5px;'>"
+                + "<h2 style='color: #3498db;'>Hello!</h2>"
+                + "<p>We received a request to verify your purchase on <strong>" + timestamp + "</strong>.</p>"
+                + "<p>Your One-Time Password (OTP) is:</p>"
+                + "<div style='font-size: 36px; font-weight: bold; letter-spacing: 4px; text-align: center; margin: 30px 0; color: #2c3e50; background-color: #f1f1f1; padding: 15px; border-radius: 8px;'>"
+                + otp + "</div>"
+                + "<p>This code will expire in 5 minutes. Please do not share it with anyone.</p>"
+                + "<p>If you did not initiate this request, you can safely ignore this email.</p>"
+                + "<p style='margin-top: 30px;'>Thank you,<br/><strong>" + appName + " Team</strong></p>"
+                + "<hr style='border: none; border-top: 1px solid #ccc; margin-top: 40px;'/>"
+                + "<p style='font-size: 12px; color: #888;'>This is an automated message. Please do not reply to this email.</p>"
+                + "<p style='display: none;'>Message ID: " + messageId + "</p>"
+                + "</div>";
     }
 
     private String buildBookingConfirmationEmail(BookingTransaction transaction) {
@@ -181,4 +184,93 @@ public class EmailService {
         }
     }
 
+    /**
+     * Send a critical staff shortage alert email to the admin
+     * @param date The date of the shortage
+     * @param shift The shift with the shortage
+     * @param requiredStaffCount The number of staff required
+     * @param pendingSchedules The list of pending room cleaning schedules
+     * @param shiftDurationHours The duration of the shift in hours
+     * @param dailyCleaningDuration The duration for daily cleaning in minutes
+     * @param deepCleaningDuration The duration for deep cleaning in minutes
+     * @param shiftStartTime The start time of the shift
+     * @param shiftEndTime The end time of the shift
+     */
+    public void sendCriticalStaffShortageAlert(LocalDate date, Shift shift, int requiredStaffCount,
+                                               List<RoomCleaningSchedule> pendingSchedules,
+                                               int shiftDurationHours,
+                                               int dailyCleaningDuration,
+                                               int deepCleaningDuration,
+                                               LocalTime shiftStartTime,
+                                               LocalTime shiftEndTime) {
+        try {
+            // Build email content with all relevant details
+            String subject = "CRITICAL STAFF SHORTAGE ALERT: " + shift + " Shift on " + date;
+
+            StringBuilder body = new StringBuilder();
+            body.append("<div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 5px;'>");
+            body.append("<h2 style='color: #e74c3c;'>Critical Staff Shortage Detected</h2>");
+
+            body.append("<div style='background-color: #f8f9fa; padding: 16px; border-radius: 8px; margin-top: 20px;'>");
+            body.append("<h3 style='color: #e74c3c;'>Shortage Details</h3>");
+            body.append("<p><strong>Date:</strong> ").append(date.format(DateTimeFormatter.ofPattern("EEE, MMM d, yyyy"))).append("</p>");
+            body.append("<p><strong>Shift:</strong> ").append(shift).append("</p>");
+            body.append("<p><strong>Required Staff:</strong> ").append(requiredStaffCount).append("</p>");
+            body.append("<p><strong>Available Staff:</strong> 0</p>");
+            body.append("<p><strong>Shift Hours:</strong> ").append(shiftStartTime).append(" to ").append(shiftEndTime).append("</p>");
+            body.append("</div>");
+
+            // Add details about pending schedules
+            body.append("<div style='background-color: #f8f9fa; padding: 16px; border-radius: 8px; margin-top: 20px;'>");
+            body.append("<h3 style='color: #3498db;'>Pending Cleaning Schedules</h3>");
+
+            // Count room types
+            int deepCleaningRooms = 0;
+            int dailyCleaningRooms = 0;
+
+            for (RoomCleaningSchedule schedule : pendingSchedules) {
+                if (schedule.getCleaningType() == CleaningType.DEEP_CLEANING) {
+                    deepCleaningRooms++;
+                } else {
+                    dailyCleaningRooms++;
+                }
+            }
+
+            body.append("<p><strong>Total Rooms:</strong> ").append(pendingSchedules.size()).append("</p>");
+            body.append("<p><strong>Deep Cleaning Rooms:</strong> ").append(deepCleaningRooms).append("</p>");
+            body.append("<p><strong>Daily Cleaning Rooms:</strong> ").append(dailyCleaningRooms).append("</p>");
+            body.append("</div>");
+
+            // Add configuration parameters
+            body.append("<div style='background-color: #f8f9fa; padding: 16px; border-radius: 8px; margin-top: 20px;'>");
+            body.append("<h3 style='color: #3498db;'>Configuration Parameters</h3>");
+            body.append("<p><strong>Shift Duration:</strong> ").append(shiftDurationHours).append(" hours</p>");
+            body.append("<p><strong>Daily Cleaning Duration:</strong> ").append(dailyCleaningDuration).append(" minutes</p>");
+            body.append("<p><strong>Deep Cleaning Duration:</strong> ").append(deepCleaningDuration).append(" minutes</p>");
+
+            // Calculate total cleaning time required
+            int totalMinutesRequired = (dailyCleaningRooms * dailyCleaningDuration) +
+                    (deepCleaningRooms * deepCleaningDuration);
+            int totalHoursRequired = totalMinutesRequired / 60;
+            int remainingMinutes = totalMinutesRequired % 60;
+
+            body.append("<p><strong>Total Cleaning Time Required:</strong> ").append(totalHoursRequired)
+                    .append(" hours and ").append(remainingMinutes).append(" minutes</p>");
+            body.append("</div>");
+
+            body.append("<div style='margin-top: 20px; padding: 15px; background-color: #f8d7da; border-radius: 5px; color: #721c24;'>");
+            body.append("<p><strong>URGENT ACTION REQUIRED:</strong> Please assign staff to this shift immediately.</p>");
+            body.append("</div>");
+
+            body.append("<p style='margin-top: 30px;'>This is an automated message from the Room Cleaning Management System.</p>");
+            body.append("</div>");
+
+            // Use the existing method to send the email to admin
+            sendEmailToAdmin(subject, body.toString());
+
+            log.info("Critical staff shortage email notification sent to admin");
+        } catch (Exception e) {
+            log.error("Failed to send critical staff shortage email notification", e);
+        }
+    }
 }

@@ -311,9 +311,22 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
             
             // Refresh the active staff list after redistribution
             activeStaff = staffRepository.findByShiftIdAndIsActiveTrue(shift.name());
-            
+
             if (activeStaff.isEmpty()) {
                 log.error("CRITICAL STAFF SHORTAGE: No staff available for shift {} after redistribution attempt.", shift);
+
+                emailService.sendCriticalStaffShortageAlert(
+                        date,
+                        shift,
+                        requiredStaffCount,
+                        pendingSchedules,
+                        shiftDurationHours,
+                        dailyCleaningDuration,
+                        deepCleaningDuration,
+                        getShiftStartTime(shift),
+                        getShiftEndTime(shift)
+                );
+
                 return pendingSchedules;
             } else {
                 log.info("After redistribution: {} staff available for shift {}", activeStaff.size(), shift);
@@ -1473,4 +1486,8 @@ public class HouseCleaningServiceImpl implements HouseCleaningService {
             return false;
         }
     }
-} 
+
+
+
+
+}
