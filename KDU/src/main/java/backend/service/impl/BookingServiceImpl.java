@@ -100,7 +100,11 @@ public class BookingServiceImpl implements BookingService {
 
             // Step 4: Save booking details
             log.info("Step 4: Saving booking details");
-            JsonNode bookingDetails = convertBookingDtoToJsonNode(bookingRequestDto);
+
+            LocalDate end = endDateFormat.plusDays(1);
+            BookingRequestDto b1 = bookingRequestDto;
+            b1.getConfirmationDetails().setEndDate(String.valueOf(end));
+            JsonNode bookingDetails = convertBookingDtoToJsonNode(b1);
             bookingTransaction.setBookingDetails(bookingDetails);
             bookingTransaction.setEmail(bookingRequestDto.getBillingInfo().getEmail());
             bookingTransactionRepository.save(bookingTransaction);
@@ -343,7 +347,13 @@ public class BookingServiceImpl implements BookingService {
 
             // Process the successful booking
             log.info("Attempting GraphQL mutation for booking group ID: {}", bookingGroupId);
-            BookingTransaction transaction = mutateTheBookingTable(successfulBookings, confirmationDetailsDto, guestName, PromoTitle);
+            LocalDate end = endDate.plusDays(1);
+            ConfirmationDetailsDto c1 = confirmationDetailsDto;
+            System.out.println("End Date :" + end);
+            System.out.println(c1.getEndDate());
+            c1.setEndDate(String.valueOf(end));
+            System.out.println(c1.getEndDate());
+            BookingTransaction transaction = mutateTheBookingTable(successfulBookings,c1, guestName, PromoTitle);
             log.info("GraphQL mutation successful. Transaction ID: {}", transaction.getId());
 
             // Clean up pseudo-bookings in a new transaction
