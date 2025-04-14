@@ -1,17 +1,19 @@
 package backend.service;
 
-import backend.entity.Staff;
-import backend.entity.enums.Shift;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Service
 public interface HouseKeepingSchedulerService {
-    @Scheduled(cron = "0 0 8 * * ?") // Runs daily at 8 AM
+    @Scheduled(cron = "0 0 16 * * ?") // Runs daily at 8 AM
     void generateDailySchedules();
 
-    @Scheduled(cron = "0 0 7,11,15 * * ?") // Runs at 7 AM, 11 AM, and 3 PM
-    void checkShiftStaffing();
+    @Scheduled(cron = "0 3 16 * * ?") // Runs at 16:03 for evening shift
+    public void assignEveningShiftStaff();
 
-    void sendStaffShortageEmail(String recipient, String shift, int shortageCount);
+    @Scheduled(cron = "0 2 16 * * ?") // Runs at 16:02 for afternoon shift
+    public void assignAfternoonShiftStaff();
+
+    @Scheduled(cron = "0 1 16 * * ?") // Runs at 16:01 for morning shift
+    public void assignMorningShiftStaff();
 }
