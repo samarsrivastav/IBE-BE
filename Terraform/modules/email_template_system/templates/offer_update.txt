@@ -1,0 +1,25 @@
+Offer Update from Genwin
+
+Dear {{customer_name}},
+
+We wanted to let you know that there have been some updates to an offer you might be interested in!
+
+Offer Details:
+-------------
+Title: {{offer_title}}
+Updated Description: {{offer_description}}
+New Validity Period: {{valid_until}}
+Updated Price: {{offer_price}}
+Changes Made: {{changes_summary}}
+
+Don't miss out on these updates! View the latest offer details at:
+{{offer_link}}
+
+If you have any questions about these changes, please don't hesitate to contact our support team.
+
+Best regards,
+The Genwin Team
+
+---
+This email was sent by Genwin. If you no longer wish to receive these emails, you can unsubscribe at: {{unsubscribe_link}}
+© 2024 Genwin. All rights reserved. 
