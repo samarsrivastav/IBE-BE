@@ -1,5 +1,6 @@
 package backend.service;
 
+import backend.entity.Staff;
 import backend.entity.enums.CleaningStatus;
 import backend.entity.enums.CleaningType;
 import backend.entity.enums.RoomCleaningType;
@@ -89,4 +90,13 @@ public interface HouseCleaningService {
      * @return The appropriate scheduled time
      */
     LocalTime getScheduledTimeForRoomType(RoomCleaningType roomCleaningType, LocalTime checkInTime, LocalTime checkOutTime);
+    
+    /**
+     * Add third-party staff for a specific shift and reschedule cleaning tasks
+     * @param date The date for which to add staff
+     * @param shift The shift for which to add staff
+     * @param count The number of staff to add
+     * @return List of newly added staff
+     */
+    List<Staff> addThirdPartyStaffAndReschedule(LocalDate date, Shift shift, int count);
 } 
