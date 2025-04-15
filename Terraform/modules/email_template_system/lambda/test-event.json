@@ -1,0 +1,10 @@
+{
+  "Records": [
+    {
+      "Sns": {
+        "Message": "{\"Records\":[{\"s3\":{\"bucket\":{\"name\":\"genwin-dev-email-templates\"},\"object\":{\"key\":\"genwin-test-template.html\"}}}]}",
+        "TopicArn": "arn:aws:sns:ap-south-1:123456789012:genwin-email-notifications"
+      }
+    }
+  ]
+} 
