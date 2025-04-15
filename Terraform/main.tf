@@ -67,6 +67,18 @@ module "beanstalk" {
 }
 
 ################################################
+# Email Template System Module
+################################################
+module "email_template_system" {
+  source           = "./modules/email_template_system"
+  team_name        = var.team_name
+  environment      = var.environment
+  vpc_id           = var.vpc_id
+  private_subnets  = var.private_subnets
+  public_subnets   = var.public_subnets
+}
+
+################################################
 # Conditionally Create API Gateway (dev only)
 ################################################
 locals {

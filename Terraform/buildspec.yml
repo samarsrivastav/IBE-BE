@@ -2,11 +2,15 @@ version: 0.2
 
 phases:
   install:
+    runtime-versions:
+      nodejs: 18
     commands:
       - echo "Installing Terraform..."
       - wget https://releases.hashicorp.com/terraform/1.0.11/terraform_1.0.11_linux_amd64.zip
       - unzip terraform_1.0.11_linux_amd64.zip
       - mv terraform /usr/local/bin/
+      - npm install -g npm@10.2.4
+
   pre_build:
     commands:
       - cd Terraform
@@ -20,6 +24,12 @@ phases:
         fi
       - echo "Using backend config file ${BACKEND_CONFIG}"
       - terraform init -backend-config=${BACKEND_CONFIG} -migrate-state
+      - echo "Building Lambda function..."
+      - cd modules/email_template_system/lambda
+      - chmod +x install-deps.sh
+      - ./install-deps.sh
+      - cd ../../..
+
   build:
     commands:
       - echo "Planning Terraform changes..."
@@ -36,6 +46,11 @@ phases:
       - terraform plan -var-file="${ENVIRONMENT}.tfvars"
       - echo "Applying Terraform changes..."
       - terraform apply -auto-approve -var-file="${ENVIRONMENT}.tfvars"
+
+  post_build:
+    commands:
+      - echo "Build completed successfully!"
+
 artifacts:
   base-directory: Terraform
   files:
