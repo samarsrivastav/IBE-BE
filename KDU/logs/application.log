@@ -4558,3 +4558,1361 @@
 2025-04-15 01:51:19 [http-nio-8081-exec-10] INFO  b.s.impl.HouseCleaningServiceImpl - Saved schedule for room 444: staffId=21, scheduledTime=13:00
 2025-04-15 01:51:19 [http-nio-8081-exec-10] INFO  b.s.impl.HouseCleaningServiceImpl - Saved schedule for room 462: staffId=20, scheduledTime=13:30
 2025-04-15 01:51:19 [http-nio-8081-exec-10] INFO  b.s.impl.HouseCleaningServiceImpl - Saved schedule for room 474: staffId=21, scheduledTime=14:30
+2025-04-15 11:16:46 [main] INFO  backend.HotelBookingApplication - Starting HotelBookingApplication using Java 17.0.13 with PID 56410 (/Users/sukuna/Documents/coding/IBE/IBE-BE/KDU/target/classes started by sukuna in /Users/sukuna/Documents/coding/IBE/IBE-BE/KDU)
+2025-04-15 11:16:46 [main] INFO  backend.HotelBookingApplication - The following 1 profile is active: "dev"
+2025-04-15 11:16:47 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-15 11:16:47 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 67 ms. Found 15 JPA repository interfaces.
+2025-04-15 11:16:47 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-04-15 11:16:48 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2025-04-15 11:16:48 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-15 11:16:48 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-04-15 11:16:48 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-15 11:16:48 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1791 ms
+2025-04-15 11:16:48 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-15 11:16:48 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@54b2d002
+2025-04-15 11:16:48 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-15 11:16:49 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-15 11:16:49 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-15 11:16:50 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-15 11:16:50 [main] INFO  backend.config.CorsConfig - CORS Configuration Loaded!
+2025-04-15 11:16:50 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'spring.security.oauth2.resourceserver.jwt.issuer-uri' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:16:51 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-15 11:16:51 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:16:51 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:16:51 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api.key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:16:51 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.url' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:16:51 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'spring.mail.username' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:16:51 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'admin.email' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:16:51 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'otp.expiry.minutes' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:16:51 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'otp.max.attempts' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:16:51 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:16:51 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:16:51 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api.key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:16:51 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.url' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:16:51 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:16:51 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:16:51 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:16:51 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.apiKey' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:16:51 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:16:51 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.apiKey' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:16:51 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'houseCleaningController' defined in file [/Users/sukuna/Documents/coding/IBE/IBE-BE/KDU/target/classes/backend/controller/HouseCleaningController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'houseCleaningServiceImpl' defined in file [/Users/sukuna/Documents/coding/IBE/IBE-BE/KDU/target/classes/backend/service/impl/HouseCleaningServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'staffRepository' defined in backend.repository.StaffRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract int backend.repository.StaffRepository.deleteAllThirdPartyStaff(); Reason: Validation failed for query for method public abstract int backend.repository.StaffRepository.deleteAllThirdPartyStaff()
+2025-04-15 11:16:51 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-15 11:16:51 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-15 11:16:51 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-15 11:16:51 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2025-04-15 11:16:51 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-04-15 11:16:51 [main] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'houseCleaningController' defined in file [/Users/sukuna/Documents/coding/IBE/IBE-BE/KDU/target/classes/backend/controller/HouseCleaningController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'houseCleaningServiceImpl' defined in file [/Users/sukuna/Documents/coding/IBE/IBE-BE/KDU/target/classes/backend/service/impl/HouseCleaningServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'staffRepository' defined in backend.repository.StaffRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract int backend.repository.StaffRepository.deleteAllThirdPartyStaff(); Reason: Validation failed for query for method public abstract int backend.repository.StaffRepository.deleteAllThirdPartyStaff()
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1155)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1121)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1056)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at backend.HotelBookingApplication.main(HotelBookingApplication.java:15)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'houseCleaningServiceImpl' defined in file [/Users/sukuna/Documents/coding/IBE/IBE-BE/KDU/target/classes/backend/service/impl/HouseCleaningServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'staffRepository' defined in backend.repository.StaffRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract int backend.repository.StaffRepository.deleteAllThirdPartyStaff(); Reason: Validation failed for query for method public abstract int backend.repository.StaffRepository.deleteAllThirdPartyStaff()
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1664)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 21 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'staffRepository' defined in backend.repository.StaffRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract int backend.repository.StaffRepository.deleteAllThirdPartyStaff(); Reason: Validation failed for query for method public abstract int backend.repository.StaffRepository.deleteAllThirdPartyStaff()
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1812)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1606)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 35 common frames omitted
+Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract int backend.repository.StaffRepository.deleteAllThirdPartyStaff(); Reason: Validation failed for query for method public abstract int backend.repository.StaffRepository.deleteAllThirdPartyStaff()
+	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:120)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:104)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:92)
+	at java.base/java.util.Optional.map(Optional.java:260)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:92)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:440)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$4(RepositoryFactoryBeanSupport.java:350)
+	at org.springframework.data.util.Lazy.getNullable(Lazy.java:135)
+	at org.springframework.data.util.Lazy.get(Lazy.java:113)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:356)
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:132)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1859)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1808)
+	... 45 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Validation failed for query for method public abstract int backend.repository.StaffRepository.deleteAllThirdPartyStaff()
+	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.validateQuery(SimpleJpaQuery.java:97)
+	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.<init>(SimpleJpaQuery.java:67)
+	at org.springframework.data.jpa.repository.query.JpaQueryFactory.fromMethodWithQueryString(JpaQueryFactory.java:49)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$DeclaredQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:174)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:256)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:99)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:116)
+	... 57 common frames omitted
+Caused by: java.lang.IllegalArgumentException: org.hibernate.query.sqm.UnknownPathException: Could not resolve attribute 'is_third_party' of 'backend.entity.Staff' [DELETE FROM Staff s WHERE s.is_third_party = true]
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:143)
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:167)
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:173)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:886)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:796)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:143)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.orm.jpa.ExtendedEntityManagerCreator$ExtendedEntityManagerInvocationHandler.invoke(ExtendedEntityManagerCreator.java:364)
+	at jdk.proxy2/jdk.proxy2.$Proxy171.createQuery(Unknown Source)
+	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.validateQuery(SimpleJpaQuery.java:91)
+	... 63 common frames omitted
+Caused by: org.hibernate.query.sqm.UnknownPathException: Could not resolve attribute 'is_third_party' of 'backend.entity.Staff' [DELETE FROM Staff s WHERE s.is_third_party = true]
+	at org.hibernate.query.hql.internal.StandardHqlTranslator.translate(StandardHqlTranslator.java:88)
+	at org.hibernate.query.internal.QueryInterpretationCacheStandardImpl.createHqlInterpretation(QueryInterpretationCacheStandardImpl.java:145)
+	at org.hibernate.query.internal.QueryInterpretationCacheStandardImpl.resolveHqlInterpretation(QueryInterpretationCacheStandardImpl.java:132)
+	at org.hibernate.query.spi.QueryEngine.interpretHql(QueryEngine.java:54)
+	at org.hibernate.internal.AbstractSharedSessionContract.interpretHql(AbstractSharedSessionContract.java:832)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:878)
+	... 72 common frames omitted
+Caused by: org.hibernate.query.sqm.PathElementException: Could not resolve attribute 'is_third_party' of 'backend.entity.Staff'
+	at org.hibernate.query.sqm.SqmPathSource.getSubPathSource(SqmPathSource.java:95)
+	at org.hibernate.query.sqm.tree.domain.AbstractSqmPath.get(AbstractSqmPath.java:198)
+	at org.hibernate.query.sqm.tree.domain.AbstractSqmFrom.resolvePathPart(AbstractSqmFrom.java:198)
+	at org.hibernate.query.hql.internal.DomainPathPart.resolvePathPart(DomainPathPart.java:42)
+	at org.hibernate.query.hql.internal.BasicDotIdentifierConsumer.consumeIdentifier(BasicDotIdentifierConsumer.java:92)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitSimplePath(SemanticQueryBuilder.java:5465)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitGeneralPathFragment(SemanticQueryBuilder.java:5298)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitGeneralPathExpression(SemanticQueryBuilder.java:1891)
+	at org.hibernate.grammars.hql.HqlParser$GeneralPathExpressionContext.accept(HqlParser.java:8268)
+	at org.antlr.v4.runtime.tree.AbstractParseTreeVisitor.visitChildren(AbstractParseTreeVisitor.java:46)
+	at org.hibernate.grammars.hql.HqlParserBaseVisitor.visitBarePrimaryExpression(HqlParserBaseVisitor.java:812)
+	at org.hibernate.grammars.hql.HqlParser$BarePrimaryExpressionContext.accept(HqlParser.java:7726)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.createComparisonPredicate(SemanticQueryBuilder.java:2548)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitComparisonPredicate(SemanticQueryBuilder.java:2509)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitComparisonPredicate(SemanticQueryBuilder.java:277)
+	at org.hibernate.grammars.hql.HqlParser$ComparisonPredicateContext.accept(HqlParser.java:6611)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitWhereClause(SemanticQueryBuilder.java:2361)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitDeleteStatement(SemanticQueryBuilder.java:739)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitStatement(SemanticQueryBuilder.java:462)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.buildSemanticModel(SemanticQueryBuilder.java:324)
+	at org.hibernate.query.hql.internal.StandardHqlTranslator.translate(StandardHqlTranslator.java:71)
+	... 77 common frames omitted
+2025-04-15 11:19:12 [main] INFO  backend.HotelBookingApplication - Starting HotelBookingApplication using Java 17.0.13 with PID 56455 (/Users/sukuna/Documents/coding/IBE/IBE-BE/KDU/target/classes started by sukuna in /Users/sukuna/Documents/coding/IBE/IBE-BE/KDU)
+2025-04-15 11:19:12 [main] INFO  backend.HotelBookingApplication - The following 1 profile is active: "dev"
+2025-04-15 11:19:13 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-15 11:19:13 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 65 ms. Found 15 JPA repository interfaces.
+2025-04-15 11:19:13 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-04-15 11:19:13 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2025-04-15 11:19:13 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-15 11:19:13 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-04-15 11:19:13 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-15 11:19:13 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1523 ms
+2025-04-15 11:19:13 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-15 11:19:14 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@54b2d002
+2025-04-15 11:19:14 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-15 11:19:14 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-15 11:19:14 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-15 11:19:16 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-15 11:19:16 [main] INFO  backend.config.CorsConfig - CORS Configuration Loaded!
+2025-04-15 11:19:16 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'spring.security.oauth2.resourceserver.jwt.issuer-uri' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:16 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-15 11:19:16 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:16 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:17 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api.key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:17 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.url' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:17 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'spring.mail.username' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:17 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'admin.email' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:17 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'otp.expiry.minutes' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:17 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'otp.max.attempts' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:17 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:17 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:17 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api.key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:17 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.url' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:17 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:17 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:17 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:17 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.apiKey' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:17 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:17 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.apiKey' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:17 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'houseCleaningController' defined in file [/Users/sukuna/Documents/coding/IBE/IBE-BE/KDU/target/classes/backend/controller/HouseCleaningController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'houseCleaningServiceImpl' defined in file [/Users/sukuna/Documents/coding/IBE/IBE-BE/KDU/target/classes/backend/service/impl/HouseCleaningServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'staffRepository' defined in backend.repository.StaffRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract int backend.repository.StaffRepository.deleteAllThirdPartyStaff(); Reason: Validation failed for query for method public abstract int backend.repository.StaffRepository.deleteAllThirdPartyStaff()
+2025-04-15 11:19:17 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-15 11:19:17 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-15 11:19:17 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-15 11:19:17 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2025-04-15 11:19:17 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-04-15 11:19:17 [main] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'houseCleaningController' defined in file [/Users/sukuna/Documents/coding/IBE/IBE-BE/KDU/target/classes/backend/controller/HouseCleaningController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'houseCleaningServiceImpl' defined in file [/Users/sukuna/Documents/coding/IBE/IBE-BE/KDU/target/classes/backend/service/impl/HouseCleaningServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'staffRepository' defined in backend.repository.StaffRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract int backend.repository.StaffRepository.deleteAllThirdPartyStaff(); Reason: Validation failed for query for method public abstract int backend.repository.StaffRepository.deleteAllThirdPartyStaff()
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1155)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1121)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1056)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at backend.HotelBookingApplication.main(HotelBookingApplication.java:15)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'houseCleaningServiceImpl' defined in file [/Users/sukuna/Documents/coding/IBE/IBE-BE/KDU/target/classes/backend/service/impl/HouseCleaningServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'staffRepository' defined in backend.repository.StaffRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract int backend.repository.StaffRepository.deleteAllThirdPartyStaff(); Reason: Validation failed for query for method public abstract int backend.repository.StaffRepository.deleteAllThirdPartyStaff()
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1381)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1218)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:563)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1664)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 21 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'staffRepository' defined in backend.repository.StaffRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract int backend.repository.StaffRepository.deleteAllThirdPartyStaff(); Reason: Validation failed for query for method public abstract int backend.repository.StaffRepository.deleteAllThirdPartyStaff()
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1812)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:346)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1606)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1552)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 35 common frames omitted
+Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract int backend.repository.StaffRepository.deleteAllThirdPartyStaff(); Reason: Validation failed for query for method public abstract int backend.repository.StaffRepository.deleteAllThirdPartyStaff()
+	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:120)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:104)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:92)
+	at java.base/java.util.Optional.map(Optional.java:260)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:92)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:440)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$4(RepositoryFactoryBeanSupport.java:350)
+	at org.springframework.data.util.Lazy.getNullable(Lazy.java:135)
+	at org.springframework.data.util.Lazy.get(Lazy.java:113)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:356)
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:132)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1859)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1808)
+	... 45 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Validation failed for query for method public abstract int backend.repository.StaffRepository.deleteAllThirdPartyStaff()
+	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.validateQuery(SimpleJpaQuery.java:97)
+	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.<init>(SimpleJpaQuery.java:67)
+	at org.springframework.data.jpa.repository.query.JpaQueryFactory.fromMethodWithQueryString(JpaQueryFactory.java:49)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$DeclaredQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:174)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:256)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:99)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:116)
+	... 57 common frames omitted
+Caused by: java.lang.IllegalArgumentException: org.hibernate.query.sqm.UnknownPathException: Could not resolve attribute 'is_third_party' of 'backend.entity.Staff' [DELETE FROM Staff s WHERE s.is_third_party = true]
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:143)
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:167)
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:173)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:886)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:796)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:143)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.orm.jpa.ExtendedEntityManagerCreator$ExtendedEntityManagerInvocationHandler.invoke(ExtendedEntityManagerCreator.java:364)
+	at jdk.proxy2/jdk.proxy2.$Proxy171.createQuery(Unknown Source)
+	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.validateQuery(SimpleJpaQuery.java:91)
+	... 63 common frames omitted
+Caused by: org.hibernate.query.sqm.UnknownPathException: Could not resolve attribute 'is_third_party' of 'backend.entity.Staff' [DELETE FROM Staff s WHERE s.is_third_party = true]
+	at org.hibernate.query.hql.internal.StandardHqlTranslator.translate(StandardHqlTranslator.java:88)
+	at org.hibernate.query.internal.QueryInterpretationCacheStandardImpl.createHqlInterpretation(QueryInterpretationCacheStandardImpl.java:145)
+	at org.hibernate.query.internal.QueryInterpretationCacheStandardImpl.resolveHqlInterpretation(QueryInterpretationCacheStandardImpl.java:132)
+	at org.hibernate.query.spi.QueryEngine.interpretHql(QueryEngine.java:54)
+	at org.hibernate.internal.AbstractSharedSessionContract.interpretHql(AbstractSharedSessionContract.java:832)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:878)
+	... 72 common frames omitted
+Caused by: org.hibernate.query.sqm.PathElementException: Could not resolve attribute 'is_third_party' of 'backend.entity.Staff'
+	at org.hibernate.query.sqm.SqmPathSource.getSubPathSource(SqmPathSource.java:95)
+	at org.hibernate.query.sqm.tree.domain.AbstractSqmPath.get(AbstractSqmPath.java:198)
+	at org.hibernate.query.sqm.tree.domain.AbstractSqmFrom.resolvePathPart(AbstractSqmFrom.java:198)
+	at org.hibernate.query.hql.internal.DomainPathPart.resolvePathPart(DomainPathPart.java:42)
+	at org.hibernate.query.hql.internal.BasicDotIdentifierConsumer.consumeIdentifier(BasicDotIdentifierConsumer.java:92)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitSimplePath(SemanticQueryBuilder.java:5465)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitGeneralPathFragment(SemanticQueryBuilder.java:5298)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitGeneralPathExpression(SemanticQueryBuilder.java:1891)
+	at org.hibernate.grammars.hql.HqlParser$GeneralPathExpressionContext.accept(HqlParser.java:8268)
+	at org.antlr.v4.runtime.tree.AbstractParseTreeVisitor.visitChildren(AbstractParseTreeVisitor.java:46)
+	at org.hibernate.grammars.hql.HqlParserBaseVisitor.visitBarePrimaryExpression(HqlParserBaseVisitor.java:812)
+	at org.hibernate.grammars.hql.HqlParser$BarePrimaryExpressionContext.accept(HqlParser.java:7726)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.createComparisonPredicate(SemanticQueryBuilder.java:2548)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitComparisonPredicate(SemanticQueryBuilder.java:2509)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitComparisonPredicate(SemanticQueryBuilder.java:277)
+	at org.hibernate.grammars.hql.HqlParser$ComparisonPredicateContext.accept(HqlParser.java:6611)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitWhereClause(SemanticQueryBuilder.java:2361)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitDeleteStatement(SemanticQueryBuilder.java:739)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.visitStatement(SemanticQueryBuilder.java:462)
+	at org.hibernate.query.hql.internal.SemanticQueryBuilder.buildSemanticModel(SemanticQueryBuilder.java:324)
+	at org.hibernate.query.hql.internal.StandardHqlTranslator.translate(StandardHqlTranslator.java:71)
+	... 77 common frames omitted
+2025-04-15 11:19:48 [main] INFO  backend.HotelBookingApplication - Starting HotelBookingApplication using Java 17.0.13 with PID 56483 (/Users/sukuna/Documents/coding/IBE/IBE-BE/KDU/target/classes started by sukuna in /Users/sukuna/Documents/coding/IBE/IBE-BE/KDU)
+2025-04-15 11:19:48 [main] INFO  backend.HotelBookingApplication - The following 1 profile is active: "dev"
+2025-04-15 11:19:49 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-15 11:19:49 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 65 ms. Found 15 JPA repository interfaces.
+2025-04-15 11:19:49 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-04-15 11:19:49 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2025-04-15 11:19:49 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-15 11:19:49 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-04-15 11:19:49 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-15 11:19:49 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1453 ms
+2025-04-15 11:19:50 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-15 11:19:50 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4a5066f5
+2025-04-15 11:19:50 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-15 11:19:50 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-15 11:19:50 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-15 11:19:52 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-15 11:19:52 [main] INFO  backend.config.CorsConfig - CORS Configuration Loaded!
+2025-04-15 11:19:52 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'spring.security.oauth2.resourceserver.jwt.issuer-uri' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:52 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-15 11:19:52 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:52 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:53 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api.key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:53 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.url' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:53 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'spring.mail.username' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:53 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'admin.email' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:53 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'otp.expiry.minutes' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:53 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'otp.max.attempts' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:53 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:53 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:53 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api.key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:53 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.url' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:53 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:53 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:53 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:53 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.apiKey' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:53 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:53 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.apiKey' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:53 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'api.base.url' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:19:53 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-15 11:19:53 [main] INFO  backend.config.CorsConfig - Applying CORS settings...
+2025-04-15 11:19:54 [main] DEBUG o.s.s.c.a.a.c.AuthenticationConfiguration$DefaultPasswordEncoderAuthenticationManagerBuilder - No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+2025-04-15 11:19:54 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoints beneath base path '/actuator'
+2025-04-15 11:19:54 [main] INFO  backend.config.SecurityConfig - Configuring security filter chain...
+2025-04-15 11:19:54 [main] INFO  backend.config.SecurityConfig - Using issuer URI: https://cognito-idp.ap-south-1.amazonaws.com/ap-south-1_IGHZ9OObg
+2025-04-15 11:19:54 [main] INFO  backend.config.SecurityConfig - Configuring authorization rules...
+2025-04-15 11:19:54 [main] INFO  backend.config.SecurityConfig - Configuring OAuth2 resource server...
+2025-04-15 11:19:54 [main] INFO  backend.config.SecurityConfig - Configuring JWT...
+2025-04-15 11:19:54 [main] INFO  backend.config.SecurityConfig - Creating JWT decoder with issuer URI: https://cognito-idp.ap-south-1.amazonaws.com/ap-south-1_IGHZ9OObg
+2025-04-15 11:19:54 [main] INFO  backend.config.SecurityConfig - Configuring session management...
+2025-04-15 11:19:54 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, BearerTokenAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-04-15 11:19:54 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2025-04-15 11:19:54 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2025-04-15 11:19:54 [main] INFO  backend.HotelBookingApplication - Started HotelBookingApplication in 7.451 seconds (process running for 7.904)
+2025-04-15 11:20:35 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-15 11:20:35 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-04-15 11:20:35 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-15 11:20:35 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-15 11:20:35 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-15 11:20:39 [main] INFO  backend.HotelBookingApplication - Starting HotelBookingApplication using Java 17.0.13 with PID 56531 (/Users/sukuna/Documents/coding/IBE/IBE-BE/KDU/target/classes started by sukuna in /Users/sukuna/Documents/coding/IBE/IBE-BE/KDU)
+2025-04-15 11:20:39 [main] INFO  backend.HotelBookingApplication - The following 1 profile is active: "dev"
+2025-04-15 11:20:42 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-15 11:20:42 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 77 ms. Found 15 JPA repository interfaces.
+2025-04-15 11:20:43 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-04-15 11:20:43 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2025-04-15 11:20:43 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-15 11:20:43 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-04-15 11:20:43 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-15 11:20:43 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3061 ms
+2025-04-15 11:20:43 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-15 11:20:43 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1191029d
+2025-04-15 11:20:43 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-15 11:20:44 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-15 11:20:44 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-15 11:20:46 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-15 11:20:46 [main] INFO  backend.config.CorsConfig - CORS Configuration Loaded!
+2025-04-15 11:20:46 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'spring.security.oauth2.resourceserver.jwt.issuer-uri' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:20:46 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-15 11:20:46 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:20:46 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:20:46 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api.key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:20:46 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.url' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:20:46 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'spring.mail.username' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:20:46 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'admin.email' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:20:46 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'otp.expiry.minutes' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:20:46 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'otp.max.attempts' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:20:46 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:20:46 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:20:46 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api.key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:20:46 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.url' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:20:47 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:20:47 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:20:47 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:20:47 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.apiKey' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:20:47 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:20:47 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.apiKey' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:20:47 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'api.base.url' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:20:47 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-15 11:20:47 [main] INFO  backend.config.CorsConfig - Applying CORS settings...
+2025-04-15 11:20:47 [main] DEBUG o.s.s.c.a.a.c.AuthenticationConfiguration$DefaultPasswordEncoderAuthenticationManagerBuilder - No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+2025-04-15 11:20:47 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoints beneath base path '/actuator'
+2025-04-15 11:20:47 [main] INFO  backend.config.SecurityConfig - Configuring security filter chain...
+2025-04-15 11:20:47 [main] INFO  backend.config.SecurityConfig - Using issuer URI: https://cognito-idp.ap-south-1.amazonaws.com/ap-south-1_IGHZ9OObg
+2025-04-15 11:20:47 [main] INFO  backend.config.SecurityConfig - Configuring authorization rules...
+2025-04-15 11:20:47 [main] INFO  backend.config.SecurityConfig - Configuring OAuth2 resource server...
+2025-04-15 11:20:47 [main] INFO  backend.config.SecurityConfig - Configuring JWT...
+2025-04-15 11:20:47 [main] INFO  backend.config.SecurityConfig - Creating JWT decoder with issuer URI: https://cognito-idp.ap-south-1.amazonaws.com/ap-south-1_IGHZ9OObg
+2025-04-15 11:20:48 [main] INFO  backend.config.SecurityConfig - Configuring session management...
+2025-04-15 11:20:48 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, BearerTokenAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-04-15 11:20:48 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2025-04-15 11:20:48 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2025-04-15 11:20:48 [main] INFO  backend.HotelBookingApplication - Started HotelBookingApplication in 9.571 seconds (process running for 10.092)
+2025-04-15 11:21:45 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-15 11:21:45 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-04-15 11:21:45 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-04-15 11:21:45 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/house-cleaning/generate
+2025-04-15 11:21:45 [http-nio-8081-exec-1] INFO  backend.config.JwtRoleConverter - Added ROLE_USER authority
+2025-04-15 11:21:45 [http-nio-8081-exec-1] INFO  backend.config.JwtRoleConverter - Added ROLE_ADMIN authority
+2025-04-15 11:21:45 [http-nio-8081-exec-1] INFO  backend.config.JwtRoleConverter - Final authorities: [ROLE_USER, ROLE_ADMIN]
+2025-04-15 11:21:45 [http-nio-8081-exec-1] INFO  backend.config.JwtRoleConverter - Email from JWT: thoravenger56787@gmail.com
+2025-04-15 11:21:45 [http-nio-8081-exec-1] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider - Authenticated token
+2025-04-15 11:21:45 [http-nio-8081-exec-1] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter - Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@beb90e5b, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER, ROLE_ADMIN]]
+2025-04-15 11:21:45 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/house-cleaning/generate
+2025-04-15 11:21:45 [http-nio-8081-exec-1] WARN  o.s.web.servlet.PageNotFound - No mapping for POST /api/house-cleaning/generate
+2025-04-15 11:21:45 [http-nio-8081-exec-1] WARN  o.s.web.servlet.PageNotFound - No endpoint POST /api/house-cleaning/generate.
+2025-04-15 11:21:45 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /error
+2025-04-15 11:21:45 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /error
+2025-04-15 11:22:02 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/index.html
+2025-04-15 11:22:02 [http-nio-8081-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:22:02 [http-nio-8081-exec-3] DEBUG o.s.s.w.s.SessionManagementFilter - Request requested invalid session id 08D177C7F99D3FB85345AD9E16EE0EBA
+2025-04-15 11:22:02 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/index.html
+2025-04-15 11:22:02 [http-nio-8081-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/swagger-ui.css
+2025-04-15 11:22:02 [http-nio-8081-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:22:02 [http-nio-8081-exec-4] DEBUG o.s.s.w.s.SessionManagementFilter - Request requested invalid session id 08D177C7F99D3FB85345AD9E16EE0EBA
+2025-04-15 11:22:02 [http-nio-8081-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/swagger-ui.css
+2025-04-15 11:22:02 [http-nio-8081-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/swagger-ui-standalone-preset.js
+2025-04-15 11:22:02 [http-nio-8081-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:22:02 [http-nio-8081-exec-6] DEBUG o.s.s.w.s.SessionManagementFilter - Request requested invalid session id 08D177C7F99D3FB85345AD9E16EE0EBA
+2025-04-15 11:22:02 [http-nio-8081-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/index.css
+2025-04-15 11:22:02 [http-nio-8081-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/swagger-ui-bundle.js
+2025-04-15 11:22:02 [http-nio-8081-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/swagger-ui-standalone-preset.js
+2025-04-15 11:22:02 [http-nio-8081-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:22:02 [http-nio-8081-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:22:02 [http-nio-8081-exec-5] DEBUG o.s.s.w.s.SessionManagementFilter - Request requested invalid session id 08D177C7F99D3FB85345AD9E16EE0EBA
+2025-04-15 11:22:02 [http-nio-8081-exec-7] DEBUG o.s.s.w.s.SessionManagementFilter - Request requested invalid session id 08D177C7F99D3FB85345AD9E16EE0EBA
+2025-04-15 11:22:02 [http-nio-8081-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/index.css
+2025-04-15 11:22:02 [http-nio-8081-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/swagger-initializer.js
+2025-04-15 11:22:02 [http-nio-8081-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:22:02 [http-nio-8081-exec-8] DEBUG o.s.s.w.s.SessionManagementFilter - Request requested invalid session id 08D177C7F99D3FB85345AD9E16EE0EBA
+2025-04-15 11:22:02 [http-nio-8081-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/swagger-ui-bundle.js
+2025-04-15 11:22:02 [http-nio-8081-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/swagger-initializer.js
+2025-04-15 11:22:03 [http-nio-8081-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /v3/api-docs/swagger-config
+2025-04-15 11:22:03 [http-nio-8081-exec-9] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:22:03 [http-nio-8081-exec-9] DEBUG o.s.s.w.s.SessionManagementFilter - Request requested invalid session id 08D177C7F99D3FB85345AD9E16EE0EBA
+2025-04-15 11:22:03 [http-nio-8081-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /v3/api-docs/swagger-config
+2025-04-15 11:22:03 [http-nio-8081-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/favicon-32x32.png
+2025-04-15 11:22:03 [http-nio-8081-exec-10] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:22:03 [http-nio-8081-exec-10] DEBUG o.s.s.w.s.SessionManagementFilter - Request requested invalid session id 08D177C7F99D3FB85345AD9E16EE0EBA
+2025-04-15 11:22:03 [http-nio-8081-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/favicon-32x32.png
+2025-04-15 11:22:03 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /v3/api-docs
+2025-04-15 11:22:03 [http-nio-8081-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:22:03 [http-nio-8081-exec-2] DEBUG o.s.s.w.s.SessionManagementFilter - Request requested invalid session id 08D177C7F99D3FB85345AD9E16EE0EBA
+2025-04-15 11:22:03 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /v3/api-docs
+2025-04-15 11:22:03 [http-nio-8081-exec-2] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 483 ms
+2025-04-15 11:22:52 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-15 11:22:52 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-04-15 11:22:52 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-15 11:22:52 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-15 11:22:52 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-15 11:22:57 [main] INFO  backend.HotelBookingApplication - Starting HotelBookingApplication using Java 17.0.13 with PID 56578 (/Users/sukuna/Documents/coding/IBE/IBE-BE/KDU/target/classes started by sukuna in /Users/sukuna/Documents/coding/IBE/IBE-BE/KDU)
+2025-04-15 11:22:57 [main] INFO  backend.HotelBookingApplication - The following 1 profile is active: "dev"
+2025-04-15 11:22:58 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-15 11:22:58 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 62 ms. Found 15 JPA repository interfaces.
+2025-04-15 11:22:59 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2025-04-15 11:22:59 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2025-04-15 11:22:59 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-15 11:22:59 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-04-15 11:22:59 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-15 11:22:59 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1485 ms
+2025-04-15 11:22:59 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-15 11:23:00 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@54b2d002
+2025-04-15 11:23:00 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-15 11:23:00 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-15 11:23:00 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-15 11:23:02 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-15 11:23:02 [main] INFO  backend.config.CorsConfig - CORS Configuration Loaded!
+2025-04-15 11:23:02 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'spring.security.oauth2.resourceserver.jwt.issuer-uri' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:23:02 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-15 11:23:02 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:23:02 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:23:02 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api.key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:23:02 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.url' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:23:02 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'spring.mail.username' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:23:02 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'admin.email' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:23:02 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'otp.expiry.minutes' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:23:02 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'otp.max.attempts' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:23:02 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:23:02 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:23:02 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api.key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:23:02 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.url' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:23:03 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:23:03 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.api-key' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:23:03 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:23:03 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.apiKey' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:23:03 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.endpoint' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:23:03 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'graphql.apiKey' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:23:03 [main] DEBUG o.s.c.e.PropertySourcesPropertyResolver - Found key 'api.base.url' in PropertySource 'environmentProperties' with value of type String
+2025-04-15 11:23:03 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-15 11:23:03 [main] INFO  backend.config.CorsConfig - Applying CORS settings...
+2025-04-15 11:23:03 [main] DEBUG o.s.s.c.a.a.c.AuthenticationConfiguration$DefaultPasswordEncoderAuthenticationManagerBuilder - No authenticationProviders and no parentAuthenticationManager defined. Returning null.
+2025-04-15 11:23:03 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 2 endpoints beneath base path '/actuator'
+2025-04-15 11:23:03 [main] INFO  backend.config.SecurityConfig - Configuring security filter chain...
+2025-04-15 11:23:03 [main] INFO  backend.config.SecurityConfig - Using issuer URI: https://cognito-idp.ap-south-1.amazonaws.com/ap-south-1_IGHZ9OObg
+2025-04-15 11:23:03 [main] INFO  backend.config.SecurityConfig - Configuring authorization rules...
+2025-04-15 11:23:03 [main] INFO  backend.config.SecurityConfig - Configuring OAuth2 resource server...
+2025-04-15 11:23:03 [main] INFO  backend.config.SecurityConfig - Configuring JWT...
+2025-04-15 11:23:03 [main] INFO  backend.config.SecurityConfig - Creating JWT decoder with issuer URI: https://cognito-idp.ap-south-1.amazonaws.com/ap-south-1_IGHZ9OObg
+2025-04-15 11:23:04 [main] INFO  backend.config.SecurityConfig - Configuring session management...
+2025-04-15 11:23:04 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, BearerTokenAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-04-15 11:23:04 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2025-04-15 11:23:04 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2025-04-15 11:23:04 [main] INFO  backend.HotelBookingApplication - Started HotelBookingApplication in 7.563 seconds (process running for 8.067)
+2025-04-15 11:23:09 [http-nio-8081-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-15 11:23:09 [http-nio-8081-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-04-15 11:23:09 [http-nio-8081-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2025-04-15 11:23:09 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/house-cleaning/generate
+2025-04-15 11:23:09 [http-nio-8081-exec-2] INFO  backend.config.JwtRoleConverter - Added ROLE_USER authority
+2025-04-15 11:23:09 [http-nio-8081-exec-2] INFO  backend.config.JwtRoleConverter - Added ROLE_ADMIN authority
+2025-04-15 11:23:09 [http-nio-8081-exec-2] INFO  backend.config.JwtRoleConverter - Final authorities: [ROLE_USER, ROLE_ADMIN]
+2025-04-15 11:23:09 [http-nio-8081-exec-2] INFO  backend.config.JwtRoleConverter - Email from JWT: thoravenger56787@gmail.com
+2025-04-15 11:23:09 [http-nio-8081-exec-2] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider - Authenticated token
+2025-04-15 11:23:09 [http-nio-8081-exec-2] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter - Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@beb90e5b, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER, ROLE_ADMIN]]
+2025-04-15 11:23:09 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/house-cleaning/generate
+2025-04-15 11:23:09 [http-nio-8081-exec-2] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'date' for method parameter type LocalDate is not present]
+2025-04-15 11:23:09 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /error
+2025-04-15 11:23:09 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /error
+2025-04-15 11:23:22 [http-nio-8081-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/house-cleaning/generate?date=2025-06-21
+2025-04-15 11:23:22 [http-nio-8081-exec-4] INFO  backend.config.JwtRoleConverter - Added ROLE_USER authority
+2025-04-15 11:23:22 [http-nio-8081-exec-4] INFO  backend.config.JwtRoleConverter - Added ROLE_ADMIN authority
+2025-04-15 11:23:22 [http-nio-8081-exec-4] INFO  backend.config.JwtRoleConverter - Final authorities: [ROLE_USER, ROLE_ADMIN]
+2025-04-15 11:23:22 [http-nio-8081-exec-4] INFO  backend.config.JwtRoleConverter - Email from JWT: thoravenger56787@gmail.com
+2025-04-15 11:23:22 [http-nio-8081-exec-4] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider - Authenticated token
+2025-04-15 11:23:22 [http-nio-8081-exec-4] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter - Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@beb90e5b, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER, ROLE_ADMIN]]
+2025-04-15 11:23:22 [http-nio-8081-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/house-cleaning/generate?date=2025-06-21
+2025-04-15 11:23:22 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Generating cleaning schedules for date: 2025-06-21
+2025-04-15 11:23:22 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:22 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:22 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured check-in time: 13:00
+2025-04-15 11:23:22 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured check-out time: 11:00
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Found 1 check-in bookings, 1 check-out bookings, and 3 current bookings for date 2025-06-21
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.s.impl.BookedRoomsServiceImpl - Checking check-in rooms for date: 2025-06-21
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.s.impl.BookedRoomsServiceImpl - Found 1 transactions with check-in date 2025-06-21
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.s.impl.BookedRoomsServiceImpl - Booking IDs for check-in: [450]
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.s.impl.BookedRoomsServiceImpl - Room IDs for bookings [450]: [432, 438, 450, 456, 468, 480]
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.s.impl.BookedRoomsServiceImpl - Checking check-out rooms for date: 2025-06-21
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.s.impl.BookedRoomsServiceImpl - Found 1 transactions with check-out date 2025-06-21
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.s.impl.BookedRoomsServiceImpl - Booking IDs for check-out: [449]
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.s.impl.BookedRoomsServiceImpl - Room IDs for bookings [449]: [438, 456]
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.s.impl.BookedRoomsServiceImpl - Checking currently booked rooms for date: 2025-06-21T00:00:00Z
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.s.impl.BookedRoomsServiceImpl - Currently booked room IDs: [426, 432, 438, 444, 450, 456, 462, 468, 474, 480]
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Found 6 check-in rooms, 2 check-out rooms, and 10 current rooms for date 2025-06-21
+2025-04-15 11:23:23 [http-nio-8081-exec-4] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 450
+2025-04-15 11:23:23 [http-nio-8081-exec-4] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 449
+2025-04-15 11:23:23 [http-nio-8081-exec-4] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 449
+2025-04-15 11:23:23 [http-nio-8081-exec-4] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 450
+2025-04-15 11:23:23 [http-nio-8081-exec-4] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 451
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Room to booking map: {}
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 11:23:23 [http-nio-8081-exec-4] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 432
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 11:23:23 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 438
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 450
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 456
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 468
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 480
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 426
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 444
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 462
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 11:23:24 [http-nio-8081-exec-4] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 474
+2025-04-15 11:23:31 [http-nio-8081-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/house-cleaning/generate?date=2025-06-21
+2025-04-15 11:23:31 [http-nio-8081-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:26:00 [http-nio-8081-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/index.html
+2025-04-15 11:26:00 [http-nio-8081-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:26:00 [http-nio-8081-exec-7] DEBUG o.s.s.w.s.SessionManagementFilter - Request requested invalid session id 08D177C7F99D3FB85345AD9E16EE0EBA
+2025-04-15 11:26:00 [http-nio-8081-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/index.html
+2025-04-15 11:26:01 [http-nio-8081-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/swagger-ui.css
+2025-04-15 11:26:01 [http-nio-8081-exec-10] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:26:01 [http-nio-8081-exec-10] DEBUG o.s.s.w.s.SessionManagementFilter - Request requested invalid session id 08D177C7F99D3FB85345AD9E16EE0EBA
+2025-04-15 11:26:01 [http-nio-8081-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/swagger-ui.css
+2025-04-15 11:26:01 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/index.css
+2025-04-15 11:26:01 [http-nio-8081-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:26:01 [http-nio-8081-exec-1] DEBUG o.s.s.w.s.SessionManagementFilter - Request requested invalid session id 08D177C7F99D3FB85345AD9E16EE0EBA
+2025-04-15 11:26:01 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/index.css
+2025-04-15 11:26:01 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/swagger-ui-standalone-preset.js
+2025-04-15 11:26:01 [http-nio-8081-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:26:01 [http-nio-8081-exec-3] DEBUG o.s.s.w.s.SessionManagementFilter - Request requested invalid session id 08D177C7F99D3FB85345AD9E16EE0EBA
+2025-04-15 11:26:01 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/swagger-ui-bundle.js
+2025-04-15 11:26:01 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/swagger-ui-standalone-preset.js
+2025-04-15 11:26:01 [http-nio-8081-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:26:01 [http-nio-8081-exec-2] DEBUG o.s.s.w.s.SessionManagementFilter - Request requested invalid session id 08D177C7F99D3FB85345AD9E16EE0EBA
+2025-04-15 11:26:01 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/swagger-ui-bundle.js
+2025-04-15 11:26:01 [http-nio-8081-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/swagger-initializer.js
+2025-04-15 11:26:01 [http-nio-8081-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:26:01 [http-nio-8081-exec-4] DEBUG o.s.s.w.s.SessionManagementFilter - Request requested invalid session id 08D177C7F99D3FB85345AD9E16EE0EBA
+2025-04-15 11:26:01 [http-nio-8081-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/swagger-initializer.js
+2025-04-15 11:26:01 [http-nio-8081-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /v3/api-docs/swagger-config
+2025-04-15 11:26:01 [http-nio-8081-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:26:01 [http-nio-8081-exec-5] DEBUG o.s.s.w.s.SessionManagementFilter - Request requested invalid session id 08D177C7F99D3FB85345AD9E16EE0EBA
+2025-04-15 11:26:01 [http-nio-8081-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /v3/api-docs/swagger-config
+2025-04-15 11:26:01 [http-nio-8081-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /v3/api-docs
+2025-04-15 11:26:01 [http-nio-8081-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:26:01 [http-nio-8081-exec-6] DEBUG o.s.s.w.s.SessionManagementFilter - Request requested invalid session id 08D177C7F99D3FB85345AD9E16EE0EBA
+2025-04-15 11:26:01 [http-nio-8081-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /v3/api-docs
+2025-04-15 11:26:02 [http-nio-8081-exec-6] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 454 ms
+2025-04-15 11:26:21 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/house-cleaning/schedules?date=2025-06-21
+2025-04-15 11:26:21 [http-nio-8081-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:26:21 [http-nio-8081-exec-3] DEBUG o.s.s.w.s.SessionManagementFilter - Request requested invalid session id 08D177C7F99D3FB85345AD9E16EE0EBA
+2025-04-15 11:47:16 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/index.html
+2025-04-15 11:47:16 [http-nio-8081-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:47:16 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/index.html
+2025-04-15 11:47:16 [http-nio-8081-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/swagger-ui-bundle.js
+2025-04-15 11:47:16 [http-nio-8081-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/swagger-ui.css
+2025-04-15 11:47:16 [http-nio-8081-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/index.css
+2025-04-15 11:47:16 [http-nio-8081-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/swagger-ui-standalone-preset.js
+2025-04-15 11:47:16 [http-nio-8081-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:47:16 [http-nio-8081-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:47:16 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/swagger-initializer.js
+2025-04-15 11:47:16 [http-nio-8081-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/index.css
+2025-04-15 11:47:16 [http-nio-8081-exec-10] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:47:16 [http-nio-8081-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/swagger-ui.css
+2025-04-15 11:47:16 [http-nio-8081-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/swagger-ui-bundle.js
+2025-04-15 11:47:16 [http-nio-8081-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:47:16 [http-nio-8081-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/swagger-ui-standalone-preset.js
+2025-04-15 11:47:16 [http-nio-8081-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:47:16 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/swagger-initializer.js
+2025-04-15 11:47:16 [http-nio-8081-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /swagger-ui/favicon-32x32.png
+2025-04-15 11:47:16 [http-nio-8081-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /v3/api-docs/swagger-config
+2025-04-15 11:47:16 [http-nio-8081-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:47:16 [http-nio-8081-exec-9] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:47:16 [http-nio-8081-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /swagger-ui/favicon-32x32.png
+2025-04-15 11:47:16 [http-nio-8081-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /v3/api-docs/swagger-config
+2025-04-15 11:47:16 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /v3/api-docs
+2025-04-15 11:47:16 [http-nio-8081-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 11:47:16 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /v3/api-docs
+2025-04-15 11:56:10 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m40s38ms).
+2025-04-15 12:40:09 [http-nio-8081-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/house-cleaning/generate?date=2025-06-21
+2025-04-15 12:40:09 [http-nio-8081-exec-10] DEBUG o.s.s.o.jwt.JwtTimestampValidator - Jwt expired at 2025-04-15T06:40:46Z
+2025-04-15 12:40:09 [http-nio-8081-exec-10] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider - Failed to authenticate since the JWT was invalid
+2025-04-15 12:41:29 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/house-cleaning/generate?date=2025-06-21
+2025-04-15 12:41:29 [http-nio-8081-exec-3] INFO  backend.config.JwtRoleConverter - Added ROLE_USER authority
+2025-04-15 12:41:29 [http-nio-8081-exec-3] INFO  backend.config.JwtRoleConverter - Added ROLE_ADMIN authority
+2025-04-15 12:41:29 [http-nio-8081-exec-3] INFO  backend.config.JwtRoleConverter - Final authorities: [ROLE_USER, ROLE_ADMIN]
+2025-04-15 12:41:29 [http-nio-8081-exec-3] INFO  backend.config.JwtRoleConverter - Email from JWT: thoravenger56787@gmail.com
+2025-04-15 12:41:29 [http-nio-8081-exec-3] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider - Authenticated token
+2025-04-15 12:41:29 [http-nio-8081-exec-3] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter - Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@17fc874b, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER, ROLE_ADMIN]]
+2025-04-15 12:41:29 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/house-cleaning/generate?date=2025-06-21
+2025-04-15 12:41:29 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Generating cleaning schedules for date: 2025-06-21
+2025-04-15 12:41:29 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:29 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:29 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured check-in time: 13:00
+2025-04-15 12:41:29 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:29 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:29 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured check-out time: 11:00
+2025-04-15 12:41:29 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Found 1 check-in bookings, 1 check-out bookings, and 3 current bookings for date 2025-06-21
+2025-04-15 12:41:29 [http-nio-8081-exec-3] INFO  b.s.impl.BookedRoomsServiceImpl - Checking check-in rooms for date: 2025-06-21
+2025-04-15 12:41:29 [http-nio-8081-exec-3] INFO  b.s.impl.BookedRoomsServiceImpl - Found 1 transactions with check-in date 2025-06-21
+2025-04-15 12:41:29 [http-nio-8081-exec-3] INFO  b.s.impl.BookedRoomsServiceImpl - Booking IDs for check-in: [450]
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.BookedRoomsServiceImpl - Room IDs for bookings [450]: [432, 438, 450, 456, 468, 480]
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.BookedRoomsServiceImpl - Checking check-out rooms for date: 2025-06-21
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.BookedRoomsServiceImpl - Found 1 transactions with check-out date 2025-06-21
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.BookedRoomsServiceImpl - Booking IDs for check-out: [449]
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.BookedRoomsServiceImpl - Room IDs for bookings [449]: [438, 456]
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.BookedRoomsServiceImpl - Checking currently booked rooms for date: 2025-06-21T00:00:00Z
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.BookedRoomsServiceImpl - Currently booked room IDs: [426, 432, 438, 444, 450, 456, 462, 468, 474, 480]
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Found 6 check-in rooms, 2 check-out rooms, and 10 current rooms for date 2025-06-21
+2025-04-15 12:41:30 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 450
+2025-04-15 12:41:30 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 449
+2025-04-15 12:41:30 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 449
+2025-04-15 12:41:30 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 450
+2025-04-15 12:41:30 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 451
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Room to booking map: {}
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 12:41:30 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 432
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 12:41:30 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 438
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 12:41:30 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 450
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 12:41:30 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 456
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 12:41:30 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 468
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 12:41:30 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 12:41:31 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 480
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 12:41:31 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 426
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 12:41:31 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 444
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 12:41:31 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 462
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 12:41:31 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 12:41:31 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 474
+2025-04-15 12:59:39 [http-nio-8081-exec-5] DEBUG o.s.s.w.f.HttpStatusRequestRejectedHandler - Rejecting request due to: The request was rejected because the URL contained a potentially malicious String "//"
+org.springframework.security.web.firewall.RequestRejectedException: The request was rejected because the URL contained a potentially malicious String "//"
+	at org.springframework.security.web.firewall.StrictHttpFirewall.rejectedBlocklistedUrls(StrictHttpFirewall.java:548)
+	at org.springframework.security.web.firewall.StrictHttpFirewall.getFirewalledRequest(StrictHttpFirewall.java:518)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:114)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-04-15 12:59:40 [http-nio-8081-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /error?date=2025-06-21?shift=MORNING_SHIFT
+2025-04-15 12:59:40 [http-nio-8081-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 12:59:40 [http-nio-8081-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /error?date=2025-06-21?shift=MORNING_SHIFT
+2025-04-15 12:59:45 [http-nio-8081-exec-2] DEBUG o.s.s.w.f.HttpStatusRequestRejectedHandler - Rejecting request due to: The request was rejected because the URL contained a potentially malicious String "//"
+org.springframework.security.web.firewall.RequestRejectedException: The request was rejected because the URL contained a potentially malicious String "//"
+	at org.springframework.security.web.firewall.StrictHttpFirewall.rejectedBlocklistedUrls(StrictHttpFirewall.java:548)
+	at org.springframework.security.web.firewall.StrictHttpFirewall.getFirewalledRequest(StrictHttpFirewall.java:518)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:114)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-04-15 12:59:45 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /error?date=2025-06-21&shift=MORNING_SHIFT
+2025-04-15 12:59:45 [http-nio-8081-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 12:59:45 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /error?date=2025-06-21&shift=MORNING_SHIFT
+2025-04-15 12:59:51 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/house-cleaning/assign-staff?date=2025-06-21&shift=MORNING_SHIFT
+2025-04-15 12:59:51 [http-nio-8081-exec-1] INFO  backend.config.JwtRoleConverter - Added ROLE_USER authority
+2025-04-15 12:59:51 [http-nio-8081-exec-1] INFO  backend.config.JwtRoleConverter - Added ROLE_ADMIN authority
+2025-04-15 12:59:51 [http-nio-8081-exec-1] INFO  backend.config.JwtRoleConverter - Final authorities: [ROLE_USER, ROLE_ADMIN]
+2025-04-15 12:59:51 [http-nio-8081-exec-1] INFO  backend.config.JwtRoleConverter - Email from JWT: thoravenger56787@gmail.com
+2025-04-15 12:59:51 [http-nio-8081-exec-1] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider - Authenticated token
+2025-04-15 12:59:51 [http-nio-8081-exec-1] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter - Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@17fc874b, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER, ROLE_ADMIN]]
+2025-04-15 12:59:51 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/house-cleaning/assign-staff?date=2025-06-21&shift=MORNING_SHIFT
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Assigning staff to schedules for date: 2025-06-21 and shift: MORNING_SHIFT
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured daily cleaning duration: 30 minutes
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured deep cleaning duration: 120 minutes
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Shift time: 07:00 to 11:00
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - STAFF ANALYSIS: Total cleaning minutes required: 120, Shift minutes: 240, Minimum staff required: 1, Staff available: 1
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Assigned staff 8 to room 432 for cleaning from 09:30 to 10:00, staff utilization=12.5%
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Cannot use original scheduled time 09:00 for room 450 - conflict with staff schedule
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Assigned staff 8 to room 450 for cleaning from 10:00 to 10:30, staff utilization=25.0%
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Cannot use original scheduled time 10:30 for room 468 - conflict with staff schedule
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Assigned staff 8 to room 468 for cleaning from 10:30 to 11:00, staff utilization=37.5%
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Assigned staff 8 to room 480 for cleaning from 07:00 to 07:30, staff utilization=50.0%
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Staff 8 has 4 rooms assigned (utilization: 50.0%)
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl -   - Room 480 from 07:00 to 07:30
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl -   - Room 432 from 09:30 to 10:00
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl -   - Room 450 from 10:00 to 10:30
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl -   - Room 468 from 10:30 to 11:00
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl -   - Staff 8 is working from 07:00 to 11:00 (utilization: 50.0%)
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Saved schedule for room 432: staffId=8, scheduledTime=09:30
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Saved schedule for room 450: staffId=8, scheduledTime=10:00
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Saved schedule for room 468: staffId=8, scheduledTime=10:30
+2025-04-15 12:59:52 [http-nio-8081-exec-1] INFO  b.s.impl.HouseCleaningServiceImpl - Saved schedule for room 480: staffId=8, scheduledTime=07:00
+2025-04-15 13:00:36 [http-nio-8081-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/house-cleaning/assign-staff?date=2025-06-21&shift=AFTERNOON_SHIFT
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  backend.config.JwtRoleConverter - Added ROLE_USER authority
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  backend.config.JwtRoleConverter - Added ROLE_ADMIN authority
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  backend.config.JwtRoleConverter - Final authorities: [ROLE_USER, ROLE_ADMIN]
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  backend.config.JwtRoleConverter - Email from JWT: thoravenger56787@gmail.com
+2025-04-15 13:00:36 [http-nio-8081-exec-8] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider - Authenticated token
+2025-04-15 13:00:36 [http-nio-8081-exec-8] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter - Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@17fc874b, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER, ROLE_ADMIN]]
+2025-04-15 13:00:36 [http-nio-8081-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/house-cleaning/assign-staff?date=2025-06-21&shift=AFTERNOON_SHIFT
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Assigning staff to schedules for date: 2025-06-21 and shift: AFTERNOON_SHIFT
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured daily cleaning duration: 30 minutes
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured deep cleaning duration: 120 minutes
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Shift time: 11:00 to 15:00
+2025-04-15 13:00:36 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - STAFF ANALYSIS: Total cleaning minutes required: 360, Shift minutes: 240, Minimum staff required: 2, Staff available: 1
+2025-04-15 13:00:36 [http-nio-8081-exec-8] WARN  b.s.impl.HouseCleaningServiceImpl - STAFF SHORTAGE: Need 2 staff but only 1 available.
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Found 1 available staff from other shifts
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Reassigned staff 1 from shift EVENING_SHIFT to shift AFTERNOON_SHIFT
+2025-04-15 13:00:37 [http-nio-8081-exec-8] WARN  b.s.impl.HouseCleaningServiceImpl - Cleaning for room 438 would end after shift ends. Adjusting start time.
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Assigned staff 9 to room 438 for cleaning from 11:00 to 13:00, staff utilization=50.0%
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Assigned staff 1 to room 456 for cleaning from 12:30 to 14:30, staff utilization=50.0%
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Assigned staff 9 to room 426 for cleaning from 13:30 to 14:00, staff utilization=62.5%
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Assigned staff 1 to room 444 for cleaning from 11:00 to 11:30, staff utilization=62.5%
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Cannot use original scheduled time 13:00 for room 462 - conflict with staff schedule
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Assigned staff 9 to room 462 for cleaning from 14:00 to 14:30, staff utilization=75.0%
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Cannot use original scheduled time 11:00 for room 474 - conflict with staff schedule
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Assigned staff 1 to room 474 for cleaning from 14:30 to 15:00, staff utilization=75.0%
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Staff 9 has 3 rooms assigned (utilization: 75.0%)
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl -   - Room 438 from 11:00 to 13:00
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl -   - Room 426 from 13:30 to 14:00
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl -   - Room 462 from 14:00 to 14:30
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl -   - Staff 9 is working from 11:00 to 14:30 (utilization: 75.0%)
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Staff 1 has 3 rooms assigned (utilization: 75.0%)
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl -   - Room 444 from 11:00 to 11:30
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl -   - Room 456 from 12:30 to 14:30
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl -   - Room 474 from 14:30 to 15:00
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl -   - Staff 1 is working from 11:00 to 15:00 (utilization: 75.0%)
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Saved schedule for room 438: staffId=9, scheduledTime=11:00
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Saved schedule for room 456: staffId=1, scheduledTime=12:30
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Saved schedule for room 426: staffId=9, scheduledTime=13:30
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Saved schedule for room 444: staffId=1, scheduledTime=11:00
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Saved schedule for room 462: staffId=9, scheduledTime=14:00
+2025-04-15 13:00:37 [http-nio-8081-exec-8] INFO  b.s.impl.HouseCleaningServiceImpl - Saved schedule for room 474: staffId=1, scheduledTime=14:30
+2025-04-15 13:02:06 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/house-cleaning/generate?date=2025-06-21
+2025-04-15 13:02:06 [http-nio-8081-exec-3] INFO  backend.config.JwtRoleConverter - Added ROLE_USER authority
+2025-04-15 13:02:06 [http-nio-8081-exec-3] INFO  backend.config.JwtRoleConverter - Added ROLE_ADMIN authority
+2025-04-15 13:02:06 [http-nio-8081-exec-3] INFO  backend.config.JwtRoleConverter - Final authorities: [ROLE_USER, ROLE_ADMIN]
+2025-04-15 13:02:06 [http-nio-8081-exec-3] INFO  backend.config.JwtRoleConverter - Email from JWT: thoravenger56787@gmail.com
+2025-04-15 13:02:06 [http-nio-8081-exec-3] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider - Authenticated token
+2025-04-15 13:02:06 [http-nio-8081-exec-3] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter - Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@17fc874b, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER, ROLE_ADMIN]]
+2025-04-15 13:02:06 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/house-cleaning/generate?date=2025-06-21
+2025-04-15 13:02:06 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Generating cleaning schedules for date: 2025-06-21
+2025-04-15 13:02:06 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:06 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:06 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured check-in time: 13:00
+2025-04-15 13:02:06 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:06 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:06 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured check-out time: 11:00
+2025-04-15 13:02:06 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Found 1 check-in bookings, 1 check-out bookings, and 3 current bookings for date 2025-06-21
+2025-04-15 13:02:06 [http-nio-8081-exec-3] INFO  b.s.impl.BookedRoomsServiceImpl - Checking check-in rooms for date: 2025-06-21
+2025-04-15 13:02:06 [http-nio-8081-exec-3] INFO  b.s.impl.BookedRoomsServiceImpl - Found 1 transactions with check-in date 2025-06-21
+2025-04-15 13:02:06 [http-nio-8081-exec-3] INFO  b.s.impl.BookedRoomsServiceImpl - Booking IDs for check-in: [450]
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.s.impl.BookedRoomsServiceImpl - Room IDs for bookings [450]: [432, 438, 450, 456, 468, 480]
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.s.impl.BookedRoomsServiceImpl - Checking check-out rooms for date: 2025-06-21
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.s.impl.BookedRoomsServiceImpl - Found 1 transactions with check-out date 2025-06-21
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.s.impl.BookedRoomsServiceImpl - Booking IDs for check-out: [449]
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.s.impl.BookedRoomsServiceImpl - Room IDs for bookings [449]: [438, 456]
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.s.impl.BookedRoomsServiceImpl - Checking currently booked rooms for date: 2025-06-21T00:00:00Z
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.s.impl.BookedRoomsServiceImpl - Currently booked room IDs: [426, 432, 438, 444, 450, 456, 462, 468, 474, 480]
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Found 6 check-in rooms, 2 check-out rooms, and 10 current rooms for date 2025-06-21
+2025-04-15 13:02:07 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 450
+2025-04-15 13:02:07 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 449
+2025-04-15 13:02:07 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 449
+2025-04-15 13:02:07 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 450
+2025-04-15 13:02:07 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - Could not extract room ID from booking details for booking ID 451
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Room to booking map: {}
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 13:02:07 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 432
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 13:02:07 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 438
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 13:02:07 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 450
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 456
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 468
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 480
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 426
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 444
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 462
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured time interval: 30 minutes
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 13:02:08 [http-nio-8081-exec-3] WARN  b.s.impl.HouseCleaningServiceImpl - No booking ID found for room ID 474
+2025-04-15 13:02:19 [http-nio-8081-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/house-cleaning/assign-staff?date=2025-06-21&shift=MORNING_SHIFT
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  backend.config.JwtRoleConverter - Added ROLE_USER authority
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  backend.config.JwtRoleConverter - Added ROLE_ADMIN authority
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  backend.config.JwtRoleConverter - Final authorities: [ROLE_USER, ROLE_ADMIN]
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  backend.config.JwtRoleConverter - Email from JWT: thoravenger56787@gmail.com
+2025-04-15 13:02:19 [http-nio-8081-exec-7] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider - Authenticated token
+2025-04-15 13:02:19 [http-nio-8081-exec-7] DEBUG o.s.s.o.s.r.w.a.BearerTokenAuthenticationFilter - Set SecurityContextHolder to JwtAuthenticationToken [Principal=org.springframework.security.oauth2.jwt.Jwt@17fc874b, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=null], Granted Authorities=[ROLE_USER, ROLE_ADMIN]]
+2025-04-15 13:02:19 [http-nio-8081-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/house-cleaning/assign-staff?date=2025-06-21&shift=MORNING_SHIFT
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Assigning staff to schedules for date: 2025-06-21 and shift: MORNING_SHIFT
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured daily cleaning duration: 30 minutes
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured deep cleaning duration: 120 minutes
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Configured morning shift start time: 07:00
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Configured afternoon shift start time: 11:00
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Configured evening shift start time: 15:00
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.service.TenantConfigurationService - Fetching configurations for tenantId: 1
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.service.TenantConfigurationService - Found 1 configurations for tenantId: 1
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Using configured shift duration: 4 hours
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Shift time: 07:00 to 11:00
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - STAFF ANALYSIS: Total cleaning minutes required: 120, Shift minutes: 240, Minimum staff required: 1, Staff available: 0
+2025-04-15 13:02:19 [http-nio-8081-exec-7] WARN  b.s.impl.HouseCleaningServiceImpl - STAFF SHORTAGE: Need 1 staff but only 0 available.
+2025-04-15 13:02:19 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Found 0 available staff from other shifts
+2025-04-15 13:02:23 [http-nio-8081-exec-7] INFO  backend.service.EmailService - Admin email sent successfully with subject: CRITICAL STAFF SHORTAGE ALERT: MORNING_SHIFT Shift on 2025-06-21
+2025-04-15 13:02:23 [http-nio-8081-exec-7] INFO  backend.service.EmailService - Critical staff shortage email notification sent to admin
+2025-04-15 13:02:23 [http-nio-8081-exec-7] ERROR b.s.impl.HouseCleaningServiceImpl - CRITICAL STAFF SHORTAGE: Email alert sent to admin.
+2025-04-15 13:02:23 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Adding 1 third-party staff for shift MORNING_SHIFT
+2025-04-15 13:02:23 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Added third-party staff with ID: 22
+2025-04-15 13:02:23 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Added 1 third-party staff to meet minimum requirement
+2025-04-15 13:02:23 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Assigned staff 22 to room 432 for cleaning from 09:00 to 09:30, staff utilization=12.5%
+2025-04-15 13:02:23 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Assigned staff 22 to room 450 for cleaning from 08:00 to 08:30, staff utilization=25.0%
+2025-04-15 13:02:23 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Cannot use original scheduled time 07:30 for room 468 - conflict with staff schedule
+2025-04-15 13:02:23 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Assigned staff 22 to room 468 for cleaning from 09:30 to 10:00, staff utilization=37.5%
+2025-04-15 13:02:23 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Assigned staff 22 to room 480 for cleaning from 07:00 to 07:30, staff utilization=50.0%
+2025-04-15 13:02:23 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Staff 22 has 4 rooms assigned (utilization: 50.0%)
+2025-04-15 13:02:23 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl -   - Room 480 from 07:00 to 07:30
+2025-04-15 13:02:23 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl -   - Room 450 from 08:00 to 08:30
+2025-04-15 13:02:23 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl -   - Room 432 from 09:00 to 09:30
+2025-04-15 13:02:23 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl -   - Room 468 from 09:30 to 10:00
+2025-04-15 13:02:23 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl -   - Staff 22 is working from 07:00 to 10:00 (utilization: 50.0%)
+2025-04-15 13:02:23 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Saved schedule for room 432: staffId=22, scheduledTime=09:00
+2025-04-15 13:02:23 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Saved schedule for room 450: staffId=22, scheduledTime=08:00
+2025-04-15 13:02:23 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Saved schedule for room 468: staffId=22, scheduledTime=09:30
+2025-04-15 13:02:23 [http-nio-8081-exec-7] INFO  b.s.impl.HouseCleaningServiceImpl - Saved schedule for room 480: staffId=22, scheduledTime=07:00
+2025-04-15 13:12:57 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/v1/bookings/my-bookings
+2025-04-15 13:12:57 [http-nio-8081-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-15 13:13:08 [http-nio-8081-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/v1/bookings/my-bookings
+2025-04-15 13:13:08 [http-nio-8081-exec-10] DEBUG o.s.s.o.s.r.a.JwtAuthenticationProvider - Failed to authenticate since the JWT was invalid
+2025-04-15 13:19:23 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m12s208ms).

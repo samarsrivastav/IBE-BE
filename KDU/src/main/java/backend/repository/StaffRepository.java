@@ -18,7 +18,7 @@ public interface StaffRepository extends JpaRepository<Staff, String> {
     
     @Modifying
     @Transactional
-    @Query("DELETE FROM Staff s WHERE s.is_third_party = true")
+    @Query("DELETE FROM Staff s WHERE s.isThirdParty = true")
     int deleteAllThirdPartyStaff();
     
     List<Staff> findByIsThirdPartyTrue();

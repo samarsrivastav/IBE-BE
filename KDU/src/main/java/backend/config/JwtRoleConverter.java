@@ -36,6 +36,16 @@ public class JwtRoleConverter implements Converter<Jwt, AbstractAuthenticationTo
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         log.info("Added ROLE_USER authority");
 
+        if (jwt.getClaimAsStringList("cognito:groups").contains("admin")) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+            log.info("Added ROLE_ADMIN authority");
+        }
+
+        if(jwt.getClaimAsStringList("cognito:groups").contains("staff")) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_STAFF"));
+            log.info("Added ROLE_STAFF authority");
+        }
+
         // Add any additional authorities from the token
         authorities.addAll(jwtGrantedAuthoritiesConverter.convert(jwt));
 

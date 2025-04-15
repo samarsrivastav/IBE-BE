@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1/house-cleaning")
+@RequestMapping("/api/house-cleaning")
 @RequiredArgsConstructor
 public class HouseCleaningController {
 
@@ -27,7 +27,7 @@ public class HouseCleaningController {
      * @param date The date for which to generate schedules
      * @return List of generated cleaning schedules
      */
-    @PostMapping("/generate-schedules")
+    @PostMapping("/generate")
     public ResponseEntity<List<RoomCleaningSchedule>> generateSchedules(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         List<RoomCleaningSchedule> schedules = houseCleaningService.generateCleaningSchedules(date);

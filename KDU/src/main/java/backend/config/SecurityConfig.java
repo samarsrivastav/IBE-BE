@@ -47,6 +47,10 @@ public class SecurityConfig {
                     auth
                             .requestMatchers("/api/v1/bookings/my-bookings").authenticated()
                             .requestMatchers("/api/v1/bookings/direct-booking").authenticated()
+                            .requestMatchers("/api/house-cleaning/generate") // Restrict access to admins
+                            .hasRole("ADMIN")
+                            .requestMatchers("/api/house-cleaning/schedules") // Restrict access to admins
+                            .hasAnyRole("ADMIN","STAFF")
                             .anyRequest().permitAll();
                 })
                 .oauth2ResourceServer(oauth2 -> {
