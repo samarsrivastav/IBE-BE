@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class TenantConfigurationService {
     private static final Logger logger = LoggerFactory.getLogger(TenantConfigurationService.class);
     private final TenantConfigurationRepository repository;
 
+    @Cacheable(value = "tenantConfigurations", key = "#tenantId")
     public List<TenantConfiguration> getConfigurationsByTenant(Long tenantId) {
         logger.info("Fetching configurations for tenantId: {}", tenantId);
 
