@@ -113,35 +113,33 @@ public class CustomHealthIndicator implements HealthIndicator {
 
     private boolean checkGraphQLHealth() {
 
-        return false;
-//        if (graphqlEndpoint == null || graphqlEndpoint.isEmpty()) {
-//            return false;
-//        }
-//
-//        try {
-//            HttpHeaders headers = new HttpHeaders();
-//            headers.setContentType(MediaType.APPLICATION_JSON);
-//            headers.set("X-Api-Key", apiKey);
-//
-//            // Simple introspection query to check GraphQL endpoint health
-//            String query = "{\"query\":\"{ __schema { queryType { name } } }\"}";
-//
-//            HttpEntity<String> entity = new HttpEntity<>(query, headers);
-//            restTemplate.exchange(graphqlEndpoint, HttpMethod.POST, entity, String.class);
-//            return true;
-//        } catch (Exception e) {
-//            return false;
-//        }
+        if (graphqlEndpoint == null || graphqlEndpoint.isEmpty()) {
+            return false;
+        }
+
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.set("X-Api-Key", apiKey);
+
+            // Simple introspection query to check GraphQL endpoint health
+            String query = "{\"query\":\"{ __schema { queryType { name } } }\"}";
+
+            HttpEntity<String> entity = new HttpEntity<>(query, headers);
+            restTemplate.exchange(graphqlEndpoint, HttpMethod.POST, entity, String.class);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 
     private boolean checkEmailServiceHealth() {
-        return false;
         // Use the dedicated EmailHealthService to check email service health
-//        try {
-//            return emailHealthService.isEmailServiceHealthy();
-//        } catch (Exception e) {
-//            return false;
-//        }
+        try {
+            return emailHealthService.isEmailServiceHealthy();
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
