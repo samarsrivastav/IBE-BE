@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,16 +21,22 @@ public class TenantConfigurationService {
 
     @Cacheable(value = "tenantConfigurations", key = "#tenantId")
     public List<TenantConfiguration> getConfigurationsByTenant(Long tenantId) {
-        logger.info("Fetching configurations for tenantId: {}", tenantId);
+        logger.info("Cache miss for tenantId: {} - Fetching configurations from database", tenantId);
 
-        List<TenantConfiguration> configurations = repository.findByTenantId(tenantId);
-        if (configurations.isEmpty()) {
-            logger.warn("No configurations found for tenantId: {}", tenantId);
-        } else {
-            logger.info("Found {} configurations for tenantId: {}", configurations.size(), tenantId);
+        try {
+            List<TenantConfiguration> configurations = repository.findByTenantId(tenantId);
+
+            if (configurations.isEmpty()) {
+                logger.warn("No configurations found for tenantId: {}", tenantId);
+            } else {
+                logger.info("Found {} configurations for tenantId: {}", configurations.size(), tenantId);
+            }
+
+            return configurations;
+        } catch (Exception e) {
+            logger.error("Error fetching configurations for tenantId: {} - {}", tenantId, e.getMessage(), e);
+            return new ArrayList<>();
         }
-
-        return configurations;
     }
 
     public TenantConfiguration saveConfiguration(Long tenantId, JsonNode configJson) {
