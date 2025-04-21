@@ -3,8 +3,7 @@ package backend.service;
 import backend.entity.PropertyConfiguration;
 import backend.repository.PropertyConfigurationRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
+
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
@@ -33,7 +32,7 @@ public class PropertyConfigurationService {
         }
     }
 
-    @CachePut(value = "propertyCache", key = "#config.propertyId")
+
     public PropertyConfiguration updateConfiguration(PropertyConfiguration config) {
         logger.info("Updating configuration for propertyId: {}", config.getPropertyId());
 
@@ -47,8 +46,4 @@ public class PropertyConfigurationService {
         }
     }
 
-    @CacheEvict(value = "propertyCache", key = "#propertyId")
-    public void evictCache(Long propertyId) {
-        logger.info("Evicting cache for propertyId: {}", propertyId);
-    }
 }

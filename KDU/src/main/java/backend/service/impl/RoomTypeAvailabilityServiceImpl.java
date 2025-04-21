@@ -43,7 +43,7 @@ public class RoomTypeAvailabilityServiceImpl implements RoomTypeAvailabilityServ
     private static final int DEFAULT_PAGE_SIZE = 10;
 
     Map<Long, Double> averageRates = new HashMap<>();
-     Map<Long, List<Double>> ratesByRoomType = new HashMap<>();
+    Map<Long, List<Double>> ratesByRoomType = new HashMap<>();
     @Override
     public List<RoomTypeResponseDTO> getAvailableRoomTypes(RoomTypeSearchRequestDTO searchRequest) {
         try {
@@ -52,10 +52,10 @@ public class RoomTypeAvailabilityServiceImpl implements RoomTypeAvailabilityServ
 
             // Get available room types
             String query = GraphQLQueries.getAvailableRoomsQuery(
-                searchRequest.getPropertyId(),
-                formattedStartDate,
-                formattedEndDate,
-                searchRequest.getNumberOfGuests()
+                    searchRequest.getPropertyId(),
+                    formattedStartDate,
+                    formattedEndDate,
+                    searchRequest.getNumberOfGuests()
             );
 
             JsonNode response = executeGraphQLQuery(query);
@@ -72,20 +72,20 @@ public class RoomTypeAvailabilityServiceImpl implements RoomTypeAvailabilityServ
 
             // Get room rates for available room types
             Set<Long> roomTypeIds = graphQLRoomTypes.stream()
-                .map(RoomTypeResponseDTO::getId)
-                .collect(Collectors.toSet());
-            
-             averageRates = getAverageRoomRates(roomTypeIds, formattedStartDate, formattedEndDate);
+                    .map(RoomTypeResponseDTO::getId)
+                    .collect(Collectors.toSet());
+
+            averageRates = getAverageRoomRates(roomTypeIds, formattedStartDate, formattedEndDate);
 
             // Get local room types data
             List<RoomTypes> localRoomTypes = roomTypeService.getAllRoomTypes();
             List<RoomTypes> matchingLocalRoomTypes = localRoomTypes.stream()
-                .filter(roomType -> roomTypeIds.contains(roomType.getRoomTypeId()))
-                .collect(Collectors.toList());
+                    .filter(roomType -> roomTypeIds.contains(roomType.getRoomTypeId()))
+                    .collect(Collectors.toList());
 
             // Merge all data
             List<RoomTypeResponseDTO> result = mergeRoomTypeData(graphQLRoomTypes, matchingLocalRoomTypes);
-            
+
             // Set average rates
             result.forEach(roomType -> {
                 Double rate = averageRates.get(roomType.getId());
@@ -109,8 +109,8 @@ public class RoomTypeAvailabilityServiceImpl implements RoomTypeAvailabilityServ
         if (cursor == null) {
             // First page
             return roomTypes.stream()
-                .limit(pageSize)
-                .collect(Collectors.toList());
+                    .limit(pageSize)
+                    .collect(Collectors.toList());
         }
 
         // Find the starting index based on the cursor
@@ -121,9 +121,9 @@ public class RoomTypeAvailabilityServiceImpl implements RoomTypeAvailabilityServ
 
         // Return the next page of results
         return roomTypes.stream()
-            .skip(startIndex)
-            .limit(pageSize)
-            .collect(Collectors.toList());
+                .skip(startIndex)
+                .limit(pageSize)
+                .collect(Collectors.toList());
     }
 
     private int findStartIndex(List<RoomTypeResponseDTO> roomTypes, String cursor) {
@@ -143,18 +143,18 @@ public class RoomTypeAvailabilityServiceImpl implements RoomTypeAvailabilityServ
     private Map<Long, Double> getAverageRoomRates(Set<Long> roomTypeIds, String startDate, String endDate) {
         try {
             String roomTypeIdsString = roomTypeIds.stream()
-                .map(String::valueOf)
-                .collect(Collectors.joining(","));
+                    .map(String::valueOf)
+                    .collect(Collectors.joining(","));
             log.info("Fetching room rates for room types: {} between {} and {}", roomTypeIdsString, startDate, endDate);
-            
+
             String query = GraphQLQueries.getRoomRatesByRoomTypes(roomTypeIdsString, startDate, endDate);
             JsonNode response = executeGraphQLQuery(query);
-           // Map<Long, List<Double>> ratesByRoomType = new HashMap<>();
-            
+            // Map<Long, List<Double>> ratesByRoomType = new HashMap<>();
+
             if (response.has("data") && response.get("data").has("listRoomRateRoomTypeMappings")) {
                 JsonNode mappings = response.get("data").get("listRoomRateRoomTypeMappings");
                 log.info("Found {} rate mappings", mappings.size());
-                
+
                 for (JsonNode mapping : mappings) {
                     Long roomTypeId = mapping.get("room_type_id").asLong();
                     JsonNode roomRate = mapping.get("room_rate");
@@ -170,9 +170,9 @@ public class RoomTypeAvailabilityServiceImpl implements RoomTypeAvailabilityServ
             ratesByRoomType.forEach((roomTypeId, rates) -> {
                 if (!rates.isEmpty()) {
                     double average = rates.stream()
-                        .mapToDouble(Double::doubleValue)
-                        .average()
-                        .orElse(0.0);
+                            .mapToDouble(Double::doubleValue)
+                            .average()
+                            .orElse(0.0);
                     averageRates.put(roomTypeId, average);
                     log.info("Room type {} has {} rates, average: {}", roomTypeId, rates.size(), average);
                 } else {
@@ -196,48 +196,48 @@ public class RoomTypeAvailabilityServiceImpl implements RoomTypeAvailabilityServ
 
     private List<RoomTypeResponseDTO> mergeRoomTypeData(List<RoomTypeResponseDTO> graphQLRoomTypes, List<RoomTypes> localRoomTypes) {
         Map<Long, RoomTypes> localRoomTypeMap = localRoomTypes.stream()
-            .collect(Collectors.toMap(RoomTypes::getRoomTypeId, roomType -> roomType));
+                .collect(Collectors.toMap(RoomTypes::getRoomTypeId, roomType -> roomType));
 
         return graphQLRoomTypes.stream()
-            .map(graphQLType -> {
-                RoomTypes localType = localRoomTypeMap.get(graphQLType.getId());
-                if (localType != null) {
-                    graphQLType.setDescription(localType.getRoomTypeDescription());
-                    graphQLType.setReviews(localType.getNumberOfReviews());
-                    graphQLType.setRating(localType.getStars());
-                    graphQLType.setImages(localType.getImages());
-                    graphQLType.setAmenities(localType.getAmenities());
-                    graphQLType.setLocation(localType.getLocation());
-                }
-                return graphQLType;
-            })
-            .collect(Collectors.toList());
+                .map(graphQLType -> {
+                    RoomTypes localType = localRoomTypeMap.get(graphQLType.getId());
+                    if (localType != null) {
+                        graphQLType.setDescription(localType.getRoomTypeDescription());
+                        graphQLType.setReviews(localType.getNumberOfReviews());
+                        graphQLType.setRating(localType.getStars());
+                        graphQLType.setImages(localType.getImages());
+                        graphQLType.setAmenities(localType.getAmenities());
+                        graphQLType.setLocation(localType.getLocation());
+                    }
+                    return graphQLType;
+                })
+                .collect(Collectors.toList());
     }
 
     private JsonNode executeGraphQLQuery(String query) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.set("x-api-key", apiKey);
-        
+
         Map<String, String> requestBody = Map.of("query", query);
         HttpEntity<Map<String, String>> request = new HttpEntity<>(requestBody, headers);
-        
+
         try {
             JsonNode response = restTemplate.postForObject(
-                graphqlEndpoint,
-                request,
-                JsonNode.class
+                    graphqlEndpoint,
+                    request,
+                    JsonNode.class
             );
-            
+
             if (response == null) {
                 throw new RuntimeException("Empty response from GraphQL endpoint");
             }
-            
+
             if (response.has("errors")) {
                 String errorMessage = response.get("errors").get(0).get("message").asText();
                 throw new RuntimeException("GraphQL error: " + errorMessage);
             }
-            
+
             return response;
         } catch (Exception e) {
             log.error("GraphQL query failed: {}", e.getMessage());
@@ -247,28 +247,28 @@ public class RoomTypeAvailabilityServiceImpl implements RoomTypeAvailabilityServ
 
     private List<RoomTypeResponseDTO> processGraphQLResponse(JsonNode response) {
         List<RoomTypeResponseDTO> roomTypes = new ArrayList<>();
-        
+
         try {
             JsonNode data = response.get("data");
             if (data != null && data.has("listRooms")) {
                 JsonNode rooms = data.get("listRooms");
                 log.info("Found {} total rooms in response", rooms.size());
-                
+
                 // Group rooms by room type to count availability
                 Map<Long, Integer> roomTypeAvailabilityCount = new HashMap<>();
                 Map<Long, RoomTypeResponseDTO> roomTypeMap = new HashMap<>();
-                
+
                 for (JsonNode room : rooms) {
                     if (room.has("room_type")) {
                         JsonNode roomTypeNode = room.get("room_type");
                         Long roomTypeId = roomTypeNode.get("room_type_id").asLong();
-                        
+
                         // Count available rooms for each room type
                         int currentCount = roomTypeAvailabilityCount.getOrDefault(roomTypeId, 0);
                         roomTypeAvailabilityCount.put(roomTypeId, currentCount + 1);
-                        
+
                         log.debug("Room type {} has {} available rooms", roomTypeId, currentCount + 1);
-                        
+
                         // Create RoomTypeResponseDTO if not already created
                         if (!roomTypeMap.containsKey(roomTypeId)) {
                             try {
@@ -278,7 +278,7 @@ public class RoomTypeAvailabilityServiceImpl implements RoomTypeAvailabilityServ
                                     if (roomType.getSingleBed() == null) roomType.setSingleBed(0);
                                     if (roomType.getDoubleBed() == null) roomType.setDoubleBed(0);
                                     if (roomType.getMaxOccupancy() == null) roomType.setMaxOccupancy(0);
-                                    
+
                                     roomTypeMap.put(roomTypeId, roomType);
                                 }
                             } catch (Exception e) {
@@ -287,12 +287,12 @@ public class RoomTypeAvailabilityServiceImpl implements RoomTypeAvailabilityServ
                         }
                     }
                 }
-                
+
                 // Log the availability counts for each room type
                 roomTypeAvailabilityCount.forEach((roomTypeId, count) -> {
                     log.info("Room type {} has {} available rooms", roomTypeId, count);
                 });
-                
+
                 // Set availability count and add to result list
                 roomTypeMap.forEach((roomTypeId, roomType) -> {
                     int availableCount = roomTypeAvailabilityCount.getOrDefault(roomTypeId, 0);
@@ -300,7 +300,7 @@ public class RoomTypeAvailabilityServiceImpl implements RoomTypeAvailabilityServ
                     roomTypes.add(roomType);
                     log.info("Added room type {} with {} available rooms to result", roomTypeId, availableCount);
                 });
-                
+
                 log.info("Processed {} room types with availability", roomTypes.size());
             } else {
                 log.warn("No rooms found in response or invalid response structure");
@@ -309,62 +309,62 @@ public class RoomTypeAvailabilityServiceImpl implements RoomTypeAvailabilityServ
             log.error("Failed to process GraphQL response: {}", e.getMessage());
             throw new RuntimeException("Failed to process GraphQL response", e);
         }
-        
+
         return roomTypes;
     }
 
     private List<RoomTypeResponseDTO> filterByBedCount(List<RoomTypeResponseDTO> roomTypes, RoomTypeSearchRequestDTO searchRequest) {
         return roomTypes.stream()
-            .filter(roomType -> {
-                int singleBeds = roomType.getSingleBed() != null ? roomType.getSingleBed() : 0;
-                int doubleBeds = roomType.getDoubleBed() != null ? roomType.getDoubleBed() : 0;
-                int totalBedsInRoom = singleBeds + (doubleBeds * 2);
-                return totalBedsInRoom >= searchRequest.getTotalBeds();
-            })
-            .collect(Collectors.toList());
+                .filter(roomType -> {
+                    int singleBeds = roomType.getSingleBed() != null ? roomType.getSingleBed() : 0;
+                    int doubleBeds = roomType.getDoubleBed() != null ? roomType.getDoubleBed() : 0;
+                    int totalBedsInRoom = singleBeds + (doubleBeds * 2);
+                    return totalBedsInRoom >= searchRequest.getTotalBeds();
+                })
+                .collect(Collectors.toList());
     }
 
     private List<RoomTypeResponseDTO> filterByRoomCount(List<RoomTypeResponseDTO> roomTypes, RoomTypeSearchRequestDTO searchRequest) {
         log.info("Filtering room types by requested room count: {}", searchRequest.getNumberOfRooms());
-        
+
         // Create a map of room type IDs to their available room counts
         Map<Long, Integer> roomTypeCounts = roomTypes.stream()
-            .collect(Collectors.groupingBy(
-                RoomTypeResponseDTO::getId,
-                Collectors.collectingAndThen(
-                    Collectors.toList(),
-                    list -> list.get(0).getAvailableRooms()
-                )
-            ));
-            
+                .collect(Collectors.groupingBy(
+                        RoomTypeResponseDTO::getId,
+                        Collectors.collectingAndThen(
+                                Collectors.toList(),
+                                list -> list.get(0).getAvailableRooms()
+                        )
+                ));
+
         log.info("Room type counts before filtering: {}", roomTypeCounts);
-        
+
         // Filter room types that have enough available rooms
         List<RoomTypeResponseDTO> filteredRoomTypes = roomTypes.stream()
-            .filter(roomType -> {
-                int availableRooms = roomTypeCounts.getOrDefault(roomType.getId(), 0);
-                boolean hasEnoughRooms = availableRooms >= searchRequest.getNumberOfRooms();
-                log.debug("Room type {} has {} available rooms, requested: {}, meets requirement: {}", 
-                    roomType.getId(), availableRooms, searchRequest.getNumberOfRooms(), hasEnoughRooms);
-                return hasEnoughRooms;
-            })
-            .collect(Collectors.toList());
-            
+                .filter(roomType -> {
+                    int availableRooms = roomTypeCounts.getOrDefault(roomType.getId(), 0);
+                    boolean hasEnoughRooms = availableRooms >= searchRequest.getNumberOfRooms();
+                    log.debug("Room type {} has {} available rooms, requested: {}, meets requirement: {}",
+                            roomType.getId(), availableRooms, searchRequest.getNumberOfRooms(), hasEnoughRooms);
+                    return hasEnoughRooms;
+                })
+                .collect(Collectors.toList());
+
         log.info("Found {} room types with sufficient room count", filteredRoomTypes.size());
         return filteredRoomTypes;
     }
 
     @Override
     public double getRoomTypeRate(Long roomTypeId) {
-       try {
-         if (averageRates.containsKey(roomTypeId)) {
-            return averageRates.get(roomTypeId);
-         }
-         return 0.0;
-       } catch (Exception e) {
-        log.error("Failed to get room type rate: {}", e.getMessage());
-        return 0.0;
-       }
+        try {
+            if (averageRates.containsKey(roomTypeId)) {
+                return averageRates.get(roomTypeId);
+            }
+            return 0.0;
+        } catch (Exception e) {
+            log.error("Failed to get room type rate: {}", e.getMessage());
+            return 0.0;
+        }
     }
 
     @Override
@@ -376,5 +376,4 @@ public class RoomTypeAvailabilityServiceImpl implements RoomTypeAvailabilityServ
     public Map<Long, List<Double>> getRatesByRoomType() {
         return ratesByRoomType;
     }
-
-} 
+}
