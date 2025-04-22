@@ -102,13 +102,14 @@ public class CustomHealthIndicator implements HealthIndicator {
     }
 
     private boolean checkDatabaseHealth() {
-        try {
-            JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-            int result = jdbcTemplate.queryForObject("SELECT 1", Integer.class);
-            return result == 1;
-        } catch (Exception e) {
-            return false;
-        }
+        return false;
+//        try {
+//            JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+//            int result = jdbcTemplate.queryForObject("SELECT 1", Integer.class);
+//            return result == 1;
+//        } catch (Exception e) {
+//            return false;
+//        }
     }
 
     private boolean checkGraphQLHealth() {

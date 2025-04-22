@@ -14,7 +14,6 @@ import com.amazonaws.xray.spring.aop.XRayEnabled;
 @EnableCaching
 @XRayEnabled
 public class HotelBookingApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(HotelBookingApplication.class, args);
 	}
