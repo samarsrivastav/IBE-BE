@@ -3,6 +3,8 @@ package backend.service;
 import backend.entity.PropertyConfiguration;
 import backend.repository.PropertyConfigurationRepository;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,8 +16,9 @@ public class PropertyConfigurationService {
     private static final Logger logger = LoggerFactory.getLogger(PropertyConfigurationService.class);
     private final PropertyConfigurationRepository propertyConfigurationRepository;
 
+    @Cacheable(value = "propertyCache", key = "#propertyId")
     public PropertyConfiguration getConfiguration(Long propertyId) {
-        logger.info("Fetching configuration for propertyId: {}", propertyId);
+        logger.info("Cache miss for propertyId: {} - Fetching from database", propertyId);
 
         try {
             return propertyConfigurationRepository.findByPropertyId(propertyId)
@@ -29,6 +32,7 @@ public class PropertyConfigurationService {
         }
     }
 
+
     public PropertyConfiguration updateConfiguration(PropertyConfiguration config) {
         logger.info("Updating configuration for propertyId: {}", config.getPropertyId());
 
@@ -41,4 +45,5 @@ public class PropertyConfigurationService {
             return null;
         }
     }
+
 }

@@ -7,8 +7,10 @@ import backend.service.RoomTypeAvailabilityService;
 import backend.service.CustomPromotionService;
 import backend.service.PromoCodeService;
 import backend.service.PromotionService;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -30,6 +32,7 @@ public class DailyRateServiceImpl implements DailyRateService {
     private final PromotionService promotionService;
 
     @Override
+    @Cacheable(value = "dailyRates", key = "#request.roomTypeId + '_' + #request.startDate + '_' + #request.endDate")
     public List<DailyRateResponseDTO> calculateDailyRates(DailyRateRequestDTO request) {
         log.info("Calculating daily rates for room type {} between {} and {}", 
             request.getRoomTypeId(), request.getStartDate(), request.getEndDate());

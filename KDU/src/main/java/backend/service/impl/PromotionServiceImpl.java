@@ -5,9 +5,11 @@ import backend.dto.response.PromotionResponseDTO;
 import backend.service.PromotionService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -33,6 +35,7 @@ public class PromotionServiceImpl implements PromotionService {
     private String apiKey;
 
     @Override
+    @Cacheable(value = "promotionsCache", key = "#root.method.name")
     public List<PromotionResponseDTO> getAllPromotions() {
         try {
             JsonNode response = executeGraphQLQuery(GraphQLQueries.GET_PROMOTIONS_QUERY);

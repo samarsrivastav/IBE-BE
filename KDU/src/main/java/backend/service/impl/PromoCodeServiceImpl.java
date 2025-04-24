@@ -9,6 +9,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,7 @@ public class PromoCodeServiceImpl implements PromoCodeService {
     private final PromoCodeRepository repository;
 
     @Override
+    @Cacheable(value = "promoCodesCache", key = "#root.method.name")
     public List<PromoCode> getApplicablePromoCodes(LocalDate startDate, LocalDate endDate) {
         log.info("Getting applicable promo codes for end date: {}", endDate);
         List<PromoCode> allPromoCodes = repository.findAll();

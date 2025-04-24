@@ -18,7 +18,7 @@ import java.util.List;
 @RequestMapping("/api/v1/promotions")
 @RequiredArgsConstructor
 @Tag(name = "Promotions", description = "APIs for managing promotions")
-public class PromotionController {
+public class  PromotionController {
 
     private final PromotionService promotionService;
 

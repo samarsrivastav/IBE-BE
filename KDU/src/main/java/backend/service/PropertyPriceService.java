@@ -3,6 +3,7 @@ package backend.service;
 import backend.constants.GraphQLQueries;
 import backend.utils.CalculateMinPrice;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -28,7 +29,7 @@ public class PropertyPriceService {
     public PropertyPriceService(CalculateMinPrice calculateMinimumRates) {
         this.calculateMinimumRates = calculateMinimumRates;
     }
-
+    @Cacheable(value = "minimumRatesCache", key = "#propertyId")
     public SortedMap<String, Double> fetchMinimumRoomRates(int propertyId) {
         logger.info("Fetching minimum room rates for propertyId: {}", propertyId);
 

@@ -4,6 +4,7 @@ import backend.constants.GraphQLQueries;
 import backend.model.GraphQLRequest;
 import backend.model.GraphQLResponse;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -55,6 +56,7 @@ public class GraphQLService {
         }
     }
 
+    @Cacheable(value = "propertiesCache", key = "#tenantId")
     public Object fetchAllProperties(Integer tenantId) {
         logger.info("Fetching all properties for tenantId: {}", tenantId);
 
